@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://qora2f2xvu2o"]
+
+[ext_resource type="Script" uid="uid://rf5hqu4ff2xh" path="res://scripts/ui/MainMenu/leader_board_button.gd" id="1_u7ttt"]
+
+[node name="LeaderBoardButton" type="Button"]
+anchors_preset = -1
+anchor_right = 0.165
+anchor_bottom = 0.034
+offset_right = -59.980003
+offset_bottom = -23.178001
+text = "SCORES"
+script = ExtResource("1_u7ttt")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

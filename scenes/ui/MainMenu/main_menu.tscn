@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://cumwujwhqn00f"]
+[gd_scene load_steps=5 format=3 uid="uid://cumwujwhqn00f"]
+
+[ext_resource type="Script" uid="uid://brwl6ygpwkkyh" path="res://scripts/ui/MainMenu/main_menu.gd" id="1_epepa"]
+[ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_ift2n"]
+[ext_resource type="PackedScene" uid="uid://qora2f2xvu2o" path="res://scenes/ui/MainMenu/leader_board_button.tscn" id="1_ql3r1"]
+[ext_resource type="PackedScene" uid="uid://cpgj0vj2rsnpv" path="res://scenes/ui/MainMenu/config_buttons.tscn" id="3_ql3r1"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_epepa")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -30,35 +36,38 @@ size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="LeaderboardButton" type="Button" parent="MarginContainer/VBoxContainer/Header"]
+[node name="LeaderBoardButton" parent="MarginContainer/VBoxContainer/Header" instance=ExtResource("1_ql3r1")]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "SCORES"
 
 [node name="HighScoreLabel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Header/HighScoreLabel"]
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/Header/HighScoreLabel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ift2n")
+theme_override_font_sizes/font_size = 24
 text = "High Score"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Header/HighScoreLabel"]
+[node name="ScoreValueLabel" type="Label" parent="MarginContainer/VBoxContainer/Header/HighScoreLabel"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ift2n")
+theme_override_font_sizes/font_size = 24
 text = "2839"
 horizontal_alignment = 1
 
-[node name="ConfigButton" type="Button" parent="MarginContainer/VBoxContainer/Header"]
+[node name="ConfigButtons" parent="MarginContainer/VBoxContainer/Header" instance=ExtResource("3_ql3r1")]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "CONFIGS"
 
 [node name="title" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.8
+theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 60
 text = "TITULO 
 IRADO 3D"
@@ -67,5 +76,9 @@ horizontal_alignment = 1
 [node name="instruction" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("1_ift2n")
+theme_override_font_sizes/font_size = 26
 text = "Toque para jogar"
 horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
