@@ -1,6 +1,12 @@
 extends Control
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+var showing: bool = true
 
-
-func _on_gui_input(event: InputEvent) -> void:
-	pass # Replace with function body.
+func hideMainMenu():
+	animation_player.play("hide_menu")
+	showing = false
+	
+func showMainMenu():
+	animation_player.play_backwards("hide_menu")
+	showing = true
