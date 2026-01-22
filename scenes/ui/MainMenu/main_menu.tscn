@@ -5,69 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://qora2f2xvu2o" path="res://scenes/ui/MainMenu/leader_board_button.tscn" id="1_ql3r1"]
 [ext_resource type="PackedScene" uid="uid://cpgj0vj2rsnpv" path="res://scenes/ui/MainMenu/config_buttons.tscn" id="3_ql3r1"]
 
-[sub_resource type="Animation" id="Animation_epepa"]
-resource_name = "hide_menu"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/VBoxContainer/InstructionWrapper/instruction:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.60010004),
-"transitions": PackedFloat32Array(2, 1, 1),
-"update": 0,
-"values": [Vector2(0, 850), Vector2(0, 835), Vector2(0, 950)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/VBoxContainer/TitleWrapper/title:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(2, 1, 1),
-"update": 0,
-"values": [Vector2(-196, 273), Vector2(-196, 293), Vector2(-196, -200)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/VBoxContainer/Header/LeaderboardWrapper/LeaderBoardButton:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(2, 1, 1),
-"update": 0,
-"values": [Vector2(30, 0), Vector2(60, 0), Vector2(-100, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MarginContainer/VBoxContainer/Header/ScoreWrapper/HighScoreLabel:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(2, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(20, 0), Vector2(-160, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MarginContainer/VBoxContainer/Header/ConfigWrapper/ConfigButtons:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(2, 1, 1),
-"update": 0,
-"values": [Vector2(-108, 0), Vector2(-126, 0), Vector2(-80, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_mfgk4"]
 length = 0.001
 tracks/0/type = "value"
@@ -97,38 +34,53 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/VBoxContainer/Header/LeaderboardWrapper/LeaderBoardButton:position")
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/HeaderWrapper/Header:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(30, 0)]
+"values": [Vector2(0, -6)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MarginContainer/VBoxContainer/Header/ScoreWrapper/HighScoreLabel:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+
+[sub_resource type="Animation" id="Animation_epepa"]
+resource_name = "hide_menu"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/InstructionWrapper/instruction:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.60010004),
+"transitions": PackedFloat32Array(2, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 850), Vector2(0, 835), Vector2(0, 950)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MarginContainer/VBoxContainer/Header/ConfigWrapper/ConfigButtons:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/TitleWrapper/title:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(2, 1, 1),
 "update": 0,
-"values": [Vector2(-108, 0)]
+"values": [Vector2(-196, 273), Vector2(-196, 293), Vector2(-196, -200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/VBoxContainer/HeaderWrapper/Header:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(2, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 80), Vector2(0, -150)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b771k"]
@@ -161,67 +113,46 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HeaderWrapper" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HeaderWrapper"]
+layout_mode = 0
+offset_top = -6.0
+offset_right = 392.0
+offset_bottom = 48.00004
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="LeaderboardWrapper" type="Control" parent="MarginContainer/VBoxContainer/Header"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="LeaderBoardButton" parent="MarginContainer/VBoxContainer/Header/LeaderboardWrapper" instance=ExtResource("1_ql3r1")]
+[node name="LeaderBoardButton" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header" instance=ExtResource("1_ql3r1")]
 custom_minimum_size = Vector2(68, 54)
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 30.0
-offset_right = 98.000046
-offset_bottom = 54.0
-size_flags_horizontal = 2
-
-[node name="ScoreWrapper" type="Control" parent="MarginContainer/VBoxContainer/Header"]
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="HighScoreLabel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Header/ScoreWrapper"]
-layout_mode = 0
-offset_right = 99.0
-offset_bottom = 54.0
+[node name="HighScoreLabel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header"]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/Header/ScoreWrapper/HighScoreLabel"]
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header/HighScoreLabel"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 24
 text = "Score"
 horizontal_alignment = 1
 
-[node name="ScoreValueLabel" type="Label" parent="MarginContainer/VBoxContainer/Header/ScoreWrapper/HighScoreLabel"]
+[node name="ScoreValueLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header/HighScoreLabel"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 24
 text = "2839"
 horizontal_alignment = 1
 
-[node name="ConfigWrapper" type="Control" parent="MarginContainer/VBoxContainer/Header"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 0
-
-[node name="ConfigButtons" parent="MarginContainer/VBoxContainer/Header/ConfigWrapper" instance=ExtResource("3_ql3r1")]
+[node name="ConfigButtons" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header" instance=ExtResource("3_ql3r1")]
 custom_minimum_size = Vector2(68, 54)
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -108.0
-offset_right = -30.0
-offset_bottom = 54.0
+layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="TitleWrapper" type="Control" parent="MarginContainer/VBoxContainer"]
@@ -237,7 +168,7 @@ anchor_right = 0.5
 offset_left = -196.0
 offset_top = 273.0
 offset_right = 196.0
-offset_bottom = 398.00003
+offset_bottom = 398.00018
 grow_horizontal = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.8
@@ -255,7 +186,7 @@ top_level = true
 layout_mode = 0
 offset_top = 850.0
 offset_right = 392.0
-offset_bottom = 877.0001
+offset_bottom = 877.0002
 size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 26
