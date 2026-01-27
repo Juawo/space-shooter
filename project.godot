@@ -10,19 +10,8 @@ config_version=5
 
 [application]
 
-config/name="space-shooter"
-run/main_scene="uid://cumwujwhqn00f"
-config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
-
-[display]
-
-window/size/viewport_width=412
-window/size/viewport_height=917
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
-window/handheld/orientation=1
+config/features=PackedStringArray("4.5")
 
 [rendering]
 
-renderer/rendering_method="mobile"
+textures/canvas_textures/default_texture_filter=0

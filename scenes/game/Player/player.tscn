@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8bvrgnu7smjw"]
+
+[ext_resource type="Texture2D" uid="uid://bl1qcpmv6n4ks" path="res://assets/sprites/idle.png" id="1_apxxd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hecf"]
+size = Vector2(13.200003, 13.200003)
+
+[node name="Node2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.99999994, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("1_apxxd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+position = Vector2(-1.0430813e-07, 0.99999994)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_1hecf")
