@@ -12,6 +12,14 @@ config_version=5
 
 config/features=PackedStringArray("4.5")
 
+[display]
+
+window/size/viewport_width=412
+window/size/viewport_height=917
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
