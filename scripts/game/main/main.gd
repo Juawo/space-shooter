@@ -5,7 +5,7 @@ extends Node2D
 # TODO : Lembrar de conectar os sinais dos componentes!
 
 # "Componentes" do jogo
-@onready var main_menu: Control = $UI/MainMenu
+@onready var main_menu : Control = $UI/MainMenu
 
 # Enum com os estados possiveis do jogo
 enum GameStates { GAME, MAIN_MENU, PAUSED, GAME_OVER }
