@@ -10,7 +10,6 @@ config_version=5
 
 [application]
 
-config/features=PackedStringArray("4.5")
 config/name="space-shooter"
 run/main_scene="uid://byq2slibadrir"
 config/features=PackedStringArray("4.5", "Mobile")
@@ -24,6 +23,12 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
+[input_devices]
+
+sensors/enable_accelerometer=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
