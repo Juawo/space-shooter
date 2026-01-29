@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://deo2xlnjykoj2"]
+
+[ext_resource type="Script" uid="uid://0tpc5vgmu38i" path="res://scripts/game/gameWorld/game_world.gd" id="1_im6e1"]
+[ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="1_r2iep"]
+[ext_resource type="PackedScene" uid="uid://c8bvrgnu7smjw" path="res://scenes/game/player/player.tscn" id="2_lcs20"]
+
+[node name="GameWorld" type="Node2D"]
+script = ExtResource("1_im6e1")
+metadata/_edit_vertical_guides_ = [0.0]
+
+[node name="background" parent="." instance=ExtResource("1_r2iep")]
+
+[node name="Player" parent="." instance=ExtResource("2_lcs20")]
+position = Vector2(204, 840)
+
+[node name="TitleAccel" type="Label" parent="."]
+offset_left = 93.0
+offset_top = 73.0
+offset_right = 345.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 34
+text = "Acelerometro :"
+horizontal_alignment = 1
+
+[node name="AccelData" type="Label" parent="."]
+offset_left = 76.0
+offset_top = 114.0
+offset_right = 361.0
+offset_bottom = 161.0
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1

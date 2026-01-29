@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpgj0vj2rsnpv"]
+
+[ext_resource type="Script" uid="uid://46nqlv8eecmx" path="res://scripts/ui/MainMenu/config_buttons.gd" id="1_5t02p"]
+
+[node name="ConfigButtons" type="Button"]
+anchors_preset = -1
+anchor_right = 0.18900001
+anchor_bottom = 0.034
+offset_right = -69.868004
+offset_bottom = -23.178001
+text = "CONFIGS"
+script = ExtResource("1_5t02p")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
