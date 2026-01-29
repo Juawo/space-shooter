@@ -5,9 +5,10 @@ signal gameOver
 @export var SPEED := 200.0
 @export var SMOOTH_SPEED := 0.1
 @export var DEADZONE = 0.3
-
 @onready var screen_size = get_viewport_rect().size
 @onready var sprite: Sprite2D = $Sprite
+
+@export var accel_pos : Vector3
 
 var playerLife := 3 :
 	set (new_value) :
@@ -21,13 +22,11 @@ func _physics_process(delta: float) -> void:
 	# TODO : Com base nos dados, pegar a direction (left | right)
 	# TODO : Com base na direction deslocar o player com base na SPEED
 
-	var accel := Input.get_accelerometer()
+	accel_pos = Input.get_accelerometer()
 	
-	var input_x = accel.x
+	var input_x = accel_pos.x
 	if input_x == 0:
 		input_x = Input.get_axis("ui_left", "ui_right") * 5.0
-	else:
-		input_x = -input_x
 		
 	var target_velocity = input_x  * SPEED
 	
