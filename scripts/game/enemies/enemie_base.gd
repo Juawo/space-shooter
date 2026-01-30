@@ -6,7 +6,7 @@ extends Area2D
 
 func takeDamage(damage_value: int) -> void:
 	life -= damage_value
-	if(life == 0):
+	if(life <= 0):
 		die()
 
 func die():
