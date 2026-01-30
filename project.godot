@@ -28,6 +28,13 @@ window/main_scene="uid://deo2xlnjykoj2"
 
 sensors/enable_accelerometer=true
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="PlayerProjectiles"
+2d_physics/layer_4="EnemyProjectiles"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
