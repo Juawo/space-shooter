@@ -2,5 +2,9 @@
 
 [ext_resource type="Script" uid="uid://craxvmt43f5ri" path="res://scripts/game/enemies/enemie_base.gd" id="1_d3nni"]
 
-[node name="EnemieBase" type="Area2D"]
+[node name="EnemieBase" type="Area2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_d3nni")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

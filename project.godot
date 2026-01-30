@@ -24,6 +24,11 @@ window/stretch/aspect="expand"
 window/handheld/orientation=1
 window/main_scene="uid://deo2xlnjykoj2"
 
+[global_group]
+
+Enemy="Enemy group"
+PlayerProjectiles=""
+
 [input_devices]
 
 sensors/enable_accelerometer=true
