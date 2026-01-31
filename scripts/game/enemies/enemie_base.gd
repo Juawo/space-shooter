@@ -15,13 +15,20 @@ func _ready() -> void:
 	else :
 		# Ja que o inimigo nao atira, removo o timer
 		shoot_timer.queue_free()
-		
+	
 	particle_die.color = base_color
 	
 func takeDamage(damage_value: int) -> void:
 	life -= damage_value
 	if(life <= 0):
 		die()
+
+func dieTween() -> Tween:
+	var tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(self, "scale", Vector2(1.5, 1.5), 0.3)
+	return tween
 
 func die():
 	# Desativando as fisicas do inimigo
@@ -32,6 +39,7 @@ func die():
 	if can_shoot:
 		shoot_timer.paused = true
 	
+	await dieTween().finished
 	# Dispara particula de explodir
 	particle_die.emitting = true
 	# Espera as particulas encerrarem para liberar da memoria
