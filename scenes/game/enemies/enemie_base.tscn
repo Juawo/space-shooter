@@ -1,10 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4kbs6vopeoxo"]
+[gd_scene load_steps=4 format=3 uid="uid://d4kbs6vopeoxo"]
 
 [ext_resource type="Script" uid="uid://craxvmt43f5ri" path="res://scripts/game/enemies/enemie_base.gd" id="1_d3nni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3nni"]
+size = Vector2(15, 15)
+
+[sub_resource type="Curve" id="Curve_d3nni"]
+_data = [Vector2(0.08139536, 0.49438208), 0.0, 6.6260004, 0, 0, Vector2(0.9186047, 0.42696637), -2.283964, 0.0, 0, 0]
+point_count = 2
 
 [node name="EnemieBase" type="Area2D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_d3nni")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d3nni")
+disabled = true
+
+[node name="ParticleDie" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 15
+one_shot = true
+speed_scale = 1.4
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 2.36
+spread = 180.0
+gravity = Vector2(0, 0)
+angular_velocity_min = -74.23
+angular_velocity_max = 44.54
+radial_accel_min = 16.43
+radial_accel_max = 50.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_d3nni")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

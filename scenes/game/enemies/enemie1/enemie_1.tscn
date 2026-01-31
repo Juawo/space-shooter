@@ -1,14 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://3eqm5l1q0og3"]
+[gd_scene load_steps=3 format=3 uid="uid://3eqm5l1q0og3"]
 
 [ext_resource type="PackedScene" uid="uid://d4kbs6vopeoxo" path="res://scenes/game/enemies/enemie_base.tscn" id="1_5gf4d"]
 [ext_resource type="Script" uid="uid://dp8pcu0fiqr6a" path="res://scripts/game/enemies/enemie1/enemie_1.gd" id="2_7a6fx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7a6fx"]
-size = Vector2(3, 3)
-
 [node name="Enemie1" instance=ExtResource("1_5gf4d")]
 script = ExtResource("2_7a6fx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-shape = SubResource("RectangleShape2D_7a6fx")
-debug_color = Color(0.8016881, 0.3953241, 0.38535604, 0.41960785)
