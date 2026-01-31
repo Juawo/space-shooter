@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://deo2xlnjykoj2"]
+[gd_scene load_steps=6 format=3 uid="uid://deo2xlnjykoj2"]
 
 [ext_resource type="Script" uid="uid://0tpc5vgmu38i" path="res://scripts/game/gameWorld/game_world.gd" id="1_im6e1"]
 [ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="1_r2iep"]
 [ext_resource type="PackedScene" uid="uid://c8bvrgnu7smjw" path="res://scenes/game/player/player.tscn" id="2_lcs20"]
+[ext_resource type="PackedScene" uid="uid://d0sa2qitm3h5r" path="res://scenes/game/enemies/enemie2/enemie_2.tscn" id="4_7j6fr"]
+[ext_resource type="PackedScene" uid="uid://3eqm5l1q0og3" path="res://scenes/game/enemies/enemie1/enemie_1.tscn" id="4_uepgv"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1_im6e1")
@@ -29,3 +31,9 @@ offset_right = 361.0
 offset_bottom = 161.0
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
+
+[node name="Enemie1" parent="." instance=ExtResource("4_uepgv")]
+position = Vector2(90.99999, 251.99998)
+
+[node name="Enemie2" parent="." instance=ExtResource("4_7j6fr")]
+position = Vector2(212.99998, 253.99998)
