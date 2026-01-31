@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://3eqm5l1q0og3"]
+
+[ext_resource type="PackedScene" uid="uid://d4kbs6vopeoxo" path="res://scenes/game/enemies/enemie_base.tscn" id="1_5gf4d"]
+[ext_resource type="Script" uid="uid://dp8pcu0fiqr6a" path="res://scripts/game/enemies/enemie1/enemie_1.gd" id="2_7a6fx"]
+
+[node name="Enemie1" instance=ExtResource("1_5gf4d")]
+script = ExtResource("2_7a6fx")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.49803922, 1, 0, 1)
+
+[node name="ParticleDie" parent="." index="2"]
+lifetime = 0.5

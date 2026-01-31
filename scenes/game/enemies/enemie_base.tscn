@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4kbs6vopeoxo"]
+
+[ext_resource type="Script" uid="uid://craxvmt43f5ri" path="res://scripts/game/enemies/enemie_base.gd" id="1_d3nni"]
+[ext_resource type="Texture2D" uid="uid://cvxnsj15rgry5" path="res://icon.svg" id="2_jp0n8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3nni"]
+size = Vector2(15, 15)
+
+[sub_resource type="Curve" id="Curve_d3nni"]
+_data = [Vector2(0.08139536, 0.49438208), 0.0, 6.6260004, 0, 0, Vector2(0.9186047, 0.42696637), -2.283964, 0.0, 0, 0]
+point_count = 2
+
+[node name="EnemieBase" type="Area2D" groups=["Enemy"]]
+scale = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_d3nni")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.119140625, 0.119140625)
+texture = ExtResource("2_jp0n8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d3nni")
+disabled = true
+
+[node name="ParticleDie" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 15
+lifetime = 0.7
+one_shot = true
+speed_scale = 1.4
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 2.36
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+angular_velocity_min = -74.23
+angular_velocity_max = 44.54
+radial_accel_min = 16.43
+radial_accel_max = 50.0
+scale_amount_min = 2.5
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_d3nni")
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3, 2)
+rect = Rect2(-10, -9, 14, 14)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
