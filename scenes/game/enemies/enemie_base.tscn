@@ -11,6 +11,7 @@ _data = [Vector2(0.08139536, 0.49438208), 0.0, 6.6260004, 0, 0, Vector2(0.918604
 point_count = 2
 
 [node name="EnemieBase" type="Area2D" groups=["Enemy"]]
+scale = Vector2(5, 5)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_d3nni")
@@ -26,6 +27,7 @@ disabled = true
 [node name="ParticleDie" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 15
+lifetime = 0.7
 one_shot = true
 speed_scale = 1.4
 explosiveness = 1.0
@@ -35,11 +37,14 @@ emission_shape = 1
 emission_sphere_radius = 2.36
 spread = 180.0
 gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
 angular_velocity_min = -74.23
 angular_velocity_max = 44.54
 radial_accel_min = 16.43
 radial_accel_max = 50.0
-scale_amount_min = 0.5
+scale_amount_min = 2.5
+scale_amount_max = 12.0
 scale_amount_curve = SubResource("Curve_d3nni")
 
 [node name="ShootTimer" type="Timer" parent="."]

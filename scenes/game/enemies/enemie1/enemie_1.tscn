@@ -5,3 +5,9 @@
 
 [node name="Enemie1" instance=ExtResource("1_5gf4d")]
 script = ExtResource("2_7a6fx")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.49803922, 1, 0, 1)
+
+[node name="ParticleDie" parent="." index="2"]
+lifetime = 0.5

@@ -4,8 +4,10 @@ extends Area2D
 @export var score_value := 10
 @export var can_shoot := false
 @export var base_color := Color.CHARTREUSE
+
 @onready var particle_die: CPUParticles2D = $ParticleDie
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _ready() -> void:
 	if can_shoot:
@@ -26,8 +28,8 @@ func takeDamage(damage_value: int) -> void:
 func dieTween() -> Tween:
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(self, "scale", Vector2(1.5, 1.5), 0.3)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(self, "scale", Vector2(7.5, 7.5), 0.4)
 	return tween
 
 func die():
@@ -39,9 +41,15 @@ func die():
 	if can_shoot:
 		shoot_timer.paused = true
 	
+	# Toca o Tween para aumentar o inimigo antes de morrer
 	await dieTween().finished
+	
+	# Esconde o sprite para tocar so as particulas
+	sprite_2d.visible = false
+	
 	# Dispara particula de explodir
 	particle_die.emitting = true
+	
 	# Espera as particulas encerrarem para liberar da memoria
 	await particle_die.finished
 	
