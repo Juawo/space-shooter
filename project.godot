@@ -28,6 +28,7 @@ window/main_scene="uid://deo2xlnjykoj2"
 
 Enemy="Enemy group"
 PlayerProjectiles=""
+EnemiesProjectiles=""
 
 [input_devices]
 
