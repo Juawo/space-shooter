@@ -5,8 +5,17 @@ extends Area2D
 @export var can_shoot := false
 @export var base_color := Color.CHARTREUSE
 @onready var particle_die: CPUParticles2D = $ParticleDie
+@onready var shoot_timer: Timer = $ShootTimer
 
 func _ready() -> void:
+	if can_shoot:
+		shoot_timer.start(randf_range(1.5,3.0))
+		# Randomizando momento de disparar de cada inimigo
+		shoot_timer.wait_time = randf_range(1.5,3.0)
+	else :
+		# Ja que o inimigo nao atira, removo o timer
+		shoot_timer.queue_free()
+		
 	particle_die.color = base_color
 	
 func takeDamage(damage_value: int) -> void:
@@ -15,9 +24,34 @@ func takeDamage(damage_value: int) -> void:
 		die()
 
 func die():
+	# Desativando as fisicas do inimigo
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
+	
+	# Parando de "atirar"
+	if can_shoot:
+		shoot_timer.paused = true
+	
+	# Dispara particula de explodir
 	particle_die.emitting = true
+	# Espera as particulas encerrarem para liberar da memoria
+	await particle_die.finished
+	
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
+	# Se o elemento que entrou na area for um PlayerProjectiles, causa o dando que esse elemento tem
 	if(area.is_in_group("PlayerProjectiles")):
 		takeDamage(area.damage_value)
+
+func shoot():
+	# logica de disparo, implementado nas scenes filhos
+	pass
+
+func _on_shoot_timer_timeout() -> void:
+	# Dispara quando o tempo de "cooldown" encerrar
+	shoot()
+
+# Caso o inimigo saia do range da tela, ele e eliminado, para evitar processamento desnecessario
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
