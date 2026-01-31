@@ -24,7 +24,7 @@ texture = ExtResource("2_jp0n8")
 shape = SubResource("RectangleShape2D_d3nni")
 disabled = true
 
-[node name="ParticleDie" type="CPUParticles2D" parent="."]
+[node name="ParticleDie" type="CPUParticles2D" parent="." groups=["Enemy"]]
 emitting = false
 amount = 15
 lifetime = 0.7

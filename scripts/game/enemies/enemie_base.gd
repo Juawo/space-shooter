@@ -1,5 +1,7 @@
 extends Area2D
 
+# TODO : Emitir score_value quando eliminado!
+
 @export var life := 1
 @export var score_value := 10
 @export var can_shoot := false
