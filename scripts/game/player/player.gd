@@ -15,6 +15,7 @@ var playerLife := 3 :
 		playerLife = new_value
 		if new_value == 0:
 			gameOver.emit()
+			print("GameOver")
 
 
 func _physics_process(delta: float) -> void:
@@ -40,11 +41,15 @@ func _physics_process(delta: float) -> void:
 	position.x = clamp(position.x, half_width, screen_size.x - half_width)
 
 
-func _on_area_2d_area_entered(_area: Area2D) -> void:
-	takeDamage()
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	print("entr")
+	if area.is_in_group("Enemies") or area.is_in_group("EnemiesProjectiles"):
+		var damage = area.damage_value if "damage_value" in area else 1
+		takeDamage(damage)
+		if area.is_in_group("EnemiesProjectiles"):
+			area.queue_free()
 	
-func takeDamage ():
-	if playerLife > 0:
-		playerLife -= 1
-	else :
-		gameOver.emit()
+func takeDamage (amount : int):
+	playerLife = clamp(playerLife - amount, 0, 3)
+	print("PlayerLife : ", playerLife)
+	
