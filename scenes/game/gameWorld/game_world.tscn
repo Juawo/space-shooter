@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://deo2xlnjykoj2"]
+[gd_scene load_steps=8 format=3 uid="uid://deo2xlnjykoj2"]
 
 [ext_resource type="Script" uid="uid://0tpc5vgmu38i" path="res://scripts/game/gameWorld/game_world.gd" id="1_im6e1"]
 [ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="1_r2iep"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d0sa2qitm3h5r" path="res://scenes/game/enemies/enemie2/enemie_2.tscn" id="4_7j6fr"]
 [ext_resource type="PackedScene" uid="uid://3eqm5l1q0og3" path="res://scenes/game/enemies/enemie1/enemie_1.tscn" id="4_uepgv"]
 [ext_resource type="PackedScene" uid="uid://x0hkj03rb8y1" path="res://scenes/game/enemies/enemie4/enemie_4.tscn" id="6_x5ux2"]
+[ext_resource type="PackedScene" uid="uid://diweol6fsnpgp" path="res://scenes/game/enemies/enemie3/enemie_3.tscn" id="7_kc0ue"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1_im6e1")
@@ -41,3 +42,6 @@ position = Vector2(212.99998, 253.99998)
 
 [node name="Enemie4" parent="." instance=ExtResource("6_x5ux2")]
 position = Vector2(202, 438.00006)
+
+[node name="Enemie3" parent="." instance=ExtResource("7_kc0ue")]
+position = Vector2(330, 251)
