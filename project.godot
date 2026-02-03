@@ -15,6 +15,11 @@ run/main_scene="uid://deo2xlnjykoj2"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SessionState="*res://scripts/game/session-state.gd"
+SaveManager="*res://scripts/game/save-manager.gd"
+
 [display]
 
 window/size/viewport_width=412
