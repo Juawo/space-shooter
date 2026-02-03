@@ -7,6 +7,7 @@
 [node name="Enemie2" instance=ExtResource("1_qo7cy")]
 script = ExtResource("2_kb3w2")
 bullet_scene = ExtResource("3_4v1te")
+score_value = 20
 can_shoot = true
 base_color = Color(0, 0.35550076, 0.67735356, 1)
 
