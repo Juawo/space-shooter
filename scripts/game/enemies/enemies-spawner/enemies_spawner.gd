@@ -71,9 +71,6 @@ func get_random_enemy() -> PackedScene:
 func _on_enemy_killed():
 	# O sinal é emitido ANTES do queue_free terminar, 
 	# então checamos se resta apenas 1 (o que está morrendo agora)
-	print("sinal emitido")
-	print(enemies_grid.get_child_count())
-	
 	if enemies_grid.get_child_count() <= 1:
 		print(enemies_grid.get_child_count())
 		print("Wave finalizada!")
