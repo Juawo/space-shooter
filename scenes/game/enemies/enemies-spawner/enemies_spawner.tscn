@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6ldni36gxx0u"]
+
+[ext_resource type="Script" uid="uid://bpwpvdyifrkrn" path="res://scripts/game/enemies/enemies-spawner/enemies_spawner.gd" id="1_cibea"]
+
+[node name="EnemiesSpawner" type="Node2D"]
+script = ExtResource("1_cibea")
+
+[node name="EnemiesGrid" type="Node2D" parent="."]
+
+[node name="WaveWaitTimer" type="Timer" parent="."]
