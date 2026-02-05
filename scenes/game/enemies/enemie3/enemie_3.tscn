@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://diweol6fsnpgp"]
+
+[ext_resource type="PackedScene" uid="uid://d4kbs6vopeoxo" path="res://scenes/game/enemies/enemie_base.tscn" id="1_y7crc"]
+[ext_resource type="Script" uid="uid://fwnjpldvbh66" path="res://scripts/game/enemies/enemie3/enemie_3.gd" id="2_63maj"]
+
+[node name="Enemie3" instance=ExtResource("1_y7crc")]
+script = ExtResource("2_63maj")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.8039216, 0.74509805, 0, 1)

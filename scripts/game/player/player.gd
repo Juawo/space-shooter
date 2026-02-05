@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 signal gameOver
 
-@export var SPEED := 200.0
+@export var bullet_scene := preload("res://scenes/game/player/player_bullet.tscn")
+@onready var marker_2d: Marker2D = $Marker2D
+
+@export var SPEED := 100.0
 @export var SMOOTH_SPEED := 0.1
 @export var DEADZONE = 0.3
 @onready var screen_size = get_viewport_rect().size
@@ -16,7 +19,6 @@ var playerLife := 3 :
 		if new_value == 0:
 			gameOver.emit()
 			print("GameOver")
-
 
 func _physics_process(delta: float) -> void:
 	# TODO : Pegar os dados do acelerometro
@@ -42,7 +44,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("entr")
 	if area.is_in_group("Enemies") or area.is_in_group("EnemiesProjectiles"):
 		var damage = area.damage_value if "damage_value" in area else 1
 		takeDamage(damage)
@@ -53,3 +54,12 @@ func takeDamage (amount : int):
 	playerLife = clamp(playerLife - amount, 0, 3)
 	print("PlayerLife : ", playerLife)
 	
+
+func _on_shoot_timer_timeout() -> void:
+	shoot()
+
+func shoot () -> void:
+	if bullet_scene:
+		var bullet = bullet_scene.instantiate()
+		bullet.global_position = marker_2d.global_position
+		get_tree().current_scene.add_child(bullet)

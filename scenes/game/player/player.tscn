@@ -10,6 +10,8 @@ size = Vector2(12.800002, 14.200003)
 size = Vector2(64.5, 71.5)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 10
+collision_mask = 10
 script = ExtResource("1_1hecf")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -18,7 +20,7 @@ scale = Vector2(4.999999, 4.999999)
 shape = SubResource("RectangleShape2D_1hecf")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0.99999994, 0)
+position = Vector2(-5.9604645e-08, 0)
 scale = Vector2(5, 5)
 texture = ExtResource("1_apxxd")
 
@@ -30,4 +32,12 @@ position = Vector2(0.75, 3.25)
 shape = SubResource("RectangleShape2D_t5cse")
 debug_color = Color(0.9353768, 2.0311178e-05, 0.63873893, 0.41960785)
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1, -37)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

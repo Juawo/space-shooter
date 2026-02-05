@@ -1,8 +1,10 @@
 extends Area2D
 
+signal enemy_died
 # TODO : Emitir score_value quando eliminado!
 
 @export var life := 1
+@export var SPEED := 60
 @export var score_value := 10
 @export var can_shoot := false
 @export var base_color := Color.CHARTREUSE
@@ -21,7 +23,10 @@ func _ready() -> void:
 		shoot_timer.queue_free()
 	
 	particle_die.color = base_color
-	
+
+func _process(delta: float) -> void:
+	position.y += SPEED * delta
+
 func takeDamage(damage_value: int) -> void:
 	life -= damage_value
 	if(life <= 0):
@@ -35,6 +40,8 @@ func dieTween() -> Tween:
 	return tween
 
 func die():
+	SessionState.current_score += score_value
+	
 	# Desativando as fisicas do inimigo
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
@@ -54,12 +61,14 @@ func die():
 	
 	# Espera as particulas encerrarem para liberar da memoria
 	await particle_die.finished
-	
+	enemy_died.emit()
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
 	# Se o elemento que entrou na area for um PlayerProjectiles, causa o dando que esse elemento tem
+	print("Algo entrou")
 	if(area.is_in_group("PlayerProjectiles")):
+		print("Algo entrou e um player projectiles")
 		takeDamage(area.damage_value)
 
 func shoot():
