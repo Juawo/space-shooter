@@ -4,6 +4,7 @@ signal enemy_died
 # TODO : Emitir score_value quando eliminado!
 
 @export var life := 1
+@export var SPEED := 60
 @export var score_value := 10
 @export var can_shoot := false
 @export var base_color := Color.CHARTREUSE
@@ -22,7 +23,10 @@ func _ready() -> void:
 		shoot_timer.queue_free()
 	
 	particle_die.color = base_color
-	
+
+func _process(delta: float) -> void:
+	position.y += SPEED * delta
+
 func takeDamage(damage_value: int) -> void:
 	life -= damage_value
 	if(life <= 0):
