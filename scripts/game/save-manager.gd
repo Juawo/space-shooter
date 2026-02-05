@@ -1,7 +1,12 @@
 extends Node
 
 var file_path :String = "user://space-shooter.json"
-var high_score :int = 0
+
+var high_score : int = 0
+var player_id : String = "" # Mudado para String pois sua API usa GUID
+var player_nickname : String = ""
+var score_id : String = ""
+
 
 func _ready() -> void:
 	load_data()
@@ -12,9 +17,15 @@ func save_data () -> void:
 	if not save_file:
 		print ("Nao foi possivel abrir o arquivo para escrita.")
 		return
-		
-	var jsaon_data = JSON.stringify(high_score)
-	save_file.store_line(jsaon_data)
+	
+	var data = {
+		"high_score": high_score,
+		"player_id": player_id,
+		"player_nickname": player_nickname,
+		"score_id": score_id
+	}
+	var json_data = JSON.stringify(data)
+	save_file.store_line(json_data)
 	save_file.close()
 	
 func load_data () -> void:
@@ -25,9 +36,15 @@ func load_data () -> void:
 	if not load_file:
 		print ("Nao foi possivel abrir o arquivo para escrita.")
 		return
+		
 	var json_data = JSON.parse_string(load_file.get_as_text())
 	load_file.close()
 	
-	high_score = json_data
-	print (high_score)
+	if json_data:
+		high_score = json_data.high_score
+		player_id = json_data.player_id
+		player_nickname = json_data.player_nickname
+		score_id = json_data.score_id
+		# Sincroniza com o SessionState
+		SessionState.high_score = high_score
 		
