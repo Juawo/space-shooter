@@ -24,7 +24,7 @@ texture = ExtResource("2_jp0n8")
 shape = SubResource("RectangleShape2D_d3nni")
 disabled = true
 
-[node name="ParticleDie" type="CPUParticles2D" parent="." groups=["Enemy"]]
+[node name="ParticleDie" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 15
 lifetime = 0.7
@@ -53,6 +53,11 @@ scale_amount_curve = SubResource("Curve_d3nni")
 position = Vector2(3, 2)
 rect = Rect2(-10, -9, 14, 14)
 
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

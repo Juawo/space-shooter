@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://becggl8acagft" path="res://scenes/game/enemies/enemie4/enemy_rotated_bullet.tscn" id="3_6v76c"]
 
 [node name="Enemie4" instance=ExtResource("1_lcv4k")]
-scale = Vector2(6.549974, 5.103491)
 script = ExtResource("2_6v76c")
 bullet_scene = ExtResource("3_6v76c")
 life = 3

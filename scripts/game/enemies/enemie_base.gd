@@ -1,8 +1,10 @@
 extends Area2D
 
+signal enemy_died
 # TODO : Emitir score_value quando eliminado!
 
 @export var life := 1
+@export var SPEED := 60
 @export var score_value := 10
 @export var can_shoot := false
 @export var base_color := Color.CHARTREUSE
@@ -21,7 +23,10 @@ func _ready() -> void:
 		shoot_timer.queue_free()
 	
 	particle_die.color = base_color
-	
+
+func _process(delta: float) -> void:
+	position.y += SPEED * delta
+
 func takeDamage(damage_value: int) -> void:
 	life -= damage_value
 	if(life <= 0):
@@ -54,7 +59,7 @@ func die():
 	
 	# Espera as particulas encerrarem para liberar da memoria
 	await particle_die.finished
-	
+	enemy_died.emit()
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
@@ -73,3 +78,7 @@ func _on_shoot_timer_timeout() -> void:
 # Caso o inimigo saia do range da tela, ele e eliminado, para evitar processamento desnecessario
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
+ 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		die()
