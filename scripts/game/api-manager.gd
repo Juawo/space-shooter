@@ -17,7 +17,6 @@ func _ready() -> void:
 	http_request = HTTPRequest.new()
 	http_request.request_completed.connect(self._on_request_completed)
 	add_child(http_request)
-	
 
 func register_player(data : Dictionary):
 	var url = API_URL_BASE+"/api/Player"

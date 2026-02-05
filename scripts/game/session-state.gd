@@ -8,5 +8,6 @@ var current_score :int = 0 :
 			high_score = new_value
 			SaveManager.high_score = high_score
 			SaveManager.save_data()
+			ApiManager.register_high_score(high_score)
 			
 var high_score :int = 0
