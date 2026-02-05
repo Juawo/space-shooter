@@ -40,6 +40,8 @@ func dieTween() -> Tween:
 	return tween
 
 func die():
+	SessionState.current_score += score_value
+	
 	# Desativando as fisicas do inimigo
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
@@ -64,7 +66,9 @@ func die():
 
 func _on_area_entered(area: Area2D) -> void:
 	# Se o elemento que entrou na area for um PlayerProjectiles, causa o dando que esse elemento tem
+	print("Algo entrou")
 	if(area.is_in_group("PlayerProjectiles")):
+		print("Algo entrou e um player projectiles")
 		takeDamage(area.damage_value)
 
 func shoot():

@@ -1,13 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8royjgs30pos"]
 
-[ext_resource type="Script" uid="uid://dctsl3nuxohe" path="res://scripts/game/player/player_bullet.gd" id="1_uqq7r"]
+[ext_resource type="Script" path="res://scripts/game/player/player_bullet.gd" id="1_uqq7r"]
 [ext_resource type="Texture2D" uid="uid://dk0rsfyitidjf" path="res://assets/sprites/simple-bullet.png" id="2_n1or0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pv8yu"]
 size = Vector2(16, 26)
 
-[node name="PlayerBullet" type="Area2D" groups=["EnemiesProjectiles"]]
+[node name="PlayerBullet" type="Area2D" groups=["PlayerProjectiles"]]
 z_index = 1
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_uqq7r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

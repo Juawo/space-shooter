@@ -20,7 +20,6 @@ var playerLife := 3 :
 			gameOver.emit()
 			print("GameOver")
 
-
 func _physics_process(delta: float) -> void:
 	# TODO : Pegar os dados do acelerometro
 	# TODO : Com base nos dados, pegar a direction (left | right)
