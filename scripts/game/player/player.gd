@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 signal gameOver
 
-@export var SPEED := 200.0
+@export var bullet_scene := preload("res://scenes/game/player/player_bullet.tscn")
+@onready var marker_2d: Marker2D = $Marker2D
+
+@export var SPEED := 100.0
 @export var SMOOTH_SPEED := 0.1
 @export var DEADZONE = 0.3
 @onready var screen_size = get_viewport_rect().size
@@ -53,3 +56,12 @@ func takeDamage (amount : int):
 	playerLife = clamp(playerLife - amount, 0, 3)
 	print("PlayerLife : ", playerLife)
 	
+
+func _on_shoot_timer_timeout() -> void:
+	shoot()
+
+func shoot () -> void:
+	if bullet_scene:
+		var bullet = bullet_scene.instantiate()
+		bullet.global_position = marker_2d.global_position
+		get_tree().current_scene.add_child(bullet)
