@@ -78,7 +78,3 @@ func _on_shoot_timer_timeout() -> void:
 # Caso o inimigo saia do range da tela, ele e eliminado, para evitar processamento desnecessario
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
- 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		die()
