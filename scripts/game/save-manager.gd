@@ -3,14 +3,13 @@ extends Node
 var file_path :String = "user://space-shooter.json"
 
 var high_score : int = 0
-var player_id : String = "" # Mudado para String pois sua API usa GUID
+var player_id : String = "" 
 var player_nickname : String = ""
 var score_id : String = ""
 
 
 func _ready() -> void:
 	load_data()
-	SessionState.high_score = high_score
 	
 func save_data () -> void:
 	var save_file = FileAccess.open(file_path, FileAccess.WRITE)
