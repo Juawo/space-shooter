@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SessionState="*res://scripts/game/session-state.gd"
 SaveManager="*res://scripts/game/save-manager.gd"
+ApiManager="*res://scripts/game/api-manager.gd"
 
 [display]
 
