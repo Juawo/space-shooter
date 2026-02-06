@@ -2,19 +2,22 @@ extends Node
 
 signal highscores_received(data)
 
-var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev"
+var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
 var headers_base = ["Content-Type: application/json"]
 
 var player_create_dto : Dictionary = {
-	"nickname" : "Joaopaulo",
+	"nickname" : "Jpp",
 	"country" : "Brasil",
-	"age" : 20
+	"age" : 19
 }
+
+func _ready() -> void:
+	if SaveManager.player_id == "":
+		register_player(player_create_dto)
 
 func register_player(data : Dictionary):
 	var request = HTTPRequest.new()
 	add_child(request)
-	
 	request.request_completed.connect(_on_register_request_completed)
 	
 	var url = API_URL_BASE+"/api/Player"
@@ -31,7 +34,7 @@ func _on_register_request_completed(result, response_code, headers, body):
 
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	if json:
-		# Salvando o ID retornado pela sua API (PlayerDto)
+		# Salvando o ID retornado pela  API (PlayerDto)
 		SaveManager.player_id = json.playerId
 		SaveManager.player_nickname = json.nickname
 		SaveManager.save_data()
@@ -66,20 +69,26 @@ func _on_score_create_update_completed(result, response_code, headers, body, req
 		print("HighScore atualizado com sucesso (PUT)!")
 	request_node.queue_free()
 
-func get_all_highscores():
+func get_leaderboard():
 	var request = HTTPRequest.new()
 	add_child(request)
 	request.request_completed.connect(_on_all_score_sync.bind(request))
 	
-	var url = API_URL_BASE+"/api/HighScore/%s" % [SaveManager.player_id]
+	print("ID : " + SaveManager.player_id)
+	
+	var url = API_URL_BASE+"api/HighScore/leaderboard/%s" % [SaveManager.player_id]
+	print(url)
+	
 	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
 	if err != OK:
 		printerr("GET HIGHSCORE - Erro ao iniciar a requisicao HTTP")
 
 func _on_all_score_sync(result, response_code, headers, body, request_node):
+	print("Status code : " + str(response_code))
 	if response_code == 200:
 		var json = JSON.parse_string(body.get_string_from_utf8())
 		highscores_received.emit(json)
+		print(json)
 		
 	request_node.queue_free()
 	

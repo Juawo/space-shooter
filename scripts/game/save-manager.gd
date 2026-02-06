@@ -13,7 +13,6 @@ func _ready() -> void:
 	# OS.SYSTEM_DIR_DOWNLOADS pega a pasta correta no Ubuntu ou Android
 	var download_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)
 	file_path = download_dir + "/space-shooter-save.json"
-	print("O arquivo será salvo em: ", file_path)
 	load_data()
 	
 func save_data () -> void:
