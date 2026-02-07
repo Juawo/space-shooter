@@ -6,6 +6,8 @@ extends Node2D
 
 # "Componentes" do jogo
 @onready var main_menu : Control = $UI/MainMenu
+@onready var pause_menu: Control = $UI/PauseMenu
+@onready var game_over: Control = $UI/GameOver
 
 # Enum com os estados possiveis do jogo
 enum GameStates { GAME, MAIN_MENU, PAUSED, GAME_OVER }
@@ -15,24 +17,52 @@ var state : GameStates = GameStates.MAIN_MENU : set = _set_state
 func _ready() -> void:
 	main_menu.connect("menu_closed",  _on_main_menu_closed)
 	GameEvents.pause_requested.connect(_on_pause_requested)
+	GameEvents.resume_requested.connect(_on_resume_requested)
+	GameEvents.main_menu_requested.connect(_on_main_menu_requested)
+	GameEvents.game_over.connect(_on_game_over)
+	
 
+# MENU STATE
+func _on_main_menu_requested():
+	state = GameStates.MAIN_MENU
 func _on_main_menu_closed():
 	state = GameStates.GAME
 
+# PAUSE/RESUME STATE
 func _on_pause_requested():
 	state = GameStates.PAUSED
+func _on_resume_requested():
+	state = GameStates.GAME
+
+# GAME OVER STATE
+func _on_game_over():
+	state = GameStates.GAME_OVER
 
 func _set_state(newValue : GameStates):
 	state = newValue
 	match newValue  :
 		GameStates.MAIN_MENU :
+			if pause_menu.is_showing:
+				pause_menu.hide_pause_menu()
+			if game_over.is_showing:
+				game_over.hide_game_over()
 			print("Game state changed to Main Menu")
 			main_menu.showMainMenu()
+			
 		GameStates.GAME :
-			main_menu.hideMainMenu()
+			get_tree().paused = false
+			if main_menu.showing:
+				main_menu.hideMainMenu()
+			if pause_menu.is_showing :
+				pause_menu.hide_pause_menu()
 			print("Game state changed to Game")
+			
 		GameStates.PAUSED :
 			get_tree().paused = true
+			pause_menu.show_pause_menu()
 			print("Game state changed to Paused")
+			
 		GameStates.GAME_OVER :
+			get_tree().paused = true
+			game_over.show_game_over()
 			print("Game state changed to Game Over")

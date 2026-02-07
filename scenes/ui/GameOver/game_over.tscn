@@ -1,0 +1,173 @@
+[gd_scene load_steps=8 format=3 uid="uid://rldc02i7thnm"]
+
+[ext_resource type="Script" uid="uid://bcxknl4o17655" path="res://scripts/ui/GameOver/game_over.gd" id="1_lo587"]
+[ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_ugpl1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lo587"]
+bg_color = Color(0.6, 0.6, 0.6, 0.4745098)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w61fj"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_lo587"]
+resource_name = "show_game_over"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(66, 1015), Vector2(66, 136)]
+}
+
+[sub_resource type="Animation" id="Animation_w61fj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(66, 136)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hmsu0"]
+_data = {
+&"RESET": SubResource("Animation_w61fj"),
+&"show_game_over": SubResource("Animation_lo587")
+}
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 66.0
+offset_top = 136.0
+offset_right = -83.0
+offset_bottom = -195.63391
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lo587")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lo587")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ugpl1")
+theme_override_font_sizes/font_size = 34
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_w61fj")
+
+[node name="Scores" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="HighScore" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Scores"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Scores/HighScore"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ugpl1")
+theme_override_font_sizes/font_size = 33
+text = "Your HighScore"
+horizontal_alignment = 1
+
+[node name="HighScoreValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/Scores/HighScore"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ugpl1")
+theme_override_font_sizes/font_size = 33
+text = "100"
+horizontal_alignment = 1
+
+[node name="CurrentScore" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Scores"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Scores/CurrentScore"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ugpl1")
+theme_override_font_sizes/font_size = 33
+text = "Current Score"
+horizontal_alignment = 1
+
+[node name="CurrentScoreValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/Scores/CurrentScore"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ugpl1")
+theme_override_font_sizes/font_size = 33
+text = "100"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+
+[node name="HomeButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(90, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_ugpl1")
+theme_override_font_sizes/font_size = 24
+text = "Home"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hmsu0")
+}
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Buttons/HomeButton" to="." method="_on_home_button_pressed"]

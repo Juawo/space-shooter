@@ -3,7 +3,7 @@ extends Control
 signal menu_closed
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-var showing: bool = true
+var showing: bool = false
 
 func hideMainMenu():
 	animation_player.play("hide_menu")
