@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="space-shooter"
-run/main_scene="uid://deo2xlnjykoj2"
+run/main_scene="uid://byq2slibadrir"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
