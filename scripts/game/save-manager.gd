@@ -1,14 +1,18 @@
 extends Node
 
-var file_path :String = "user://space-shooter.json"
-
 var high_score : int = 0
 var player_id : String = "" 
 var player_nickname : String = ""
 var score_id : String = ""
 
 
+# No topo do script SaveManager
+var file_path : String
+
 func _ready() -> void:
+	# OS.SYSTEM_DIR_DOWNLOADS pega a pasta correta no Ubuntu ou Android
+	var download_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)
+	file_path = download_dir + "/space-shooter-save.json"
 	load_data()
 	
 func save_data () -> void:

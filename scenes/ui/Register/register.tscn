@@ -1,0 +1,201 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm6gnd06eot0p"]
+
+[ext_resource type="Script" uid="uid://b13628nlefy2h" path="res://scripts/ui/Register/register.gd" id="1_5snb6"]
+[ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_va7qf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5snb6"]
+bg_color = Color(0.6, 0.6, 0.6, 0.63529414)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llqps"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_llqps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(33, 165)]
+}
+
+[sub_resource type="Animation" id="Animation_5snb6"]
+resource_name = "close_register"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(33, 165), Vector2(33, 175), Vector2(33, -498)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_en3hr"]
+_data = {
+&"RESET": SubResource("Animation_llqps"),
+&"close_register": SubResource("Animation_5snb6")
+}
+
+[node name="Register" type="Control"]
+custom_minimum_size = Vector2(305, 419)
+layout_mode = 3
+anchor_left = 0.080000006
+anchor_top = 0.18
+anchor_right = 0.89800006
+anchor_bottom = 0.66800004
+offset_left = 0.0399971
+offset_top = -0.060012817
+offset_right = 0.052642822
+offset_bottom = 0.4446411
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5snb6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5snb6")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 34
+text = "Register"
+horizontal_alignment = 1
+
+[node name="Nickname" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NicknameLabe" type="Label" parent="Panel/MarginContainer/VBoxContainer/Nickname"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 24
+text = "Nickname"
+
+[node name="NicknameInput" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Nickname"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 18
+placeholder_text = "ex: mantas"
+max_length = 20
+
+[node name="Country" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CountryLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/Country"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 24
+text = "Country"
+
+[node name="CountryInput" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Country"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 18
+placeholder_text = "ex: Brasil"
+
+[node name="Age" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="AgeLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/Age"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 24
+text = "Age"
+horizontal_alignment = 1
+
+[node name="AgeInput" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/Age"]
+layout_mode = 2
+min_value = 6.0
+value = 6.0
+tick_count = 1
+
+[node name="AgeValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/Age"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 24
+text = "6"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(90, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 24
+text = "Regiser
+"
+
+[node name="Detail" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 20
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/Detail"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_llqps")
+
+[node name="Detail" type="Label" parent="Panel/MarginContainer/VBoxContainer/Detail"]
+custom_minimum_size = Vector2(265, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 16
+text = "You can change the nickname in the settings after!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_en3hr")
+}
+
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/Age/AgeInput" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

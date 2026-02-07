@@ -32,6 +32,7 @@ func _set_state(newValue : GameStates):
 		GameStates.GAME_OVER :
 			print("Game state changed to Game Over")
 
+
 # Apenas para testar troca de estado
 #var states = [GameStates.MAIN_MENU, GameStates.PAUSED, GameStates.GAME,GameStates.GAME_OVER]
 #var i = 0

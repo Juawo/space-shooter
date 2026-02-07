@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://b46evhfp1l253"]
+
+[ext_resource type="Script" uid="uid://drixw8vn2r37j" path="res://scripts/ui/Leaderboard/leaderboard_row.gd" id="1_2i4rx"]
+[ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="2_1trfm"]
+
+[node name="LeaderboardRow" type="Control"]
+custom_minimum_size = Vector2(230, 45)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 45.0
+grow_horizontal = 2
+pivot_offset = Vector2(-268, 52)
+size_flags_horizontal = 3
+script = ExtResource("1_2i4rx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.5
+offset_right = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="rank_label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_1trfm")
+theme_override_font_sizes/font_size = 18
+text = "1st"
+
+[node name="nickname_label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_1trfm")
+theme_override_font_sizes/font_size = 18
+text = "RAFAEL"
+horizontal_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="high_score_label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("2_1trfm")
+theme_override_font_sizes/font_size = 18
+text = "3200"
