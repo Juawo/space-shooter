@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bl1qcpmv6n4ks" path="res://assets/sprites/idle.png" id="3_uputy"]
 
 [node name="Hud" type="Control"]
+process_mode = 3
 z_index = 20
 custom_minimum_size = Vector2(412, 40)
 layout_mode = 3

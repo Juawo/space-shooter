@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://deo2xlnjykoj2" path="res://scenes/game/gameWorld/game_world.tscn" id="3_yd8kv"]
 
 [node name="Main" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_llaio")
 
 [node name="UI" type="CanvasLayer" parent="."]

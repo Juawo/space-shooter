@@ -10,7 +10,8 @@ func update_hud(score : int) -> void:
 	score_value.text = str(score)
 
 func _on_button_pressed() -> void:
-	pass # Replace with function body.
+	print("Pause")
+	GameEvents.pause_requested.emit()
 
 func reset_life():
 	var lifes = life_hud.get_children()

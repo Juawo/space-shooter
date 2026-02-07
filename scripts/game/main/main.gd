@@ -14,9 +14,13 @@ var state : GameStates = GameStates.MAIN_MENU : set = _set_state
 
 func _ready() -> void:
 	main_menu.connect("menu_closed",  _on_main_menu_closed)
+	GameEvents.pause_requested.connect(_on_pause_requested)
 
 func _on_main_menu_closed():
 	state = GameStates.GAME
+
+func _on_pause_requested():
+	state = GameStates.PAUSED
 
 func _set_state(newValue : GameStates):
 	state = newValue
@@ -28,19 +32,7 @@ func _set_state(newValue : GameStates):
 			main_menu.hideMainMenu()
 			print("Game state changed to Game")
 		GameStates.PAUSED :
+			get_tree().paused = true
 			print("Game state changed to Paused")
 		GameStates.GAME_OVER :
 			print("Game state changed to Game Over")
-
-
-# Apenas para testar troca de estado
-#var states = [GameStates.MAIN_MENU, GameStates.PAUSED, GameStates.GAME,GameStates.GAME_OVER]
-#var i = 0
-#
-#func _input(event: InputEvent) -> void:
-	#if(event is InputEventKey):
-		#if(i > len(states) - 1):
-			#print(i)
-			#i = 0
-		#state = states[i]
-		#i += 1
