@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-signal gameOver
 signal life_change(life_value)
 
 @export var bullet_scene := preload("res://scenes/game/player/player_bullet.tscn")
@@ -19,7 +18,7 @@ var playerLife := 3 :
 		playerLife = new_value
 		life_change.emit(new_value)
 		if new_value == 0:
-			gameOver.emit()
+			GameEvents.game_over.emit()
 			print("GameOver")
 
 func _physics_process(delta: float) -> void:

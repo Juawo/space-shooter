@@ -18,8 +18,5 @@ func hide_game_over():
 	await animation_player.animation_finished
 	visible = is_showing
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		show_game_over()
-	if event is InputEventMouseButton:
-		hide_game_over()
+func _on_home_button_pressed() -> void:
+	GameEvents.main_menu_requested.emit()
