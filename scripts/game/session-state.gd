@@ -1,9 +1,11 @@
 extends Node
 
+signal value_changed(value:int)
+
 var current_score :int = 0 :
 	set (new_value) :
 		current_score = new_value
-		print(current_score)
+		value_changed.emit(new_value)
 		if new_value > high_score:
 			high_score = new_value
 			SaveManager.high_score = high_score
