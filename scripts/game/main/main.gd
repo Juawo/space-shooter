@@ -21,6 +21,7 @@ func _ready() -> void:
 	GameEvents.resume_requested.connect(_on_resume_requested)
 	GameEvents.main_menu_requested.connect(_on_main_menu_requested)
 	GameEvents.game_over.connect(_on_game_over)
+	GameEvents.game_requested.connect(_on_game_requested)
 	state = GameStates.MAIN_MENU
 	
 
@@ -39,6 +40,10 @@ func _on_resume_requested():
 # GAME OVER STATE
 func _on_game_over():
 	state = GameStates.GAME_OVER
+
+func _on_game_requested():
+	if state == GameStates.MAIN_MENU:
+		state = GameStates.GAME
 
 func _set_state(newValue : GameStates):
 	state = newValue

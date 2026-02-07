@@ -20,3 +20,11 @@ func showMainMenu():
 func _on_animation_player_animation_finished(animationName: StringName) -> void :
 	if animationName == "hide_menu" and not showing :
 		menu_closed.emit()
+
+# TODO : Corrigir clique no background tap area
+func _on_background_tap_area_pressed() -> void:
+	if is_visible_in_tree():
+		print("Clicado!")
+		GameEvents.game_requested.emit()
+	else:
+		print("Clicado mas nao visivel")
