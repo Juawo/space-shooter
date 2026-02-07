@@ -46,6 +46,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_epepa"]
 resource_name = "hide_menu"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -135,6 +136,7 @@ alignment = 1
 custom_minimum_size = Vector2(68, 54)
 layout_mode = 2
 size_flags_horizontal = 2
+pathScene = "res://scenes/ui/Leaderboard/leaderboard.tscn"
 
 [node name="HighScoreLabel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header"]
 layout_mode = 2
