@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bpwpvdyifrkrn" path="res://scripts/game/enemies/enemies-spawner/enemies_spawner.gd" id="1_cibea"]
 
 [node name="EnemiesSpawner" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_cibea")
 
 [node name="DificultTimer" type="Timer" parent="."]
