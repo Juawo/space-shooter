@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://deo2xlnjykoj2"]
+[gd_scene load_steps=6 format=3 uid="uid://deo2xlnjykoj2"]
 
 [ext_resource type="Script" uid="uid://0tpc5vgmu38i" path="res://scripts/game/gameWorld/game_world.gd" id="1_im6e1"]
 [ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="1_r2iep"]
 [ext_resource type="PackedScene" uid="uid://c8bvrgnu7smjw" path="res://scenes/game/player/player.tscn" id="2_lcs20"]
 [ext_resource type="PackedScene" uid="uid://b6ldni36gxx0u" path="res://scenes/game/enemies/enemies-spawner/enemies_spawner.tscn" id="4_uepgv"]
+[ext_resource type="PackedScene" uid="uid://l1a381jt4yc8" path="res://scenes/ui/Hud/hud.tscn" id="5_7j6fr"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1_im6e1")
@@ -15,3 +16,13 @@ metadata/_edit_vertical_guides_ = [0.0]
 position = Vector2(204, 840)
 
 [node name="EnemiesSpawner" parent="." instance=ExtResource("4_uepgv")]
+
+[node name="Hud" parent="." instance=ExtResource("5_7j6fr")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 10.0
+offset_right = 412.0
+offset_bottom = 50.0
+grow_horizontal = 1
+size_flags_horizontal = 3
