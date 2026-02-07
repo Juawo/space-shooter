@@ -15,3 +15,5 @@ func populate_leaderboard(data : Array):
 		var new_scene = row_scene.instantiate()
 		v_box_container.add_child(new_scene)
 		new_scene.populate(data[i], i+1)
+		if i % 2 == 0:
+			new_scene.get_node("Panel").self_modulate = Color(1, 1, 1, 0.05) # Sombra leve

@@ -114,13 +114,18 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 
 [node name="HeaderWrapper" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(392, 54)
 layout_mode = 2
 
 [node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HeaderWrapper"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_top = -6.0
-offset_right = 392.0
-offset_bottom = 48.00004
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 30
@@ -140,7 +145,7 @@ size_flags_vertical = 0
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 24
-text = "Score"
+text = "HighScore"
 horizontal_alignment = 1
 
 [node name="ScoreValueLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header/HighScoreLabel"]
@@ -162,20 +167,16 @@ size_flags_vertical = 4
 
 [node name="title" type="Label" parent="MarginContainer/VBoxContainer/TitleWrapper"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
 offset_left = -196.0
 offset_top = 273.0
 offset_right = 196.0
 offset_bottom = 398.00018
-grow_horizontal = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.8
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 60
-text = "TITULO 
-IRADO 3D"
+text = "COOLER
+TITLE 3D"
 horizontal_alignment = 1
 
 [node name="InstructionWrapper" type="Control" parent="MarginContainer/VBoxContainer"]
@@ -190,7 +191,7 @@ offset_bottom = 877.0002
 size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 26
-text = "Toque para jogar"
+text = "Tap to play"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

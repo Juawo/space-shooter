@@ -1,19 +1,10 @@
 extends Node
 
 signal highscores_received(data)
+signal play_registered(data:bool)
 
 var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
 var headers_base = ["Content-Type: application/json"]
-
-var player_create_dto : Dictionary = {
-	"nickname" : "Jpp",
-	"country" : "Brasil",
-	"age" : 19
-}
-
-func _ready() -> void:
-	if SaveManager.player_id == "":
-		register_player(player_create_dto)
 
 func register_player(data : Dictionary):
 	var request = HTTPRequest.new()
@@ -30,6 +21,7 @@ func register_player(data : Dictionary):
 func _on_register_request_completed(result, response_code, headers, body):
 	if response_code < 200 or response_code >= 300:
 		printerr("Erro na requisicao! Codigo: %d" % response_code)
+		play_registered.emit(false)
 		return
 
 	var json = JSON.parse_string(body.get_string_from_utf8())
@@ -38,6 +30,7 @@ func _on_register_request_completed(result, response_code, headers, body):
 		SaveManager.player_id = json.playerId
 		SaveManager.player_nickname = json.nickname
 		SaveManager.save_data()
+		play_registered.emit(true)
 		print("Jogador registrado e ID salvo: ", SaveManager.player_id)
 
 func register_high_score(score : int) :
