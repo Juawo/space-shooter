@@ -1,48 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cumwujwhqn00f"]
+[gd_scene load_steps=9 format=3 uid="uid://cumwujwhqn00f"]
 
 [ext_resource type="Script" uid="uid://brwl6ygpwkkyh" path="res://scripts/ui/MainMenu/main_menu.gd" id="1_epepa"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_ift2n"]
 [ext_resource type="PackedScene" uid="uid://qora2f2xvu2o" path="res://scenes/ui/MainMenu/leader_board_button.tscn" id="1_ql3r1"]
 [ext_resource type="PackedScene" uid="uid://cpgj0vj2rsnpv" path="res://scenes/ui/MainMenu/config_buttons.tscn" id="3_ql3r1"]
-
-[sub_resource type="Animation" id="Animation_mfgk4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/VBoxContainer/InstructionWrapper/instruction:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 850)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/VBoxContainer/TitleWrapper/title:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-196, 273)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/VBoxContainer/HeaderWrapper/Header:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -6)]
-}
 
 [sub_resource type="Animation" id="Animation_epepa"]
 resource_name = "hide_menu"
@@ -54,7 +15,7 @@ tracks/0/path = NodePath("MarginContainer/VBoxContainer/InstructionWrapper/instr
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.60010004),
+"times": PackedFloat32Array(0, 0.3, 0.56666666),
 "transitions": PackedFloat32Array(2, 1, 1),
 "update": 0,
 "values": [Vector2(0, 850), Vector2(0, 835), Vector2(0, 950)]
@@ -66,7 +27,7 @@ tracks/1/path = NodePath("MarginContainer/VBoxContainer/TitleWrapper/title:posit
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
+"times": PackedFloat32Array(0, 0.3, 0.56666666),
 "transitions": PackedFloat32Array(2, 1, 1),
 "update": 0,
 "values": [Vector2(-98, -62.5), Vector2(-98, -82.5), Vector2(-98, -700)]
@@ -78,16 +39,49 @@ tracks/2/path = NodePath("MarginContainer/VBoxContainer/HeaderWrapper/Header:pos
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
+"times": PackedFloat32Array(0, 0.3, 0.56666666),
 "transitions": PackedFloat32Array(2, 1, 1),
 "update": 0,
-"values": [Vector2(0, 40), Vector2(0, 80), Vector2(0, -150)]
+"values": [Vector2(0, 0), Vector2(0, 80), Vector2(0, -150)]
+}
+
+[sub_resource type="Animation" id="Animation_mfgk4"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/InstructionWrapper/instruction:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.28627452), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b771k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/InstructionWrapper/instruction:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b771k"]
 _data = {
-&"RESET": SubResource("Animation_mfgk4"),
-&"hide_menu": SubResource("Animation_epepa")
+&"RESET": SubResource("Animation_b771k"),
+&"hide_menu": SubResource("Animation_epepa"),
+&"idle": SubResource("Animation_mfgk4")
 }
 
 [node name="MainMenu" type="Control"]
@@ -108,13 +102,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 20
-
-[node name="BackgroundTapArea" type="Button" parent="MarginContainer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -122,14 +112,14 @@ layout_mode = 2
 [node name="HeaderWrapper" type="Control" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(392, 54)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HeaderWrapper"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -6.0
-offset_bottom = -6.0
+offset_bottom = 0.00016021729
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
@@ -150,6 +140,7 @@ size_flags_vertical = 0
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header/HighScoreLabel"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 24
 text = "HighScore"
@@ -157,6 +148,7 @@ horizontal_alignment = 1
 
 [node name="ScoreValueLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header/HighScoreLabel"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 24
 text = "2839"
@@ -171,19 +163,22 @@ size_flags_horizontal = 10
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+mouse_filter = 1
 
 [node name="title" type="Label" parent="MarginContainer/VBoxContainer/TitleWrapper"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -196.0
-offset_top = 273.0
-offset_bottom = 398.0
+offset_left = -98.0
+offset_top = -62.5
+offset_right = 98.0
+offset_bottom = 62.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.8
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 60
 text = "COOLER
@@ -192,18 +187,33 @@ horizontal_alignment = 1
 
 [node name="InstructionWrapper" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.32
+mouse_filter = 1
 
 [node name="instruction" type="Label" parent="MarginContainer/VBoxContainer/InstructionWrapper"]
 top_level = true
 layout_mode = 0
 offset_top = 850.0
 offset_right = 392.0
-offset_bottom = 877.0002
+offset_bottom = 877.0001
 size_flags_vertical = 10
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 26
 text = "Tap to play"
 horizontal_alignment = 1
+
+[node name="BackgroundTapArea" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.114503816
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -211,5 +221,5 @@ libraries = {
 }
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="pressed" from="MarginContainer/BackgroundTapArea" to="." method="_on_background_tap_area_pressed"]
+[connection signal="pressed" from="BackgroundTapArea" to="." method="_on_background_tap_area_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
