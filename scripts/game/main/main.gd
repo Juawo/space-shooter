@@ -1,7 +1,6 @@
 extends Node2D
 
 # Aqui ficam os "componentes" do jogo e como sao orquestrados
-
 # TODO : Lembrar de conectar os sinais dos componentes!
 
 # "Componentes" do jogo
@@ -16,20 +15,16 @@ enum GameStates { GAME, MAIN_MENU, PAUSED, GAME_OVER }
 var state : GameStates = GameStates.MAIN_MENU : set = _set_state
 
 func _ready() -> void:
-	main_menu.connect("menu_closed",  _on_main_menu_closed)
 	GameEvents.pause_requested.connect(_on_pause_requested)
 	GameEvents.resume_requested.connect(_on_resume_requested)
 	GameEvents.main_menu_requested.connect(_on_main_menu_requested)
 	GameEvents.game_over.connect(_on_game_over)
 	GameEvents.game_requested.connect(_on_game_requested)
 	state = GameStates.MAIN_MENU
-	
 
 # MENU STATE
 func _on_main_menu_requested():
 	state = GameStates.MAIN_MENU
-func _on_main_menu_closed():
-	state = GameStates.GAME
 
 # PAUSE/RESUME STATE
 func _on_pause_requested():
@@ -42,8 +37,7 @@ func _on_game_over():
 	state = GameStates.GAME_OVER
 
 func _on_game_requested():
-	if state == GameStates.MAIN_MENU:
-		state = GameStates.GAME
+	state = GameStates.GAME
 
 func _set_state(newValue : GameStates):
 	state = newValue
@@ -67,7 +61,6 @@ func _set_state(newValue : GameStates):
 			if pause_menu.is_showing:
 				pause_menu.hide_pause_menu()
 			game_world.show_hud()
-
 			print("Game state changed to Game")
 			
 		GameStates.PAUSED :

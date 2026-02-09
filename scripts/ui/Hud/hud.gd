@@ -13,7 +13,7 @@ func show_hud():
 	visible = true
 	animation_player.play("show_hud")
 
-func hide_menu():
+func hide_hud():
 	is_showing = false
 	animation_player.play_backwards("show_hud")
 	await animation_player.animation_finished
