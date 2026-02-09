@@ -49,7 +49,6 @@ func _set_state(newValue : GameStates):
 				game_over.hide_game_over()
 			if game_world.hud.is_showing:
 				game_world.hide_hud()
-	
 			get_tree().paused = true
 			print("Game state changed to Main Menu")
 			main_menu.showMainMenu()
@@ -60,6 +59,7 @@ func _set_state(newValue : GameStates):
 				main_menu.hideMainMenu()
 			if pause_menu.is_showing:
 				pause_menu.hide_pause_menu()
+			game_world.reset_game()
 			game_world.show_hud()
 			print("Game state changed to Game")
 			
@@ -72,3 +72,4 @@ func _set_state(newValue : GameStates):
 			get_tree().paused = true
 			game_over.show_game_over()
 			print("Game state changed to Game Over")
+			

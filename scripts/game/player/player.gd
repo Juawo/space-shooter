@@ -19,7 +19,6 @@ var playerLife := 3 :
 		life_change.emit(new_value)
 		if new_value == 0:
 			GameEvents.game_over.emit()
-			print("GameOver")
 
 func _physics_process(delta: float) -> void:
 	# TODO : Pegar os dados do acelerometro
@@ -53,7 +52,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	
 func takeDamage (amount : int):
 	playerLife = clamp(playerLife - amount, 0, 3)
-	print("PlayerLife : ", playerLife)
 	
 
 func _on_shoot_timer_timeout() -> void:

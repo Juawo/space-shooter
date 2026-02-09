@@ -65,11 +65,9 @@ func die():
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
-	# Se o elemento que entrou na area for um PlayerProjectiles, causa o dando que esse elemento tem
-	print("Algo entrou")
 	if(area.is_in_group("PlayerProjectiles")):
-		print("Algo entrou e um player projectiles")
 		takeDamage(area.damage_value)
+		area.queue_free()
 
 func shoot():
 	# logica de disparo, implementado nas scenes filhos

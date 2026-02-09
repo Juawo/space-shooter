@@ -27,8 +27,10 @@ func _on_button_pressed() -> void:
 	GameEvents.pause_requested.emit()
 
 func reset_life():
+	print("Reseting lifes to visible!")
 	var lifes = life_hud.get_children()
 	for life in lifes :
+		life.modulate.a = 1.0
 		life.visible = true
 
 func update_life(life_value : int):

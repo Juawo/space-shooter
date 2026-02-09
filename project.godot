@@ -33,9 +33,9 @@ window/main_scene="uid://deo2xlnjykoj2"
 
 [global_group]
 
-Enemy="Enemy group"
 PlayerProjectiles=""
 EnemiesProjectiles=""
+Enemies="Enemy group"
 
 [input_devices]
 
