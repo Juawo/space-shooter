@@ -13,6 +13,7 @@ script = ExtResource("1_llaio")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" parent="UI" instance=ExtResource("2_oekm8")]
+process_mode = 3
 visible = false
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("3_uaf1y")]

@@ -10,7 +10,7 @@ size = Vector2(15, 15)
 _data = [Vector2(0.08139536, 0.49438208), 0.0, 6.6260004, 0, 0, Vector2(0.9186047, 0.42696637), -2.283964, 0.0, 0, 0]
 point_count = 2
 
-[node name="EnemieBase" type="Area2D" groups=["Enemy"]]
+[node name="EnemieBase" type="Area2D" groups=["Enemies"]]
 process_mode = 1
 z_index = 2
 scale = Vector2(5, 5)

@@ -59,3 +59,7 @@ func _on_dificult_timer_timeout() -> void:
 	current_wave += 1
 	# Dica extra: acelerar o spawn conforme a wave sobe
 	spawn_timer.wait_time = max(0.5, spawn_timer.wait_time - 0.1)
+
+func reset_spawner():
+	current_wave = 1
+	spawn_timer.wait_time = 2

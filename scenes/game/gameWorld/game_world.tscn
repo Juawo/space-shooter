@@ -18,11 +18,13 @@ position = Vector2(204, 840)
 [node name="EnemiesSpawner" parent="." instance=ExtResource("4_uepgv")]
 
 [node name="Hud" parent="." instance=ExtResource("5_7j6fr")]
+visible = false
 anchors_preset = 0
+anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_top = 10.0
+offset_top = 19.0
 offset_right = 412.0
-offset_bottom = 50.0
+offset_bottom = 59.0
 grow_horizontal = 1
 size_flags_horizontal = 3
