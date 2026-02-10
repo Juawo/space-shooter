@@ -6,6 +6,9 @@ signal play_registered(data:bool)
 var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
 var headers_base = ["Content-Type: application/json"]
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func register_player(data : Dictionary):
 	var request = HTTPRequest.new()
 	add_child(request)
@@ -39,7 +42,7 @@ func register_high_score(score : int) :
 	add_child(request)
 	request.request_completed.connect(_on_score_create_update_completed.bind(request))
 	
-	var url = API_URL_BASE+"/api/HighScore/%s" % [SaveManager.player_id]
+	var url = API_URL_BASE+"api/HighScore/%s" % [SaveManager.player_id]
 	var data_string = JSON.stringify({"Value": score})
 
 	var method = HTTPClient.METHOD_POST

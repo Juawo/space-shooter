@@ -43,14 +43,16 @@ func _set_state(newValue : GameStates):
 	state = newValue
 	match newValue  :
 		GameStates.MAIN_MENU :
+			print("Game state changed to Main Menu")
 			if pause_menu.is_showing:
 				pause_menu.hide_pause_menu()
 			if game_over.is_showing:
 				game_over.hide_game_over()
 			if game_world.hud.is_showing:
 				game_world.hide_hud()
+				await GameEvents.hud_closed
+			game_world.reset_game()
 			get_tree().paused = true
-			print("Game state changed to Main Menu")
 			main_menu.showMainMenu()
 			
 		GameStates.GAME :
@@ -59,8 +61,8 @@ func _set_state(newValue : GameStates):
 				main_menu.hideMainMenu()
 			if pause_menu.is_showing:
 				pause_menu.hide_pause_menu()
-			game_world.reset_game()
-			game_world.show_hud()
+			if not game_world.hud.is_showing:
+				game_world.show_hud()
 			print("Game state changed to Game")
 			
 		GameStates.PAUSED :
@@ -69,7 +71,8 @@ func _set_state(newValue : GameStates):
 			print("Game state changed to Paused")
 			
 		GameStates.GAME_OVER :
+			print("Game state changed to Game Over")
+			#game_world.reset_game()
 			get_tree().paused = true
 			game_over.show_game_over()
-			print("Game state changed to Game Over")
 			

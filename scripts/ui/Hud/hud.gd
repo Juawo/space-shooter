@@ -18,6 +18,7 @@ func hide_hud():
 	animation_player.play_backwards("show_hud")
 	await animation_player.animation_finished
 	visible = is_showing
+	GameEvents.hud_closed.emit()
 
 func update_hud(score : int) -> void:
 	score_value.text = str(score)
