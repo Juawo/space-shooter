@@ -13,7 +13,7 @@ metadata/_edit_vertical_guides_ = [0.0]
 [node name="background" parent="." instance=ExtResource("1_r2iep")]
 
 [node name="Player" parent="." instance=ExtResource("2_lcs20")]
-position = Vector2(204, 840)
+position = Vector2(196, 840)
 
 [node name="EnemiesSpawner" parent="." instance=ExtResource("4_uepgv")]
 

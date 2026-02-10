@@ -33,7 +33,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.56666666),
 "transitions": PackedFloat32Array(2, 1, 1),
 "update": 0,
-"values": [Vector2(0, 850), Vector2(0, 835), Vector2(0, 950)]
+"values": [Vector2(5, 870), Vector2(5, 835), Vector2(5, 950)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -194,9 +194,10 @@ mouse_filter = 1
 [node name="instruction" type="Label" parent="MarginContainer/VBoxContainer/InstructionWrapper"]
 top_level = true
 layout_mode = 0
-offset_top = 850.0
-offset_right = 392.0
-offset_bottom = 877.0001
+offset_left = 5.0
+offset_top = 860.0
+offset_right = 397.0
+offset_bottom = 887.0001
 size_flags_vertical = 10
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_ift2n")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3hvl54is461g"]
+[gd_scene load_steps=4 format=3 uid="uid://c3hvl54is461g"]
 
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_56s4t"]
 [ext_resource type="Script" uid="uid://bsx2i8a6wuf2h" path="res://scripts/ui/Leaderboard/leaderboard.gd" id="1_eprmh"]
+[ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="3_eprmh"]
 
 [node name="Leaderboard" type="Control"]
 process_mode = 3
@@ -12,6 +13,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eprmh")
+
+[node name="background" parent="." instance=ExtResource("3_eprmh")]
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.5254902)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
