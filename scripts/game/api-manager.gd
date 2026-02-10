@@ -5,16 +5,27 @@ signal play_registered(data:bool)
 
 var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
 var headers_base = ["Content-Type: application/json"]
+var register_scene := preload("res://scenes/ui/Register/register.tscn")
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	SaveManager.loaded_data.connect(on_loaded_data)
+
+func on_loaded_data():
+	if SaveManager.player_id == "" or SaveManager.player_id == null:
+		var scene = register_scene.instantiate()
+		var ui_layer = get_tree().current_scene.find_child("UI")
+		if ui_layer:
+			ui_layer.add_child(scene)
+		else:
+			get_tree().current_scene.add_child(scene)
 
 func register_player(data : Dictionary):
 	var request = HTTPRequest.new()
 	add_child(request)
 	request.request_completed.connect(_on_register_request_completed)
 	
-	var url = API_URL_BASE+"/api/Player"
+	var url = API_URL_BASE+"api/Player"
 	var data_string = JSON.stringify(data)
 	
 	var err = request.request(url, headers_base, HTTPClient.METHOD_POST, data_string)

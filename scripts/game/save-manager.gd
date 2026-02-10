@@ -1,10 +1,11 @@
 extends Node
 
+signal loaded_data
+
 var high_score : int = 0
 var player_id : String = "" 
 var player_nickname : String = ""
 var score_id : String = ""
-
 
 # No topo do script SaveManager
 var file_path : String
@@ -35,6 +36,7 @@ func save_data () -> void:
 func load_data () -> void:
 	if not FileAccess.file_exists(file_path):
 		print ("O arquivo de dados nao existe.")
+		loaded_data.emit()
 		save_data()
 	var load_file = FileAccess.open(file_path, FileAccess.READ)
 	if not load_file:
@@ -51,4 +53,4 @@ func load_data () -> void:
 		score_id = json_data.score_id
 		# Sincroniza com o SessionState
 		SessionState.high_score = high_score
-		
+	loaded_data.emit()

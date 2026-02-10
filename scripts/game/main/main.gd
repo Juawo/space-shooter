@@ -38,7 +38,7 @@ func _on_game_over():
 
 func _on_game_requested():
 	state = GameStates.GAME
-
+	
 func _set_state(newValue : GameStates):
 	state = newValue
 	match newValue  :
@@ -75,4 +75,3 @@ func _set_state(newValue : GameStates):
 			#game_world.reset_game()
 			get_tree().paused = true
 			game_over.show_game_over()
-			
