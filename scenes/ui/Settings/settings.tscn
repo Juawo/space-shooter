@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcj3rjhiu6pbd"]
+
+[ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="1_ts13i"]
+[ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="2_83c71"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" parent="." instance=ExtResource("1_ts13i")]
+visible = false
+
+[node name="Header" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.05
+offset_bottom = 0.14999771
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Header/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 18
+text = "BACK"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Label" type="Label" parent="Header/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 36
+text = "Nickname"
+
+[node name="TextureButton" type="Button" parent="Header/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 18
+text = "Change"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 60
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
