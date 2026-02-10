@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bsx2i8a6wuf2h" path="res://scripts/ui/Leaderboard/leaderboard.gd" id="1_eprmh"]
 
 [node name="Leaderboard" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +34,7 @@ theme_override_constants/separation = 40
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "VOLTA"
@@ -69,3 +70,5 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

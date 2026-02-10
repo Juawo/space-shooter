@@ -17,3 +17,7 @@ var high_score :int = 0 :
 	set (new_value) :
 		high_score = new_value
 		high_score_changed.emit(new_value)
+
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS

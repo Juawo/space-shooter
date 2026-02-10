@@ -10,6 +10,7 @@ var score_id : String = ""
 var file_path : String
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	# OS.SYSTEM_DIR_DOWNLOADS pega a pasta correta no Ubuntu ou Android
 	var download_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)
 	file_path = download_dir + "/space-shooter-save.json"

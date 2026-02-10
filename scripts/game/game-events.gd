@@ -6,3 +6,6 @@ signal main_menu_requested
 signal game_over
 signal game_requested
 signal hud_closed
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
