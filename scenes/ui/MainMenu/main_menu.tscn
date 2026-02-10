@@ -5,6 +5,21 @@
 [ext_resource type="PackedScene" uid="uid://qora2f2xvu2o" path="res://scenes/ui/MainMenu/leader_board_button.tscn" id="1_ql3r1"]
 [ext_resource type="PackedScene" uid="uid://cpgj0vj2rsnpv" path="res://scenes/ui/MainMenu/config_buttons.tscn" id="3_ql3r1"]
 
+[sub_resource type="Animation" id="Animation_b771k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/InstructionWrapper/instruction:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_epepa"]
 resource_name = "hide_menu"
 length = 0.8
@@ -62,21 +77,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.28627452), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_b771k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/VBoxContainer/InstructionWrapper/instruction:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b771k"]
 _data = {
 &"RESET": SubResource("Animation_b771k"),
@@ -119,7 +119,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 0.00016021729
+offset_bottom = 0.00012207031
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
