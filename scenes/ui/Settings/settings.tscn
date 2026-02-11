@@ -1,7 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcj3rjhiu6pbd"]
+[gd_scene load_steps=7 format=3 uid="uid://bcj3rjhiu6pbd"]
 
 [ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="1_ts13i"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="2_83c71"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83c71"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxyng"]
+bg_color = Color(0.6, 0.6, 0.6, 0.70980394)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w3asu"]
+bg_color = Color(0.45064825, 0.4506483, 0.45064813, 0.70980394)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5h6l"]
+bg_color = Color(0.07284262, 0.072842635, 0.072842576, 1)
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -38,6 +68,7 @@ text = "BACK"
 [node name="HBoxContainer" type="HBoxContainer" parent="Header/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="Header/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -65,3 +96,151 @@ theme_override_constants/margin_bottom = 60
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="SettingsLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_83c71")
+
+[node name="Sound" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SoundLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Sound"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 34
+text = "Sound"
+
+[node name="SoundContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Sound"]
+layout_mode = 2
+
+[node name="SoundSlider" type="HSlider" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 6.47
+
+[node name="SoundValue" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0%"
+
+[node name="Language" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LanguageLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Language"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 34
+text = "Language"
+
+[node name="LanguageOption" type="OptionButton" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Language"]
+layout_mode = 2
+
+[node name="Controls" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="ControlsLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Controls"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 34
+text = "Controls"
+
+[node name="ControlsOptions" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Controls"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="TiltButton" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_gxyng")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_w3asu")
+text = "Tilt"
+
+[node name="ToutchButton" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_gxyng")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_w3asu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_c5h6l")
+text = "Toutch"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_83c71")
+
+[node name="Credits" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Credits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 34
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Rafashow" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Credits"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Credits/Rafashow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 28
+text = "Rafael"
+
+[node name="Label2" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Credits/Rafashow"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 28
+text = "2009"
+
+[node name="Juawo" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Credits"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Credits/Juawo"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 28
+text = "Juawo"
+
+[node name="Label2" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Credits/Juawo"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_83c71")
+theme_override_font_sizes/font_size = 28
+text = "2010"
