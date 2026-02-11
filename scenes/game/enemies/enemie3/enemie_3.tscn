@@ -5,6 +5,9 @@
 
 [node name="Enemie3" instance=ExtResource("1_y7crc")]
 script = ExtResource("2_63maj")
+life = 2
+SPEED = 100
+score_value = 30
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(0.8039216, 0.74509805, 0, 1)
