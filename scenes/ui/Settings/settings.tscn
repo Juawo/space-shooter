@@ -83,7 +83,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
+[node name="Nickname" type="Label" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 36
@@ -179,9 +179,11 @@ text = "Language"
 layout_mode = 2
 focus_mode = 0
 selected = 0
-item_count = 1
-popup/item_0/text = "English"
+item_count = 2
+popup/item_0/text = "EN"
 popup/item_0/id = 0
+popup/item_1/text = "PT"
+popup/item_1/id = 1
 
 [node name="Controls" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -206,7 +208,6 @@ focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_gxyng")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_w3asu")
 toggle_mode = true
-button_pressed = true
 button_group = ExtResource("4_w3asu")
 text = "Tilt"
 
