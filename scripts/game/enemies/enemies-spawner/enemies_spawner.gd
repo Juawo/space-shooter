@@ -3,7 +3,7 @@ extends Node2D
 
 # Referências das cenas dos inimigos
 var enemies: Array[PackedScene] = [
-	#preload("res://scenes/game/enemies/enemie1/enemie_1.tscn"),
+	preload("res://scenes/game/enemies/enemie1/enemie_1.tscn"),
 	preload("res://scenes/game/enemies/enemie2/enemie_2.tscn"),
 	preload("res://scenes/game/enemies/enemie3/enemie_3.tscn"),
 	preload("res://scenes/game/enemies/enemie4/enemie_4.tscn")

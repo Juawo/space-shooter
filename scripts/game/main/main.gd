@@ -35,7 +35,7 @@ func _on_resume_requested():
 # GAME OVER STATE
 func _on_game_over():
 	state = GameStates.GAME_OVER
-
+# GAME STATE
 func _on_game_requested():
 	state = GameStates.GAME
 	
