@@ -1,11 +1,13 @@
 extends Node2D
 
 # Aqui ficam os "componentes" do jogo e como sao orquestrados
-
 # TODO : Lembrar de conectar os sinais dos componentes!
 
 # "Componentes" do jogo
 @onready var main_menu : Control = $UI/MainMenu
+@onready var pause_menu: Control = $UI/PauseMenu
+@onready var game_over: Control = $UI/GameOver
+@onready var game_world: Node2D = $GameWorld
 
 # Enum com os estados possiveis do jogo
 enum GameStates { GAME, MAIN_MENU, PAUSED, GAME_OVER }
@@ -13,33 +15,63 @@ enum GameStates { GAME, MAIN_MENU, PAUSED, GAME_OVER }
 var state : GameStates = GameStates.MAIN_MENU : set = _set_state
 
 func _ready() -> void:
-	main_menu.connect("menu_closed",  _on_main_menu_closed)
+	GameEvents.pause_requested.connect(_on_pause_requested)
+	GameEvents.resume_requested.connect(_on_resume_requested)
+	GameEvents.main_menu_requested.connect(_on_main_menu_requested)
+	GameEvents.game_over.connect(_on_game_over)
+	GameEvents.game_requested.connect(_on_game_requested)
+	state = GameStates.MAIN_MENU
 
-func _on_main_menu_closed():
+# MENU STATE
+func _on_main_menu_requested():
+	state = GameStates.MAIN_MENU
+
+# PAUSE/RESUME STATE
+func _on_pause_requested():
+	state = GameStates.PAUSED
+func _on_resume_requested():
 	state = GameStates.GAME
 
+# GAME OVER STATE
+func _on_game_over():
+	state = GameStates.GAME_OVER
+# GAME STATE
+func _on_game_requested():
+	state = GameStates.GAME
+	
 func _set_state(newValue : GameStates):
 	state = newValue
 	match newValue  :
 		GameStates.MAIN_MENU :
 			print("Game state changed to Main Menu")
+			if pause_menu.is_showing:
+				pause_menu.hide_pause_menu()
+			if game_over.is_showing:
+				game_over.hide_game_over()
+			if game_world.hud.is_showing:
+				game_world.hide_hud()
+				await GameEvents.hud_closed
+			game_world.reset_game()
+			get_tree().paused = true
 			main_menu.showMainMenu()
+			
 		GameStates.GAME :
-			main_menu.hideMainMenu()
+			get_tree().paused = false
+			if main_menu.showing:
+				main_menu.hideMainMenu()
+			if pause_menu.is_showing:
+				pause_menu.hide_pause_menu()
+			if not game_world.hud.is_showing:
+				game_world.show_hud()
 			print("Game state changed to Game")
+			
 		GameStates.PAUSED :
+			get_tree().paused = true
+			pause_menu.show_pause_menu()
 			print("Game state changed to Paused")
+			
 		GameStates.GAME_OVER :
 			print("Game state changed to Game Over")
-
-# Apenas para testar troca de estado
-#var states = [GameStates.MAIN_MENU, GameStates.PAUSED, GameStates.GAME,GameStates.GAME_OVER]
-#var i = 0
-#
-#func _input(event: InputEvent) -> void:
-	#if(event is InputEventKey):
-		#if(i > len(states) - 1):
-			#print(i)
-			#i = 0
-		#state = states[i]
-		#i += 1
+			#game_world.reset_game()
+			get_tree().paused = true
+			game_over.show_game_over()

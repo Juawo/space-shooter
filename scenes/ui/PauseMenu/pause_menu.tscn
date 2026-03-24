@@ -1,0 +1,144 @@
+[gd_scene load_steps=5 format=3 uid="uid://cws41ir26d6b0"]
+
+[ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_8fxnv"]
+[ext_resource type="Script" uid="uid://dugedaug3hjeg" path="res://scripts/ui/PauseMenu/pause_menu.gd" id="1_s35mt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s35mt"]
+bg_color = Color(0.6, 0.6, 0.6, 0.4745098)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fxnv"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(1, 1, 1, 1)
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchor_left = 0.12900001
+anchor_top = 0.21400002
+anchor_right = 0.87100005
+anchor_bottom = 0.67
+offset_left = -0.14800262
+offset_top = -0.23802185
+offset_right = 0.14797974
+offset_bottom = -0.39001465
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s35mt")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s35mt")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8fxnv")
+theme_override_font_sizes/font_size = 34
+text = "Paused Game"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_8fxnv")
+
+[node name="Scores" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="HighScore" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Scores"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Scores/HighScore"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8fxnv")
+theme_override_font_sizes/font_size = 33
+text = "Your HighScore"
+horizontal_alignment = 1
+
+[node name="HighScoreValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/Scores/HighScore"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8fxnv")
+theme_override_font_sizes/font_size = 33
+text = "100"
+horizontal_alignment = 1
+
+[node name="CurrentScore" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Scores"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Scores/CurrentScore"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8fxnv")
+theme_override_font_sizes/font_size = 33
+text = "Current Score"
+horizontal_alignment = 1
+
+[node name="CurrentScoreValue" type="Label" parent="Panel/MarginContainer/VBoxContainer/Scores/CurrentScore"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8fxnv")
+theme_override_font_sizes/font_size = 33
+text = "100"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+
+[node name="HomeButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(90, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_8fxnv")
+theme_override_font_sizes/font_size = 24
+text = "Home"
+
+[node name="ResumeButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(90, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_8fxnv")
+theme_override_font_sizes/font_size = 24
+text = "Resume"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Buttons/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Buttons/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://0tpc5vgmu38i" path="res://scripts/game/gameWorld/game_world.gd" id="1_im6e1"]
 [ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="1_r2iep"]
 [ext_resource type="PackedScene" uid="uid://c8bvrgnu7smjw" path="res://scenes/game/player/player.tscn" id="2_lcs20"]
-[ext_resource type="PackedScene" uid="uid://d0sa2qitm3h5r" path="res://scenes/game/enemies/enemie2/enemie_2.tscn" id="4_7j6fr"]
-[ext_resource type="PackedScene" uid="uid://3eqm5l1q0og3" path="res://scenes/game/enemies/enemie1/enemie_1.tscn" id="4_uepgv"]
+[ext_resource type="PackedScene" uid="uid://b6ldni36gxx0u" path="res://scenes/game/enemies/enemies-spawner/enemies_spawner.tscn" id="4_uepgv"]
+[ext_resource type="PackedScene" uid="uid://l1a381jt4yc8" path="res://scenes/ui/Hud/hud.tscn" id="5_7j6fr"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1_im6e1")
@@ -13,27 +13,18 @@ metadata/_edit_vertical_guides_ = [0.0]
 [node name="background" parent="." instance=ExtResource("1_r2iep")]
 
 [node name="Player" parent="." instance=ExtResource("2_lcs20")]
-position = Vector2(204, 840)
+position = Vector2(196, 840)
 
-[node name="TitleAccel" type="Label" parent="."]
-offset_left = 93.0
-offset_top = 73.0
-offset_right = 345.0
-offset_bottom = 120.0
-theme_override_font_sizes/font_size = 34
-text = "Acelerometro :"
-horizontal_alignment = 1
+[node name="EnemiesSpawner" parent="." instance=ExtResource("4_uepgv")]
 
-[node name="AccelData" type="Label" parent="."]
-offset_left = 76.0
-offset_top = 114.0
-offset_right = 361.0
-offset_bottom = 161.0
-theme_override_font_sizes/font_size = 16
-horizontal_alignment = 1
-
-[node name="Enemie1" parent="." instance=ExtResource("4_uepgv")]
-position = Vector2(90.99999, 251.99998)
-
-[node name="Enemie2" parent="." instance=ExtResource("4_7j6fr")]
-position = Vector2(212.99998, 253.99998)
+[node name="Hud" parent="." instance=ExtResource("5_7j6fr")]
+visible = false
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 19.0
+offset_right = 412.0
+offset_bottom = 59.0
+grow_horizontal = 1
+size_flags_horizontal = 3

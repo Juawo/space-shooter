@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="space-shooter"
-run/main_scene="uid://deo2xlnjykoj2"
+run/main_scene="uid://byq2slibadrir"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+ApiManager="*res://scripts/game/api-manager.gd"
+SessionState="*res://scripts/game/session-state.gd"
+SaveManager="*res://scripts/game/save-manager.gd"
+GameEvents="*res://scripts/game/game-events.gd"
 
 [display]
 
@@ -26,9 +33,9 @@ window/main_scene="uid://deo2xlnjykoj2"
 
 [global_group]
 
-Enemy="Enemy group"
 PlayerProjectiles=""
 EnemiesProjectiles=""
+Enemies="Enemy group"
 
 [input_devices]
 

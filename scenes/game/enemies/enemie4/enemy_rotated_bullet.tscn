@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://becggl8acagft"]
+
+[ext_resource type="PackedScene" uid="uid://4wjxjqn0xs46" path="res://scenes/game/enemies/enemy_bullet.tscn" id="1_dcer7"]
+[ext_resource type="Script" uid="uid://b871lobkqndbd" path="res://scripts/game/enemies/enemie4/enemy_rotated_bullet.gd" id="2_m1kih"]
+
+[node name="EnemyRotatedBullet" instance=ExtResource("1_dcer7")]
+script = ExtResource("2_m1kih")
+BULLET_SPEED = 150
