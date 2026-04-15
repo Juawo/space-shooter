@@ -10,6 +10,17 @@ var register_scene := preload("res://scenes/ui/Register/register.tscn")
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	SaveManager.loaded_data.connect(on_loaded_data)
+	_load_configs()
+	
+func _load_configs():
+	var config = ConfigFile.new()
+	var err = config.load("res://configs/secret_configs.cfg")
+	if err == OK:
+		API_URL_BASE = config.get_value("network", "api_url", API_URL_BASE)
+		print("Load network configurations sucessfuly")
+	else :
+		print("Network configuration file not found. Using development configuration.")
+	
 
 func on_loaded_data():
 	if SaveManager.player_id == "" or SaveManager.player_id == null:
