@@ -89,7 +89,7 @@ theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 36
 text = "Nickname"
 
-[node name="TextureButton" type="Button" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
+[node name="ChangeButton" type="Button" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 18

@@ -1,7 +1,7 @@
 extends Node
 
 signal highscores_received(data)
-signal play_registered(data:bool)
+signal play_registered(data:bool, code)
 
 var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
 var headers_base = ["Content-Type: application/json"]
@@ -46,7 +46,7 @@ func register_player(data : Dictionary):
 func _on_register_request_completed(result, response_code, headers, body):
 	if response_code < 200 or response_code >= 300:
 		printerr("Erro na requisicao! Codigo: %d" % response_code)
-		play_registered.emit(false)
+		play_registered.emit(false, response_code)
 		return
 
 	var json = JSON.parse_string(body.get_string_from_utf8())
@@ -55,7 +55,7 @@ func _on_register_request_completed(result, response_code, headers, body):
 		SaveManager.player_id = json.playerId
 		SaveManager.player_nickname = json.nickname
 		SaveManager.save_data()
-		play_registered.emit(true)
+		play_registered.emit(true,response_code)
 		print("Jogador registrado e ID salvo: ", SaveManager.player_id)
 
 func register_high_score(score : int) :
