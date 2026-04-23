@@ -6,6 +6,7 @@ var language : int
 var controlMode : Controls = Controls.TILT
 
 var main_scene : PackedScene = preload("res://scenes/game/main.tscn")
+var update_nickname_scene : PackedScene = preload("res://scenes/ui/Settings/nickname_update_panel.tscn")
 
 @onready var sound_value: Label = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer/SoundValue
 @onready var language_option: OptionButton = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Language/LanguageOption
@@ -14,6 +15,7 @@ var main_scene : PackedScene = preload("res://scenes/game/main.tscn")
 @onready var sound_slider: HSlider = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer/SoundSlider
 @onready var nickname: Label = $VBoxContainer/Header/HBoxContainer/HBoxContainer/Nickname
 
+# TODO : Alterar nickname para o novo, caso tenha alterado
 func _ready() -> void:
 	nickname.text = SaveManager.player_nickname
 	volume = SaveManager.volume
@@ -24,7 +26,7 @@ func _ready() -> void:
 	language_option.select(language)
 	sound_slider.value = volume
 	
-	
+
 func _on_sound_slider_value_changed(value: float) -> void:
 	sound_value.text = str(int(value)) + "%"
 	volume = value
@@ -47,3 +49,9 @@ func _on_tilt_button_toggled(toggled_on: bool) -> void:
 func _on_touch_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		controlMode = Controls.TOUCH
+
+func _on_change_button_pressed() -> void:
+	var panel = update_nickname_scene.instantiate()
+	# Conectar um signal de panel "nickname_changed" ai altera na UI
+	panel.position = Vector2(0,0)
+	add_child(panel)
