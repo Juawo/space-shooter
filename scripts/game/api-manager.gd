@@ -2,6 +2,7 @@ extends Node
 
 signal highscores_received(data)
 signal play_registered(data:bool, code)
+signal nickname_updated(response_code)
 
 var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
 var headers_base = ["Content-Type: application/json"]
@@ -20,7 +21,6 @@ func _load_configs():
 		print("Load network configurations sucessfuly")
 	else :
 		print("Network configuration file not found. Using development configuration.")
-	
 
 func on_loaded_data():
 	if SaveManager.player_id == "" or SaveManager.player_id == null:
@@ -34,7 +34,7 @@ func on_loaded_data():
 func register_player(data : Dictionary):
 	var request = HTTPRequest.new()
 	add_child(request)
-	request.request_completed.connect(_on_register_request_completed)
+	request.request_completed.connect(_on_register_request_completed.bind(request))
 	
 	var url = API_URL_BASE+"api/Player"
 	var data_string = JSON.stringify(data)
@@ -43,7 +43,7 @@ func register_player(data : Dictionary):
 	if err != OK:
 		printerr("Erro ao iniciar a requisição HTTP")
 
-func _on_register_request_completed(result, response_code, headers, body):
+func _on_register_request_completed(result, response_code, headers, body, request_node):
 	if response_code < 200 or response_code >= 300:
 		printerr("Erro na requisicao! Codigo: %d" % response_code)
 		play_registered.emit(false, response_code)
@@ -57,6 +57,7 @@ func _on_register_request_completed(result, response_code, headers, body):
 		SaveManager.save_data()
 		play_registered.emit(true,response_code)
 		print("Jogador registrado e ID salvo: ", SaveManager.player_id)
+	request_node.queue_free()
 
 func register_high_score(score : int) :
 	# Criando req HTTP
@@ -100,7 +101,6 @@ func get_leaderboard():
 	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
 	if err != OK:
 		printerr("GET HIGHSCORE - Erro ao iniciar a requisicao HTTP")
-
 func _on_all_score_sync(result, response_code, headers, body, request_node):
 	print("Status code : " + str(response_code))
 	if response_code == 200:
@@ -110,4 +110,17 @@ func _on_all_score_sync(result, response_code, headers, body, request_node):
 		
 	request_node.queue_free()
 	
+
+func update_nickname(new_nickname : String) -> void:
+	var request_nickname = HTTPRequest.new()
+	add_child(request_nickname)
+	request_nickname.request_completed.connect(_on_update_nickname_completed.bind(request_nickname))
 	
+	var url = API_URL_BASE+"api/player/%s" % [SaveManager.player_id]
+	var data_string = JSON.stringify({"Nickname" : new_nickname})
+	
+	request_nickname.request(url,headers_base,HTTPClient.METHOD_PATCH,data_string)
+	
+func _on_update_nickname_completed(result, response_code, headers, body, request_node) :
+	nickname_updated.emit(response_code)
+	request_node.queue_free()
