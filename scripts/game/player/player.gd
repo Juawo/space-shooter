@@ -24,24 +24,44 @@ var playerLife := 3 :
 			GameEvents.game_over.emit()
 
 func _physics_process(delta: float) -> void:
-	# TODO : Pegar os dados do acelerometro
-	# TODO : Com base nos dados, pegar a direction (left | right)
-	# TODO : Com base na direction deslocar o player com base na SPEED
-
-	accel_pos = Input.get_accelerometer()
+	var target_velocity = 0.0
 	
-	var input_x = accel_pos.x
-	if input_x == 0:
-		input_x = Input.get_axis("ui_left", "ui_right") * 5.0
+	if SaveManager.control_mode == 0:
+		# --- LÓGICA DE INCLINAÇÃO (TILT) ---
+		accel_pos = Input.get_accelerometer()
+		var input_x = accel_pos.x
 		
-	var target_velocity = input_x  * SPEED
-	
-	if(abs(input_x) > DEADZONE):
-		velocity.x = lerp(velocity.x, target_velocity, SMOOTH_SPEED)
-	else :
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+		# Fallback para setas (Teclado)
+		if input_x == 0:
+			input_x = Input.get_axis("ui_left", "ui_right") * 5.0
+			
+		target_velocity = input_x * SPEED
+		
+		if abs(input_x) > DEADZONE:
+			velocity.x = lerp(velocity.x, target_velocity, SMOOTH_SPEED)
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+			
+	else:
+		# --- LÓGICA DE TOQUE (TOUCH) ---
+		# Verifica se o jogador está tocando na tela ou clicando
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			var mouse_x = get_viewport().get_mouse_position().x
+			
+			# Calculamos a distância entre o toque e a nave
+			# Se o toque for à direita, vai para direita. Se for à esquerda, vai para esquerda.
+			var distance = mouse_x - global_position.x
+			
+			# Usamos um lerp mais forte para o toque parecer "colado" no dedo
+			# 0.3 é um valor bom para suavidade sem atraso (input lag)
+			velocity.x = lerp(velocity.x, distance / delta, 0.3) 
+		else:
+			# Para a nave suavemente quando solta o dedo
+			velocity.x = move_toward(velocity.x, 0, SPEED * delta * 5)
 
 	move_and_slide()
+	
+	# Clamp (Limitar a nave dentro da tela)
 	var half_width = (sprite.get_rect().size.x * sprite.scale.x) / 2 
 	position.x = clamp(position.x, half_width, screen_size.x - half_width)
 
