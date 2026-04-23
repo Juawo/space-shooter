@@ -28,8 +28,9 @@ func _on_button_pressed() -> void:
 	ApiManager.register_player(player_data)
 	print(player_data)
 
-func register_feedback(is_registered : bool):
+func register_feedback(is_registered : bool, code):
 	if is_registered:
+		print("registered")
 		v_box_container.visible = false
 		feedback.visible = true
 		timer.start(2)
@@ -38,7 +39,7 @@ func register_feedback(is_registered : bool):
 		await animation_player.animation_finished
 		self.queue_free()
 	else :
-		feedback.text = "Registration error, your high score will not be saved on the server."
+		feedback.text = "Registration error, your high score will not be saved on the server. Code %d" % code
 		v_box_container.visible = false
 		feedback.visible = true
 		timer.start(2)

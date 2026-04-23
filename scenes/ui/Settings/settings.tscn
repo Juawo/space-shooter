@@ -89,7 +89,7 @@ theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 36
 text = "Nickname"
 
-[node name="TextureButton" type="Button" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
+[node name="ChangeButton" type="Button" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 18
@@ -280,6 +280,7 @@ text = "Version 1.0"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/HBoxContainer/ChangeButton" to="." method="_on_change_button_pressed"]
 [connection signal="value_changed" from="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
 [connection signal="item_selected" from="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Language/LanguageOption" to="." method="_on_language_option_item_selected"]
 [connection signal="toggled" from="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions/TiltButton" to="." method="_on_tilt_button_toggled"]
