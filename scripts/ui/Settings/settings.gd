@@ -55,3 +55,7 @@ func _on_change_button_pressed() -> void:
 	# Conectar um signal de panel "nickname_changed" ai altera na UI
 	panel.position = Vector2(0,0)
 	add_child(panel)
+	panel.nickname_changed.connect(_on_nickname_changed)
+
+func _on_nickname_changed(new_nickname : String) -> void :
+	nickname.text = new_nickname

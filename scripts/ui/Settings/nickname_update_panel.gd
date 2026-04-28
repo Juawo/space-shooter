@@ -1,5 +1,7 @@
 extends Control
 
+signal nickname_changed(new_nickanme : String)
+
 # TODO : Adicionar animacao de surgimento e saida
 
 @onready var nickname_input: LineEdit = $MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/nickname_type/nickname_input
@@ -17,7 +19,7 @@ var is_nickname_updated : bool :
 func _ready() -> void:
 	ApiManager.nickname_updated.connect(update_by_response_code_return)
 	ApiManager.nickname_updated.connect(update_save_manager_nickname)
-	background.gui_input.connect(_on_background_clicked)
+	#background.gui_input.connect(_on_background_clicked)
 	
 # Quando digitar esse e chamado para alterar o contador
 func update_counter(new_text : String) -> void :
@@ -38,6 +40,7 @@ func update_by_response_code_return(response_code) -> void :
 	match response_code:
 		204 : 
 			detail_return.text = "Player nickname changed!"
+			nickname_changed.emit(new_nickname)
 			detail_return.add_theme_color_override("font_color", "#00c805")
 			is_nickname_updated = true
 		404 : 
@@ -86,9 +89,5 @@ func _on_nickname_input_text_changed(new_text: String) -> void:
 	update_detail_validation_return(is_nickname_valid)
 	update_register_btn(is_nickname_valid)
 
-func _on_background_clicked(event : InputEvent) -> void :
-	print("Opa")
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT \
-	or event is InputEventScreenTouch:
-		print("Background clicado")
-		queue_free()
+func _on_close_btn_pressed() -> void:
+	self.queue_free()
