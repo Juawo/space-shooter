@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://briyvdwe58raq"]
+[gd_scene load_steps=6 format=3 uid="uid://briyvdwe58raq"]
 
 [ext_resource type="Script" uid="uid://g6ex6jgnruo8" path="res://scripts/ui/Settings/nickname_update_panel.gd" id="1_f1fjo"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_j7w53"]
@@ -15,6 +15,13 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovw66"]
+bg_color = Color(0.3515629, 0.35156292, 0.35156274, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiyjh"]
 content_margin_top = 1.0
 content_margin_bottom = 1.0
@@ -28,6 +35,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f1fjo")
+metadata/_edit_horizontal_guides_ = [300.0]
 
 [node name="background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -73,16 +81,34 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 2
 theme_override_fonts/font = ExtResource("1_j7w53")
 theme_override_font_sizes/font_size = 34
 text = "Update Nickname"
 horizontal_alignment = 1
 
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+
+[node name="close_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_j7w53")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ovw66")
+text = "x"
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
@@ -169,5 +195,7 @@ text = "Registered player"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[connection signal="gui_input" from="background" to="." method="_on_background_gui_input"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/close_btn" to="." method="_on_close_btn_pressed"]
 [connection signal="text_changed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/nickname_type/nickname_input" to="." method="_on_nickname_input_text_changed"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/register_btn" to="." method="_on_register_btn_pressed"]
