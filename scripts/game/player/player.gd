@@ -26,7 +26,7 @@ var playerLife := 3 :
 func _physics_process(delta: float) -> void:
 	var target_velocity = 0.0
 	# Normalizamos a sensibilidade (ex: 100 vira 1.0, 50 vira 0.5, 200 vira 2.0)
-	var sense_multiplier = SaveManager.senibility / 100.0
+	var sense_multiplier = SaveManager.sensibility / 100.0
 	
 	if SaveManager.control_mode == 0:
 		# --- LÓGICA DE INCLINAÇÃO (TILT) ---
