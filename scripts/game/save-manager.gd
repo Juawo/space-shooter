@@ -69,7 +69,8 @@ func load_data () -> void:
 			volume = s.get("volume", 100.0)
 			language = s.get("language", 0)
 			control_mode = s.get("control_mode", 0)
-			sensibility = s.get("sensibility", 100) # vulgo senibility
+			sensibility = s.get("sensibility", 100) 
+			# vulgo senibility
 			
 		# Sincroniza com o SessionState
 		SessionState.high_score = high_score
