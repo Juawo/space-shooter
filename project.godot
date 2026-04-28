@@ -31,6 +31,15 @@ window/stretch/aspect="expand"
 window/handheld/orientation=1
 window/main_scene="uid://deo2xlnjykoj2"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "purple",
+"res://configs/": "gray",
+"res://scenes/": "green",
+"res://scripts/": "yellow"
+}
+
 [global_group]
 
 PlayerProjectiles=""

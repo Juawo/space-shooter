@@ -44,7 +44,7 @@ func save_data () -> void:
 	
 	save_file.store_line(JSON.stringify(data))
 	save_file.close()
-	
+
 func load_data () -> void:
 	if not FileAccess.file_exists(file_path):
 		print ("O arquivo de dados nao existe.")
@@ -75,3 +75,8 @@ func load_data () -> void:
 		# Sincroniza com o SessionState
 		SessionState.high_score = high_score
 	loaded_data.emit()
+
+
+func update_nickname(new_nickname : String) -> void :
+	player_nickname = new_nickname
+	save_data()

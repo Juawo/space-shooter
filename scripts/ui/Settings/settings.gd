@@ -7,6 +7,7 @@ var language : int
 var controlMode : Controls = Controls.TILT
 
 var main_scene : PackedScene = preload("res://scenes/game/main.tscn")
+var update_nickname_scene : PackedScene = preload("res://scenes/ui/Settings/nickname_update_panel.tscn")
 
 @onready var sound_value: Label = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer/SoundValue
 @onready var sound_slider: HSlider = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer/SoundSlider
@@ -19,6 +20,7 @@ var main_scene : PackedScene = preload("res://scenes/game/main.tscn")
 @onready var touch_button: Button = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions/TouchButton
 @onready var nickname: Label = $VBoxContainer/Header/HBoxContainer/HBoxContainer/Nickname
 
+# TODO : Alterar nickname para o novo, caso tenha alterado
 func _ready() -> void:
 	nickname.text = SaveManager.player_nickname
 	
