@@ -1,4 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-/configs/secret_configs.cfg
+configs/
+config.cfg
