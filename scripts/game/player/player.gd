@@ -25,6 +25,8 @@ var playerLife := 3 :
 
 func _physics_process(delta: float) -> void:
 	var target_velocity = 0.0
+	# Normalizamos a sensibilidade (ex: 100 vira 1.0, 50 vira 0.5, 200 vira 2.0)
+	var sense_multiplier = SaveManager.senibility / 100.0
 	
 	if SaveManager.control_mode == 0:
 		# --- LÓGICA DE INCLINAÇÃO (TILT) ---
@@ -35,28 +37,28 @@ func _physics_process(delta: float) -> void:
 		if input_x == 0:
 			input_x = Input.get_axis("ui_left", "ui_right") * 5.0
 			
-		target_velocity = input_x * SPEED
+		# Aplicamos a sensibilidade no target_velocity
+		target_velocity = input_x * SPEED * sense_multiplier
 		
 		if abs(input_x) > DEADZONE:
-			velocity.x = lerp(velocity.x, target_velocity, SMOOTH_SPEED)
+			# Também podemos usar a sensibilidade para tornar o lerp mais responsivo
+			var weight = clamp(SMOOTH_SPEED * sense_multiplier, 0.01, 0.9)
+			velocity.x = lerp(velocity.x, target_velocity, weight)
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
 			
 	else:
 		# --- LÓGICA DE TOQUE (TOUCH) ---
-		# Verifica se o jogador está tocando na tela ou clicando
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			var mouse_x = get_viewport().get_mouse_position().x
-			
-			# Calculamos a distância entre o toque e a nave
-			# Se o toque for à direita, vai para direita. Se for à esquerda, vai para esquerda.
 			var distance = mouse_x - global_position.x
 			
-			# Usamos um lerp mais forte para o toque parecer "colado" no dedo
-			# 0.3 é um valor bom para suavidade sem atraso (input lag)
-			velocity.x = lerp(velocity.x, distance / delta, 0.3) 
+			# No Touch, a sensibilidade controla quão rápido a nave alcança o dedo
+			# Ajustamos o peso do lerp (0.3 original) com base na sensibilidade
+			var touch_weight = clamp(0.3 * sense_multiplier, 0.05, 1.0)
+			
+			velocity.x = lerp(velocity.x, distance / delta, touch_weight)
 		else:
-			# Para a nave suavemente quando solta o dedo
 			velocity.x = move_toward(velocity.x, 0, SPEED * delta * 5)
 
 	move_and_slide()

@@ -11,6 +11,7 @@ var score_id : String = ""
 var volume : float = 100.0
 var language : int = 0
 var control_mode : int = 0 # 0 para tilt e 1 para touch
+var senibility : float = 100
 
 # No topo do script SaveManager
 var file_path : String
@@ -35,7 +36,8 @@ func save_data () -> void:
 		"settings" : {
 			"volume" : volume,
 			"language" : language,
-			"control_mode" : control_mode
+			"control_mode" : control_mode,
+			"senibility" : senibility
 		}
 	}
 	
