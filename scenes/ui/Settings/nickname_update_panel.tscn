@@ -75,7 +75,6 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
 layout_mode = 2
@@ -83,6 +82,7 @@ theme_override_constants/separation = 18
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 2
 
 [node name="title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -108,12 +108,13 @@ text = "x"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
 [node name="Nickname" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="NicknameLabe" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname"]
@@ -125,7 +126,6 @@ horizontal_alignment = 1
 
 [node name="nickname_type" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname"]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 6
 
 [node name="nickname_input" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/nickname_type"]

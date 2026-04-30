@@ -64,3 +64,8 @@ func _on_touch_button_toggled(toggled_on: bool) -> void:
 func _on_sensibilityt_slider_value_changed(value: float) -> void:
 	sensibility = value
 	sensibility_value.text = str(int(value)) + "%"
+
+func _on_change_button_pressed() -> void:
+	var scene = update_nickname_scene.instantiate()
+	scene.position = Vector2(0,20)
+	add_child(scene)
