@@ -69,3 +69,7 @@ func _on_change_button_pressed() -> void:
 	var scene = update_nickname_scene.instantiate()
 	scene.position = Vector2(0,20)
 	add_child(scene)
+	scene.nickname_changed.connect(_on_nickname_changed)
+	
+func _on_nickname_changed(new_nickname : String) -> void :
+	nickname.text = new_nickname

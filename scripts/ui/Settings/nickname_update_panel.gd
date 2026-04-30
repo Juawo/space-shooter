@@ -9,6 +9,7 @@ signal nickname_changed(new_nickanme : String)
 @onready var detail_return: Label = $MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/detail_return
 @onready var register_btn: Button = $MarginContainer/Panel/MarginContainer/VBoxContainer/register_btn
 @onready var background: ColorRect = $background
+
 var new_nickname : String = ""
 var is_nickname_updated : bool :
 	set(new_value) :
@@ -63,6 +64,7 @@ func update_by_response_code_return(response_code) -> void :
 			detail_return.text = "Type your new nickname"
 			detail_return.add_theme_color_override("font_color", "#ffffff")
 			is_nickname_updated = false
+	nickname_input.editable = true
 	return
 
 func update_detail_validation_return(is_valid : bool) -> void :
