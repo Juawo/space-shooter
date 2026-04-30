@@ -183,13 +183,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 6.47
+max_value = 200.0
 value = 100.0
 tick_count = 1
 
 [node name="SensibilityValue" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility/SensibilityContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "100%"
+text = "50%"
 
 [node name="Language" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
