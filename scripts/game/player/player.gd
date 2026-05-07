@@ -48,19 +48,26 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED * delta)
 			
 	else:
-		# --- LÓGICA DE TOQUE (TOUCH) ---
+		# --- LÓGICA DE TOQUE (TOUCH) ULTRA SUAVE ---
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			var mouse_x = get_viewport().get_mouse_position().x
 			var distance = mouse_x - global_position.x
 			
-			# No Touch, a sensibilidade controla quão rápido a nave alcança o dedo
-			# Ajustamos o peso do lerp (0.3 original) com base na sensibilidade
-			var touch_weight = clamp(0.3 * sense_multiplier, 0.05, 1.0)
-			
-			velocity.x = lerp(velocity.x, distance / delta, touch_weight)
+			# 1. Zona Morta (Essential): Se estiver a menos de 2px, a nave já chegou.
+			if abs(distance) < 2.0:
+				velocity.x = move_toward(velocity.x, 0, SPEED * delta * 20)
+			else:
+				# 2. Cálculo da Velocidade Alvo
+				# Usamos uma curva para a nave desacelerar conforme chega perto (Smooth Out)
+				var desired_speed = clamp(abs(distance) * 10.0, 0, SPEED * 6.0)
+				target_velocity = sign(distance) * desired_speed * sense_multiplier
+				
+				# 3. Interpolação de Velocidade (Peso menor = mais suave)
+				var weight = 0.15 * sense_multiplier
+				velocity.x = lerp(velocity.x, target_velocity, clamp(weight, 0, 1))
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED * delta * 5)
-
+			# Desaceleração rápida ao soltar o dedo
+			velocity.x = move_toward(velocity.x, 0, SPEED * delta * 10)
 	move_and_slide()
 	
 	# Clamp (Limitar a nave dentro da tela)
