@@ -5,9 +5,13 @@ signal life_change(life_value)
 @export var bullet_scene := preload("res://scenes/game/player/player_bullet.tscn")
 @onready var marker_2d: Marker2D = $Marker2D
 
+var original_shoot_wait_time : float = 0.0
+var boost_timer : SceneTreeTimer = null
+
 @export var SPEED := 100.0
 @export var SMOOTH_SPEED := 0.1
-@export var DEADZONE = 0.3
+@export var DEADZONE = 0.3 
+@export var shoot_speed_modifier := 1.0
 
 @onready var screen_size = get_viewport_rect().size
 @onready var sprite: Sprite2D = $Sprite
@@ -101,12 +105,39 @@ func takeDamage (amount : int):
 func _on_shoot_timer_timeout() -> void:
 	shoot()
 
-func shoot () -> void:
+func shoot() -> void:
 	if bullet_scene:
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = marker_2d.global_position
+		
+		# Aplicamos o modificador na bala antes de adicionar na cena
+		if "bullet_speed" in bullet:
+			bullet.bullet_speed *= shoot_speed_modifier
+			
 		get_tree().current_scene.add_child(bullet)
 
 
 func _on_invecible_timer_timeout() -> void:
 	is_invecible = false
+
+# Função para ativar o boost
+# --- Substitua sua função apply_speed_boost por esta ---
+func apply_speed_boost(multiplier: float) -> void:
+	# 1. Se o efeito NÃO está ativo, guarda o tempo original e aplica o boost [cite: 63]
+	if boost_timer == null:
+		original_shoot_wait_time = $ShootTimer.wait_time
+		$ShootTimer.wait_time = original_shoot_wait_time / multiplier # [cite: 63]
+	
+	# 2. Registra um novo Timer de 10 segundos 
+	# Ao reatribuir a variável, perdemos a referência ao "await" anterior, 
+	# mas precisamos garantir que apenas o último reset o valor original.
+	var current_timer = get_tree().create_timer(10.0)
+	boost_timer = current_timer
+	
+	await current_timer.timeout
+	
+	# 3. Verificação de Segurança: 
+	# Só reseta se este timer específico for o último que o jogador coletou
+	if boost_timer == current_timer:
+		$ShootTimer.wait_time = original_shoot_wait_time
+		boost_timer = null # Limpa a referência para permitir novos boosts
