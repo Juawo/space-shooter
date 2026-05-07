@@ -37,7 +37,6 @@ debug_color = Color(0.9353768, 2.0311178e-05, 0.63873893, 0.41960785)
 position = Vector2(1, -37)
 
 [node name="ShootTimer" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
 
 [node name="InvecibleTimer" type="Timer" parent="."]
