@@ -57,6 +57,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="PlayerProjectiles"
 2d_physics/layer_4="EnemyProjectiles"
+2d_physics/layer_5="powerup"
 
 [rendering]
 

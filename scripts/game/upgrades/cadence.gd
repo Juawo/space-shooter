@@ -1,0 +1,19 @@
+extends Area2D
+
+@export var fall_speed := 150.0 # Velocidade de descida [cite: 53]
+
+func _process(delta: float) -> void:
+	# Faz o item descer verticalmente pelo jogo vertical [cite: 48]
+	position.y += fall_speed * delta
+
+func _on_body_entered(body: Node2D) -> void:
+	# Verificação segura por grupo ou nome [cite: 7, 23]
+	if body.is_in_group("Player") or body.name == "Player":
+		if body.has_method("apply_speed_boost"):
+			# Passamos o multiplicador 3.0 para triplicar a cadência [cite: 1]
+			body.apply_speed_boost(3.0) 
+			queue_free()
+
+# Limpeza de memória ao sair da tela [cite: 51]
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
