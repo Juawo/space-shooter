@@ -7,6 +7,7 @@ signal life_change(life_value)
 
 var original_shoot_wait_time : float = 0.0
 var boost_timer : SceneTreeTimer = null
+@onready var muzzle_flash_animation: AnimatedSprite2D = $muzzle_flash_animation
 
 @export var SPEED := 100.0
 @export var SMOOTH_SPEED := 0.1
@@ -114,6 +115,8 @@ func _on_shoot_timer_timeout() -> void:
 
 func shoot() -> void:
 	if bullet_scene:
+		muzzle_flash_animation.visible = true
+		muzzle_flash_animation.play("muzzle_flash")
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = marker_2d.global_position
 		
@@ -122,7 +125,8 @@ func shoot() -> void:
 			bullet.bullet_speed *= shoot_speed_modifier
 			
 		get_tree().current_scene.add_child(bullet)
-
+		await muzzle_flash_animation.animation_finished
+		muzzle_flash_animation.visible = false
 
 func _on_invecible_timer_timeout() -> void:
 	is_invecible = false
