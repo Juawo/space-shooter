@@ -20,7 +20,7 @@ texture = ExtResource("1_lex3l")
 [node name="layer2" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0, 0.3)
 repeat_size = Vector2(0, 1834)
-autoscroll = Vector2(0, 30)
+autoscroll = Vector2(0, 20)
 ignore_camera_scroll = true
 
 [node name="Sprite2D" type="Sprite2D" parent="layer2"]
