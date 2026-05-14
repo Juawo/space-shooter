@@ -21,7 +21,7 @@ var boost_timer : SceneTreeTimer = null
 
 var accel_pos : Vector3
 var is_invecible : bool = false
-var half_width := 54.0
+var half_width := 54.0 # (tamanho_do_sprite * scale)/2
 
 var playerLife := 3 :
 	set (new_value) :
@@ -77,8 +77,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED * delta * 10)
 	move_and_slide()
 	
-	## Clamp (Limitar a nave dentro da tela)
-	#var half_width = (sprite.get_rect().size.x * sprite.scale.x) / 2 
+	# Clamp (Limitar a nave dentro da tela)
 	position.x = clamp(position.x, half_width, screen_size.x - half_width)
 
 

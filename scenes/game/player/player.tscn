@@ -160,15 +160,15 @@ animation = &"muzzle_flash"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, -0.41666198)
-scale = Vector2(6.1111107, 5.7222223)
+position = Vector2(1.9073486e-06, 0)
+scale = Vector2(6.1111116, 5)
 texture = ExtResource("1_apxxd")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(3.500003, -17.33333)
+position = Vector2(1, -11.5)
 shape = SubResource("RectangleShape2D_t5cse")
 debug_color = Color(0.9353768, 2.0311178e-05, 0.63873893, 0.41960785)
 

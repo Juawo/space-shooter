@@ -8,6 +8,7 @@
 
 [node name="background_parallax" type="Node2D"]
 z_index = -500
+scale = Vector2(1.1, 1)
 script = ExtResource("1_ae5p2")
 
 [node name="layer1" type="Parallax2D" parent="."]
