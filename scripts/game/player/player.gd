@@ -7,6 +7,7 @@ signal life_change(life_value)
 
 var original_shoot_wait_time : float = 0.0
 var boost_timer : SceneTreeTimer = null
+@onready var muzzle_flash_animation: AnimatedSprite2D = $muzzle_flash_animation
 
 @export var SPEED := 100.0
 @export var SMOOTH_SPEED := 0.1
@@ -16,9 +17,11 @@ var boost_timer : SceneTreeTimer = null
 @onready var screen_size = get_viewport_rect().size
 @onready var sprite: Sprite2D = $Sprite
 @onready var invecible_timer: Timer = $InvecibleTimer
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var accel_pos : Vector3
 var is_invecible : bool = false
+var half_width := 54.0 # (tamanho_do_sprite * scale)/2
 
 var playerLife := 3 :
 	set (new_value) :
@@ -75,7 +78,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	# Clamp (Limitar a nave dentro da tela)
-	var half_width = (sprite.get_rect().size.x * sprite.scale.x) / 2 
 	position.x = clamp(position.x, half_width, screen_size.x - half_width)
 
 
@@ -114,6 +116,8 @@ func _on_shoot_timer_timeout() -> void:
 
 func shoot() -> void:
 	if bullet_scene:
+		muzzle_flash_animation.visible = true
+		muzzle_flash_animation.play("muzzle_flash")
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = marker_2d.global_position
 		
@@ -122,7 +126,8 @@ func shoot() -> void:
 			bullet.bullet_speed *= shoot_speed_modifier
 			
 		get_tree().current_scene.add_child(bullet)
-
+		await muzzle_flash_animation.animation_finished
+		muzzle_flash_animation.visible = false
 
 func _on_invecible_timer_timeout() -> void:
 	is_invecible = false

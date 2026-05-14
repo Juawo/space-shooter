@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://crrtm6jpxvoqw"]
+
+[ext_resource type="Script" uid="uid://c6qvk5d7oupcf" path="res://scripts/game/background/background_layered.gd" id="1_ae5p2"]
+[ext_resource type="Texture2D" uid="uid://c7ht0164f3xwf" path="res://assets/sprites/background/background_layer_1.png" id="1_lex3l"]
+[ext_resource type="Texture2D" uid="uid://bo4eckibkd24d" path="res://assets/sprites/background/background_layer_2.png" id="2_kvgrm"]
+[ext_resource type="Texture2D" uid="uid://cd7y5t0munpue" path="res://assets/sprites/background/background_layer_3.png" id="3_kw0li"]
+[ext_resource type="Texture2D" uid="uid://bc8iq8eda8a4f" path="res://assets/sprites/background/background_layer_4.png" id="4_ae5p2"]
+
+[node name="background_parallax" type="Node2D"]
+z_index = -500
+scale = Vector2(1.1, 1)
+script = ExtResource("1_ae5p2")
+
+[node name="layer1" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 1834)
+autoscroll = Vector2(0, 10)
+
+[node name="Sprite2D" type="Sprite2D" parent="layer1"]
+texture = ExtResource("1_lex3l")
+
+[node name="layer2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0.3)
+repeat_size = Vector2(0, 1834)
+autoscroll = Vector2(0, 20)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="layer2"]
+texture = ExtResource("2_kvgrm")
+
+[node name="layer3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0.4)
+repeat_size = Vector2(0, 1834)
+autoscroll = Vector2(0, 130)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="layer3"]
+texture = ExtResource("3_kw0li")
+
+[node name="layer4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0.4)
+repeat_size = Vector2(0, 1834)
+autoscroll = Vector2(0, 160)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="layer4"]
+texture = ExtResource("4_ae5p2")

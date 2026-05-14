@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcj3rjhiu6pbd"]
+[gd_scene load_steps=10 format=3 uid="uid://bcj3rjhiu6pbd"]
 
 [ext_resource type="Script" uid="uid://bpl058yad5e01" path="res://scripts/ui/Settings/settings.gd" id="1_gxyng"]
 [ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="1_ts13i"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="2_83c71"]
 [ext_resource type="ButtonGroup" uid="uid://ufcbx7y462q8" path="res://scenes/ui/Settings/controlbuttongroup.tres" id="4_w3asu"]
+[ext_resource type="PackedScene" uid="uid://crrtm6jpxvoqw" path="res://scenes/game/background/background_layered.tscn" id="5_c5h6l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8eje"]
 bg_color = Color(0.44313726, 0.44313726, 0.44705883, 0.80784315)
@@ -52,6 +53,10 @@ mouse_filter = 1
 script = ExtResource("1_gxyng")
 
 [node name="background" parent="." instance=ExtResource("1_ts13i")]
+visible = false
+
+[node name="background_parallax" parent="." instance=ExtResource("5_c5h6l")]
+position = Vector2(207, 0)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
