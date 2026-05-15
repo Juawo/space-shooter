@@ -29,6 +29,7 @@ window/size/viewport_height=917
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
+window/vsync/vsync_mode=3
 window/main_scene="uid://deo2xlnjykoj2"
 
 [file_customization]
