@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var fall_speed := 150.0 # Velocidade de descida [cite: 53]
+@export var fall_speed := 250.0 # Velocidade de descida [cite: 53]
 
 func _process(delta: float) -> void:
 	# Faz o item descer verticalmente pelo jogo vertical [cite: 48]
@@ -14,6 +14,5 @@ func _on_body_entered(body: Node2D) -> void:
 			body.apply_speed_boost(3.0) 
 			queue_free()
 
-# Limpeza de memória ao sair da tela [cite: 51]
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	queue_free()

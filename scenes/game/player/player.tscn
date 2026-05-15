@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bm8dvm4phwsel" path="res://assets/sprites/spaceship/muzzle_flash/frame0016.png" id="26_30wld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hecf"]
-size = Vector2(9.600002, 13.000002)
+size = Vector2(7.666669, 9.166668)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t5vmf"]
 animations = [{
@@ -129,7 +129,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5cse"]
-size = Vector2(48, 67)
+size = Vector2(38.33333, 45)
 
 [node name="Player" type="CharacterBody2D"]
 process_mode = 1
@@ -139,13 +139,13 @@ collision_mask = 26
 script = ExtResource("1_1hecf")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0.99999917, -12.500002)
+position = Vector2(-8.443991e-07, -8.749999)
 scale = Vector2(4.999999, 4.999999)
 shape = SubResource("RectangleShape2D_1hecf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_mode = 3
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_t5vmf")
 animation = &"idle"
 autoplay = "idle"
@@ -155,6 +155,7 @@ frame_progress = 0.33490074
 process_mode = 3
 visible = false
 position = Vector2(0, -87)
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_82yl3")
 animation = &"muzzle_flash"
 
@@ -168,7 +169,7 @@ texture = ExtResource("1_apxxd")
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(1, -11.5)
+position = Vector2(0, -8.333333)
 shape = SubResource("RectangleShape2D_t5cse")
 debug_color = Color(0.9353768, 2.0311178e-05, 0.63873893, 0.41960785)
 

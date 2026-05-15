@@ -20,6 +20,8 @@ position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_ows40")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-15, 12)
+rect = Rect2(-10, -38, 48, 48)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
