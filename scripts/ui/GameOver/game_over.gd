@@ -9,6 +9,8 @@ func show_game_over():
 	is_showing = true
 	visible = is_showing
 	animation_player.play("show_game_over")
+	print(SessionState.high_score)
+	print(SessionState.current_score)
 	high_score_value.text = str(SessionState.high_score)
 	current_score_value.text = str(SessionState.current_score)
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3hvl54is461g"]
+[gd_scene load_steps=4 format=3 uid="uid://c3hvl54is461g"]
 
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_56s4t"]
 [ext_resource type="Script" uid="uid://bsx2i8a6wuf2h" path="res://scripts/ui/Leaderboard/leaderboard.gd" id="1_eprmh"]
 [ext_resource type="PackedScene" uid="uid://crrtm6jpxvoqw" path="res://scenes/game/background/background_layered.tscn" id="2_hbriy"]
-[ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="3_eprmh"]
 
 [node name="Leaderboard" type="Control"]
 process_mode = 3
@@ -16,10 +15,8 @@ grow_vertical = 2
 script = ExtResource("1_eprmh")
 
 [node name="background_parallax" parent="." instance=ExtResource("2_hbriy")]
+process_mode = 3
 position = Vector2(206, 0)
-
-[node name="background" parent="." instance=ExtResource("3_eprmh")]
-visible = false
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(1, 1, 1, 0.5254902)
@@ -82,7 +79,7 @@ theme_override_constants/margin_bottom = 10
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-horizontal_scroll_mode = 0
+follow_focus = true
 vertical_scroll_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer"]
