@@ -70,7 +70,7 @@ func register_high_score(score : int) :
 
 	var method = HTTPClient.METHOD_POST
 	if SaveManager.score_id != "":
-		method = HTTPClient.METHOD_PUT
+		method = HTTPClient.METHOD_PATCH
 		url += "/%s" % [SaveManager.score_id]
 	
 	request.request(url, headers_base, method, data_string)
