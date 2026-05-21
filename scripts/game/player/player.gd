@@ -23,6 +23,11 @@ var accel_pos : Vector3
 var is_invecible : bool = false
 var half_width := 54.0 # (tamanho_do_sprite * scale)/2
 
+var shield_timer : SceneTreeTimer = null
+var is_shield_active : bool = false
+
+@onready var shield_node : Node2D = $Shield
+
 var playerLife := 3 :
 	set (new_value) :
 		playerLife = new_value
@@ -101,6 +106,10 @@ func DamageTween() :
 	is_invecible = false
 
 func takeDamage (amount : int):
+	# Se o escudo estiver ativo, o dano é completamente bloqueado!
+	if is_shield_active:
+		return
+		
 	if is_invecible:
 		return
 		
@@ -153,3 +162,23 @@ func apply_speed_boost(multiplier: float) -> void:
 	if boost_timer == current_timer:
 		$ShootTimer.wait_time = original_shoot_wait_time
 		boost_timer = null # Limpa a referência para permitir novos boosts
+
+func activate_shield() -> void:
+	# 1. Se o escudo não estava ativo, liga o visual e a propriedade
+	if shield_timer == null:
+		is_shield_active = true
+		shield_node.visible = true
+		# Opcional: Se o seu escudo for um AnimatedSprite, você pode dar shield_node.play() aqui
+	
+	# 2. Cria/reseta o timer seguro de 10 segundos 
+	var current_shield_timer = get_tree().create_timer(10.0)
+	shield_timer = current_shield_timer
+	
+	await current_shield_timer.timeout
+	
+	# 3. Verificação de Segurança (Igual ao do Speed Boost): 
+	# Só desliga se este timer for o último escudo que o jogador coletou 
+	if shield_timer == current_shield_timer:
+		is_shield_active = false
+		shield_node.visible = false
+		shield_timer = null
