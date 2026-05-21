@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c8bvrgnu7smjw"]
+[gd_scene load_steps=32 format=3 uid="uid://c8bvrgnu7smjw"]
 
 [ext_resource type="Script" uid="uid://ceqve5ivwdmt8" path="res://scripts/game/player/player.gd" id="1_1hecf"]
 [ext_resource type="Texture2D" uid="uid://bl1qcpmv6n4ks" path="res://assets/sprites/idle.png" id="1_apxxd"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://c55dba8w8pwxt" path="res://assets/sprites/spaceship/muzzle_flash/frame0014.png" id="24_qr4c7"]
 [ext_resource type="Texture2D" uid="uid://cl7i6yxvogsv0" path="res://assets/sprites/spaceship/muzzle_flash/frame0015.png" id="25_bt2u1"]
 [ext_resource type="Texture2D" uid="uid://bm8dvm4phwsel" path="res://assets/sprites/spaceship/muzzle_flash/frame0016.png" id="26_30wld"]
+[ext_resource type="PackedScene" uid="uid://bsr4o4cwx4qqo" path="res://scenes/game/upgrades/shield.tscn" id="27_okwrv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hecf"]
 size = Vector2(7.666669, 9.166668)
@@ -177,9 +178,14 @@ debug_color = Color(0.9353768, 2.0311178e-05, 0.63873893, 0.41960785)
 position = Vector2(0, -66)
 
 [node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.6
 autostart = true
 
 [node name="InvecibleTimer" type="Timer" parent="."]
+
+[node name="Shield" parent="." instance=ExtResource("27_okwrv")]
+visible = false
+modulate = Color(1, 1, 1, 0.09411765)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

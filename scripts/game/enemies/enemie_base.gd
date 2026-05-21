@@ -4,6 +4,7 @@ signal enemy_died
 # TODO : Emitir score_value quando eliminado!
 
 @export var power_up_scene := preload("res://scenes/game/upgrades/cadence.tscn")
+@export var shield_power_up_scene := preload("res://scenes/game/upgrades/shield-drop.tscn") # Caminho da sua cena de escudo
 @export_range(1, 4) var enemy_level := 1 # Nível de dificuldade (1 a 4)
 
 @export var life := 1
@@ -88,16 +89,20 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 # --- Função de Drop Baseada em Nível ---
 func check_drop_chance():
-	# Define a chance base (ex: Nível 1 = 5%, Nível 4 = 20%)
 	var drop_probability = enemy_level * 10
-	var random_value = randi() % 100 # Gera um número entre 0 e 99
+	var random_value = randi() % 100 
 	
 	if random_value < drop_probability:
-		spawn_power_up()
+		spawn_random_power_up()
 		
-func spawn_power_up():
-	if power_up_scene:
-		var p_up = power_up_scene.instantiate()
+func spawn_random_power_up():
+	# Lista com as cenas disponíveis
+	var available_drops = [power_up_scene, shield_power_up_scene]
+	
+	# Escolhe um item aleatório do array
+	var chosen_scene = available_drops[randi() % available_drops.size()]
+	
+	if chosen_scene:
+		var p_up = chosen_scene.instantiate()
 		p_up.global_position = global_position
-		# Adiciona o item à cena principal para ele não sumir com o inimigo
 		get_tree().current_scene.add_child(p_up)

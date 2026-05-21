@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv1ut74uwhu51"]
+
+[ext_resource type="Script" uid="uid://biw6gm7o2ux3e" path="res://scripts/game/upgrades/shield_drop.gd" id="1_v2jcf"]
+[ext_resource type="Texture2D" uid="uid://cvxnsj15rgry5" path="res://icon.svg" id="2_2076s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1aedd"]
+radius = 20.024984
+
+[node name="ShieldDrop" type="Area2D" groups=["PowerUps"]]
+collision_layer = 16
+script = ExtResource("1_v2jcf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_2076s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1aedd")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-18, -18, 36, 36)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

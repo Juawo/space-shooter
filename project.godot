@@ -46,6 +46,7 @@ folder_colors={
 PlayerProjectiles=""
 EnemiesProjectiles=""
 Enemies="Enemy group"
+PowerUps=""
 
 [input_devices]
 

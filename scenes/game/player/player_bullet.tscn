@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://b8royjgs30pos"]
 
-[ext_resource type="Script" uid="uid://dctsl3nuxohe" path="res://scripts/game/player/player_bullet.gd" id="1_uqq7r"]
+[ext_resource type="Script" uid="uid://dctsl3nuxohe" path="res://scripts/game/player/player_bullet.gd" id="1_4vgx3"]
 [ext_resource type="Texture2D" uid="uid://dk0rsfyitidjf" path="res://assets/sprites/simple-bullet.png" id="2_n1or0"]
 [ext_resource type="Texture2D" uid="uid://bfgdejeoq60pe" path="res://assets/sprites/bullet/frame0000.png" id="3_4vgx3"]
 [ext_resource type="Texture2D" uid="uid://dihxwvq5ek5t8" path="res://assets/sprites/bullet/frame0001.png" id="4_872pm"]
@@ -44,7 +44,7 @@ process_mode = 1
 z_index = 1
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_uqq7r")
+script = ExtResource("1_4vgx3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)

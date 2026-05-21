@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ows40"]
 radius = 26.019224
 
-[node name="Upgrade" type="Area2D"]
+[node name="Upgrade" type="Area2D" groups=["PowerUps"]]
 modulate = Color(1, 1, 0.8235294, 1)
 collision_layer = 16
 script = ExtResource("1_ldgc4")
