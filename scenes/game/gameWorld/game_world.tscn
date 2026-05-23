@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://deo2xlnjykoj2"]
+[gd_scene load_steps=6 format=3 uid="uid://deo2xlnjykoj2"]
 
 [ext_resource type="Script" uid="uid://0tpc5vgmu38i" path="res://scripts/game/gameWorld/game_world.gd" id="1_im6e1"]
-[ext_resource type="PackedScene" uid="uid://set2xcrxaxm8" path="res://scenes/game/background/background.tscn" id="1_r2iep"]
 [ext_resource type="PackedScene" uid="uid://c8bvrgnu7smjw" path="res://scenes/game/player/player.tscn" id="2_lcs20"]
 [ext_resource type="PackedScene" uid="uid://b6ldni36gxx0u" path="res://scenes/game/enemies/enemies-spawner/enemies_spawner.tscn" id="4_uepgv"]
 [ext_resource type="PackedScene" uid="uid://l1a381jt4yc8" path="res://scenes/ui/Hud/hud.tscn" id="5_7j6fr"]
@@ -13,9 +12,6 @@ metadata/_edit_vertical_guides_ = [0.0]
 
 [node name="background_parallax" parent="." instance=ExtResource("6_x5ux2")]
 position = Vector2(206, -1)
-
-[node name="background" parent="." instance=ExtResource("1_r2iep")]
-visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_lcs20")]
 position = Vector2(196, 840)
