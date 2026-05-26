@@ -26,7 +26,6 @@ func _ready() -> void:
 		# Ja que o inimigo nao atira, removo o timer
 		shoot_timer.queue_free()
 	
-	particle_die.color = base_color
 
 func _process(delta: float) -> void:
 	position.y += SPEED * delta
@@ -40,7 +39,7 @@ func dieTween() -> Tween:
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_BACK)
-	tween.tween_property(self, "scale", Vector2(7.5, 7.5), 0.4)
+	tween.tween_property(self, "scale", Vector2(1.4, 1.4), 0.4)
 	return tween
 
 func die():
@@ -61,6 +60,7 @@ func die():
 	
 	# Esconde o sprite para tocar so as particulas
 	sprite_2d.visible = false
+	particle_die.color = base_color
 	
 	# Dispara particula de explodir
 	particle_die.emitting = true
@@ -89,7 +89,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 # --- Função de Drop Baseada em Nível ---
 func check_drop_chance():
-	var drop_probability = enemy_level * 10
+	var drop_probability = enemy_level * 40
 	var random_value = randi() % 100 
 	
 	if random_value < drop_probability:

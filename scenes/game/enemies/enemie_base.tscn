@@ -26,9 +26,10 @@ texture = ExtResource("2_jp0n8")
 shape = SubResource("RectangleShape2D_d3nni")
 
 [node name="ParticleDie" type="CPUParticles2D" parent="."]
+scale = Vector2(1.44, 1.44)
 emitting = false
 amount = 15
-lifetime = 0.7
+lifetime = 1.71
 one_shot = true
 speed_scale = 1.4
 explosiveness = 1.0

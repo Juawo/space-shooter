@@ -1,13 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://3eqm5l1q0og3"]
+[gd_scene load_steps=5 format=3 uid="uid://3eqm5l1q0og3"]
 
 [ext_resource type="PackedScene" uid="uid://d4kbs6vopeoxo" path="res://scenes/game/enemies/enemie_base.tscn" id="1_5gf4d"]
 [ext_resource type="Script" uid="uid://dp8pcu0fiqr6a" path="res://scripts/game/enemies/enemie1/enemie_1.gd" id="2_7a6fx"]
+[ext_resource type="Texture2D" uid="uid://n0jt0brnm6bi" path="res://assets/sprites/enemies/enemie_1_variant_2.png" id="3_oedxa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oedxa"]
+radius = 35.08917
 
 [node name="Enemie1" instance=ExtResource("1_5gf4d")]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("2_7a6fx")
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(0.49803922, 1, 0, 1)
+scale = Vector2(1, 1)
+texture = ExtResource("3_oedxa")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_oedxa")
 
 [node name="ParticleDie" parent="." index="2"]
+scale = Vector2(4.74, 4.74)
 lifetime = 0.5
+initial_velocity_max = 45.0
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(-19.999998, -24.999998)
+rect = Rect2(-12.5, -12.5, 63.249996, 64.25)

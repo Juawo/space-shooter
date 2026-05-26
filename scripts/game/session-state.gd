@@ -15,7 +15,6 @@ var high_score :int = 0 :
 		high_score = new_value
 		high_score_changed.emit(new_value)
 
-
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	GameEvents.game_over.connect(_on_gameplay_end)

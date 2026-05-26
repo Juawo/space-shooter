@@ -35,6 +35,8 @@ var playerLife := 3 :
 		if new_value == 0:
 			GameEvents.game_over.emit()
 
+
+
 func _physics_process(delta: float) -> void:
 	var target_velocity = 0.0
 	# Normalizamos a sensibilidade (ex: 100 vira 1.0, 50 vira 0.5, 200 vira 2.0)
