@@ -3,6 +3,7 @@ extends Node
 signal highscores_received(data)
 signal play_registered(data:bool, code)
 signal nickname_updated(response_code)
+signal latest_version_received(data)
 
 var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
 var headers_base = ["Content-Type: application/json"]
@@ -12,6 +13,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	SaveManager.loaded_data.connect(on_loaded_data)
 	_load_configs()
+	get_latest_version()
 	
 func _load_configs():
 	var config = ConfigFile.new()
@@ -31,6 +33,24 @@ func on_loaded_data():
 		else:
 			get_tree().current_scene.add_child(scene)
 
+func get_latest_version():
+	var request = HTTPRequest.new()
+	add_child(request)
+	request.request_completed.connect(_on_get_latest_version_completed.bind(request))
+	var url = API_URL_BASE + "api/GameVersions/"
+	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
+	if err != OK:
+		printerr("GET Latest Version - Erro ao iniciar a requisicao HTTP")
+@warning_ignore("unused_parameter")
+func _on_get_latest_version_completed(result, response_code, headers, body, request_node) :
+	print("Status code LV : " + str(response_code))
+	if response_code == 200:
+		var json = JSON.parse_string(body.get_string_from_utf8())
+		latest_version_received.emit(json)
+		
+	request_node.queue_free()
+	return
+
 func register_player(data : Dictionary):
 	var request = HTTPRequest.new()
 	add_child(request)
@@ -42,7 +62,7 @@ func register_player(data : Dictionary):
 	var err = request.request(url, headers_base, HTTPClient.METHOD_POST, data_string)
 	if err != OK:
 		printerr("Erro ao iniciar a requisição HTTP")
-
+@warning_ignore("unused_parameter")
 func _on_register_request_completed(result, response_code, headers, body, request_node):
 	if response_code < 200 or response_code >= 300:
 		printerr("Erro na requisicao! Codigo: %d" % response_code)
@@ -74,7 +94,7 @@ func register_high_score(score : int) :
 		url += "/%s" % [SaveManager.score_id]
 	
 	request.request(url, headers_base, method, data_string)
-
+@warning_ignore("unused_parameter")
 func _on_score_create_update_completed(result, response_code, headers, body, request_node):
 	# POST retorna 201, PUT retorna 204
 	if response_code == 201: 
@@ -101,6 +121,7 @@ func get_leaderboard():
 	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
 	if err != OK:
 		printerr("GET HIGHSCORE - Erro ao iniciar a requisicao HTTP")
+@warning_ignore("unused_parameter")
 func _on_all_score_sync(result, response_code, headers, body, request_node):
 	print("Status code : " + str(response_code))
 	if response_code == 200:
@@ -109,7 +130,6 @@ func _on_all_score_sync(result, response_code, headers, body, request_node):
 		print(json)
 		
 	request_node.queue_free()
-	
 
 func update_nickname(new_nickname : String) -> void:
 	var request_nickname = HTTPRequest.new()
@@ -120,7 +140,7 @@ func update_nickname(new_nickname : String) -> void:
 	var data_string = JSON.stringify({"Nickname" : new_nickname})
 	
 	request_nickname.request(url,headers_base,HTTPClient.METHOD_PATCH,data_string)
-	
+@warning_ignore("unused_parameter")
 func _on_update_nickname_completed(result, response_code, headers, body, request_node) :
 	nickname_updated.emit(response_code)
 	request_node.queue_free()
