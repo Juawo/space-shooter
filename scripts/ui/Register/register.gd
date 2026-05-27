@@ -1,5 +1,7 @@
 extends Control
 
+signal register_pop_up_closed
+
 @onready var v_box_container: VBoxContainer = $MarginContainer/Panel/MarginContainer/VBoxContainer
 
 @onready var nickname_input: LineEdit = $MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname/nickname_type/nickname_input
@@ -52,6 +54,7 @@ func update_interface_by_response_code_return(registered,response_code) -> void 
 			await timer.timeout
 			animation_player.play("close_register")
 			await animation_player.animation_finished
+			register_pop_up_closed.emit()
 			queue_free()
 		409 : 
 			detail_return.text = "Another player has this nickname."

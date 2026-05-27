@@ -14,7 +14,9 @@ var language : int = 0
 var control_mode : int = 0 # 0 para tilt e 1 para touch
 var sensibility : float = 100
 
-# No topo do script SaveManager
+#GameVersion
+var game_version : String = "0.0.0"
+
 var file_path : String
 
 func _ready() -> void:
@@ -39,7 +41,8 @@ func save_data () -> void:
 			"language" : language,
 			"control_mode" : control_mode,
 			"sensibility" : sensibility
-		}
+		},
+		"game_version" : game_version
 	}
 	
 	save_file.store_line(JSON.stringify(data))
@@ -63,19 +66,16 @@ func load_data () -> void:
 		player_id = json_data.get("player_id", "")
 		player_nickname = json_data.get("player_nickname", "Bob")
 		score_id = json_data.get("score_id", "")
+		game_version = json_data.get("game_version", "0.0.0")
 		# Carregando configuracoes
 		if json_data.has("settings"):
 			var s = json_data["settings"]
 			volume = s.get("volume", 100.0)
 			language = s.get("language", 0)
 			control_mode = s.get("control_mode", 0)
-			sensibility = s.get("sensibility", 100) 
-			# vulgo senibility
-			
-		# Sincroniza com o SessionState
-		SessionState.high_score = high_score
+			sensibility = s.get("sensibility", 100) # vulgo senibility
+	SessionState.high_score = high_score
 	loaded_data.emit()
-
 
 func update_nickname(new_nickname : String) -> void :
 	player_nickname = new_nickname

@@ -19,6 +19,7 @@ var update_nickname_scene : PackedScene = preload("res://scenes/ui/Settings/nick
 @onready var tilt_button: Button = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions/TiltButton
 @onready var touch_button: Button = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions/TouchButton
 @onready var nickname: Label = $VBoxContainer/Header/HBoxContainer/HBoxContainer/Nickname
+@onready var version: Label = $VBoxContainer/ContentSettings/VBoxContainer/version
 
 # TODO : Alterar nickname para o novo, caso tenha alterado
 func _ready() -> void:
@@ -36,6 +37,7 @@ func _ready() -> void:
 	controlMode = SaveManager.control_mode as Controls
 	tilt_button.button_pressed = (controlMode == Controls.TILT)
 	touch_button.button_pressed = (controlMode == Controls.TOUCH)
+	version.text = "version " + SaveManager.game_version
 	
 func _on_sound_slider_value_changed(value: float) -> void:
 	sound_value.text = str(int(value)) + "%"

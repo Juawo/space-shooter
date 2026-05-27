@@ -9,7 +9,6 @@ func _ready() -> void:
 	ApiManager.get_leaderboard()
 
 func populate_leaderboard(data : Array):
-	print("Opa")
 	if  data is not Array:
 		printerr("Leaderboard recebida nao e um array!")
 		return
@@ -22,5 +21,4 @@ func populate_leaderboard(data : Array):
 
 
 func _on_back_button_pressed() -> void:
-	print("clicado")
 	get_tree().change_scene_to_packed(main_scene)

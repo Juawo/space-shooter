@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=3 uid="uid://de5fgfr6xlyfb"]
+
+[ext_resource type="Script" uid="uid://dpdlhvrw6uln4" path="res://scripts/ui/boot_scene/update_pop_up.gd" id="1_5pfkk"]
+[ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_iavla"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5pfkk"]
+bg_color = Color(0.44313726, 0.44313726, 0.44705883, 0.88235295)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60vcd"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(1, 1, 1, 1)
+
+[node name="update_pop_up" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5pfkk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 280
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 280
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5pfkk")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_iavla")
+theme_override_font_sizes/font_size = 30
+text = "UPDATE VERSION"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_60vcd")
+
+[node name="content" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_iavla")
+theme_override_font_sizes/font_size = 24
+text = "Text about the difference between the local version and the versison comed out from the server"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="erro_update_btn" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+visible = false
+modulate = Color(0.76862746, 0.26666668, 0.21568628, 1)
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_iavla")
+theme_override_font_sizes/font_size = 16
+text = "Error to Get downloadUrl"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="update_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_iavla")
+theme_override_font_sizes/font_size = 20
+text = "Update"
+
+[node name="no_update_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_iavla")
+text = "Continue whitout update"
+flat = true
+
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/update_btn" to="." method="_on_update_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/no_update_btn" to="." method="_on_no_update_btn_pressed"]
