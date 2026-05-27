@@ -4,6 +4,8 @@ signal highscores_received(data)
 signal play_registered(data:bool, code)
 signal nickname_updated(response_code)
 signal latest_version_received(data)
+signal highscore_sync_completed
+signal high_score_sended()
 
 var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
 var headers_base = ["Content-Type: application/json"]
@@ -11,10 +13,9 @@ var register_scene := preload("res://scenes/ui/Register/register.tscn")
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	SaveManager.loaded_data.connect(on_loaded_data)
 	_load_configs()
 	get_latest_version()
-	
+
 func _load_configs():
 	var config = ConfigFile.new()
 	var err = config.load("res://configs/secret_configs.cfg")
@@ -23,15 +24,46 @@ func _load_configs():
 		print("Load network configurations sucessfuly")
 	else :
 		print("Network configuration file not found. Using development configuration.")
+#
+#func on_loaded_data():
+	#if SaveManager.player_id == "" or SaveManager.player_id == null:
+		#var scene = register_scene.instantiate()
+		#var ui_layer = get_tree().current_scene.find_child("UI")
+		#if ui_layer:
+			#ui_layer.add_child(scene)
+		#else:
+			#get_tree().current_scene.add_child(scene)
 
-func on_loaded_data():
-	if SaveManager.player_id == "" or SaveManager.player_id == null:
-		var scene = register_scene.instantiate()
-		var ui_layer = get_tree().current_scene.find_child("UI")
-		if ui_layer:
-			ui_layer.add_child(scene)
-		else:
-			get_tree().current_scene.add_child(scene)
+func sync_high_score() -> void :
+	var request = HTTPRequest.new()
+	add_child(request)
+	request.request_completed.connect(_on_sync_high_score_completed.bind(request))
+	# Player not registered or don't have any high score in the server
+	if SaveManager.player_id.is_empty() && SaveManager.score_id.is_empty() :
+		highscore_sync_completed.emit()
+		return
+	var url = API_URL_BASE + "api/HighScore/%s/%s" % [SaveManager.player_id, SaveManager.score_id]
+	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
+	if err != OK:
+		printerr("GET Sync High Score - Erro ao iniciar a requisicao HTTP")
+		highscore_sync_completed.emit()
+
+@warning_ignore("unused_parameter")
+func _on_sync_high_score_completed(result, response_code, headers, body, request_node) :
+	print("Status code LV : " + str(response_code))
+	if response_code == 200:
+		var json = JSON.parse_string(body.get_string_from_utf8())
+		if json.has("value") :
+			if SaveManager.high_score > json["value"] :
+				register_high_score(SaveManager.high_score)
+				request_node.queue_free()
+				return
+			if SaveManager.high_score < json["value"]:
+				SaveManager.high_score = json["value"]
+				SaveManager.save_data()
+
+	highscore_sync_completed.emit()
+	request_node.queue_free()
 
 func get_latest_version():
 	var request = HTTPRequest.new()
@@ -102,10 +134,10 @@ func _on_score_create_update_completed(result, response_code, headers, body, req
 		if json and json.has("highScoreId"): 
 			SaveManager.score_id = json.highScoreId
 			SaveManager.save_data()
-			print("Novo HighScore criado!")
 			
 	elif response_code == 204:
 		print("HighScore atualizado com sucesso (PUT)!")
+	highscore_sync_completed.emit()
 	request_node.queue_free()
 
 func get_leaderboard():
