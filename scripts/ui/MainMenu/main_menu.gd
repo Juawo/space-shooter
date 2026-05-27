@@ -7,7 +7,7 @@ var showing: bool = false
 
 func _ready() -> void:
 	SessionState.high_score_changed.connect(_on_high_score_changed)
-	score_value_label.text = str(SessionState.high_score)
+	score_value_label.text = str(SaveManager.high_score)
 
 func _on_high_score_changed(high_score_value : int):
 	score_value_label.text = str(high_score_value)
