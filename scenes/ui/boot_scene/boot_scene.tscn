@@ -5,6 +5,21 @@
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="3_tgvho"]
 [ext_resource type="Texture2D" uid="uid://b8o4lsm6sfc33" path="res://assets/sprites/enemies/enemie_1_variant_1.png" id="4_eqtfd"]
 
+[sub_resource type="Animation" id="Animation_tgvho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Control/VBoxContainer/icon_wrapper/TextureRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_d6jpf"]
 resource_name = "rotate_icon"
 loop_mode = 1
@@ -19,21 +34,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.283185307179586]
-}
-
-[sub_resource type="Animation" id="Animation_tgvho"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/Control/VBoxContainer/icon_wrapper/TextureRect:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqtfd"]
@@ -107,12 +107,40 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Control/VBoxContainer/icon_wrapper"]
-layout_mode = 0
-offset_top = -52.0
-offset_right = 352.0
-offset_bottom = 128.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = -50.999996
+offset_right = 176.0
+offset_bottom = 129.0
+grow_horizontal = 2
 scale = Vector2(0.4, 0.4)
 pivot_offset = Vector2(175.55377, 69.8584)
 size_flags_vertical = 4
 texture = ExtResource("4_eqtfd")
 stretch_mode = 6
+
+[node name="info_wrapper" type="Control" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="info" type="RichTextLabel" parent="MarginContainer/Control/VBoxContainer/info_wrapper"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 60.0
+offset_right = 176.0
+offset_bottom = 102.0
+grow_horizontal = 2
+pivot_offset = Vector2(176, 20)
+theme_override_fonts/normal_font = ExtResource("3_tgvho")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center][wave amp=40.0 freq=6.0 color=#FFFFFF][pulse color=#FFFFFF angle=0.0 height=1.05 freq=3.0]sending request to the server, sorry for the delay, we are using a free service.[/pulse][/wave][/center]
+"
+fit_content = true
+horizontal_alignment = 1

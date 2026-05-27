@@ -1,5 +1,6 @@
 extends Control
 
+signal pop_up_closed
 
 var uri : String
 
@@ -12,11 +13,11 @@ var uri : String
 func populate_pop_up(new_version_data : Dictionary, old_version_data : String) -> void :
 	if new_version_data.has("isMandatory"):
 		no_update_btn.disabled = new_version_data["isMandatory"]
-		no_update_btn.visible = new_version_data["isMandatory"]
+		no_update_btn.visible = !new_version_data["isMandatory"]
 	
 	if new_version_data.has("currentVersion"):
 		content.text = "You game is using the version %s, and the most recente version is %s \n
-		Follow the instructions file in the page!" %[old_version_data, new_version_data["currentVersion"]]
+		Update your game following the instructions file in the page!" %[old_version_data, new_version_data["currentVersion"]]
 	
 	if new_version_data.has("downloadUrl"):
 		update_btn.disabled = false
@@ -30,4 +31,5 @@ func _on_update_btn_pressed() -> void:
 	OS.shell_open(uri)
 
 func _on_no_update_btn_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game/main.tscn")
+	pop_up_closed.emit()
+	queue_free()
