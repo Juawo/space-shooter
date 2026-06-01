@@ -89,7 +89,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 # --- Função de Drop Baseada em Nível ---
 func check_drop_chance():
-	var drop_probability = enemy_level * 40
+	var drop_probability = enemy_level * 25
 	var random_value = randi() % 100 
 	
 	if random_value < drop_probability:

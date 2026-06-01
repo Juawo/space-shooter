@@ -15,7 +15,7 @@ var control_mode : int = 0 # 0 para tilt e 1 para touch
 var sensibility : float = 100
 
 #GameVersion
-var game_version : String = "0.0.0"
+var game_version : String = "1.0.0"
 
 var file_path : String
 
@@ -66,7 +66,7 @@ func load_data () -> void:
 		player_id = json_data.get("player_id", "")
 		player_nickname = json_data.get("player_nickname", "Bob")
 		score_id = json_data.get("score_id", "")
-		game_version = json_data.get("game_version", "0.0.0")
+		game_version = json_data.get("game_version", "1.0.0")
 		# Carregando configuracoes
 		if json_data.has("settings"):
 			var s = json_data["settings"]

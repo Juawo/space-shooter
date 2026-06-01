@@ -7,7 +7,6 @@ func _process(delta: float) -> void:
 	position.y += fall_speed * delta
 
 func _on_body_entered(body: Node2D) -> void:
-	print("jp")
 	# Verifica se quem coletou foi o Player
 	if body.is_in_group("Player") or body.name == "Player":
 		if body.has_method("activate_shield"):

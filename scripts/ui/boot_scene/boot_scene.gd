@@ -25,6 +25,7 @@ func compare_versions() -> void :
 			update_pop_up_instance.pop_up_closed.connect(check_player_registration)
 		else:
 			print("Versao atualizada! Seguir para o Menu")
+			go_to_main_menu()
 			
 	else:
 		printerr("Erro: Chave 'currentVersion' nao encontrada no JSON da API")

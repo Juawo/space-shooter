@@ -11,7 +11,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") or body.name == "Player":
 		if body.has_method("apply_speed_boost"):
 			# Passamos o multiplicador 3.0 para triplicar a cadência [cite: 1]
-			body.apply_speed_boost(3.0) 
+			body.apply_speed_boost(2) 
 			queue_free()
 
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
