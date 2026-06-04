@@ -11,9 +11,9 @@ var score_id : String = ""
 #Configuracoes
 var volume : float = 100.0
 var language : int = 0
-var control_mode : int = 0 # 0 para tilt e 1 para touch
+var control_mode : int = -1 # 0 para tilt e 1 para touch
 var sensibility : float = 100
-
+var has_chosen_control : bool = false
 #GameVersion
 const CURRENT_CODE_VERSION : String = "1.0.1"
 var game_version : String = CURRENT_CODE_VERSION
@@ -41,7 +41,8 @@ func save_data () -> void:
 			"volume" : volume,
 			"language" : language,
 			"control_mode" : control_mode,
-			"sensibility" : sensibility
+			"sensibility" : sensibility,
+			"has_chosen_control" : has_chosen_control
 		},
 		"game_version" : game_version
 	}
@@ -89,8 +90,9 @@ func load_data () -> void:
 			var s = json_data["settings"]
 			volume = s.get("volume", 100.0)
 			language = s.get("language", 0)
-			control_mode = s.get("control_mode", 0)
+			control_mode = s.get("control_mode", -1)
 			sensibility = s.get("sensibility", 100)
+			has_chosen_control = s.get("has_chosen_control", false)
 			
 	SessionState.high_score = high_score
 	loaded_data.emit()
