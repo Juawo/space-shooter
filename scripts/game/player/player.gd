@@ -9,7 +9,7 @@ var original_shoot_wait_time : float = 0.0
 var boost_timer : SceneTreeTimer = null
 @onready var muzzle_flash_animation: AnimatedSprite2D = $muzzle_flash_animation
 
-@export var SPEED := 70.0
+@export var SPEED := 100.0
 @export var SMOOTH_SPEED := 0.1
 @export var DEADZONE = 0.3 
 @export var shoot_speed_modifier := 1.0
@@ -41,9 +41,8 @@ func _physics_process(delta: float) -> void:
 	var sense_multiplier = SaveManager.sensibility / 100.0
 	
 	if SaveManager.control_mode == 0:
-		# ─── 📱 LÓGICA DE INCLINAÇÃO (TILT) PARIFICADA ───
+		# LÓGICA DE INCLINAÇÃO (TILT) PARIFICADA
 		accel_pos = Input.get_accelerometer()
-		
 		# Criamos um vetor bruto com os dados do sensor
 		var raw_tilt = Vector2(accel_pos.x, -accel_pos.y)
 		
@@ -55,22 +54,32 @@ func _physics_process(delta: float) -> void:
 			velocity = keyboard_input * SPEED * 6.0
 		else:
 			# No Celular: Se o movimento passar da zona morta física do sensor
-			# No bloco do acelerômetro (SaveManager.control_mode == 0):
 			if raw_tilt.length() > DEADZONE:
-				# 🌟 CALIBRAÇÃO: Baixamos o multiplicador para 1.2 (suaviza a leitura)
-				# e limitamos o teto máximo em SPEED * 4.0 (confortável para o pulso)
-				var calculated_speed = clamp(raw_tilt.length() * 1.2 * SPEED, 0, SPEED * 4.0)
-				target_velocity = raw_tilt.normalized() * calculated_speed * sense_multiplier
 				
-				# Mantemos o LERP em 0.25 para a nave responder sem atraso, 
-				# mas agora com uma velocidade controlada!
+				# 🌟 O PULO DO GATO: O OFFSET DE INCLINAÇÃO
+				# Quando o celular está em pé na sua mão, o accel_pos.y costuma marcar entre 4.0 e 6.0.
+				# Nós subtraímos esse valor para fazer com que a sua postura confortável seja o "ZERO" da nave!
+				# Mude o '5.0' abaixo para calibrar o ponto neutro ideal para as suas mãos.
+				
+				const TILT_OFFSET_Y : float = 7.0
+				var calibrated_y : float = -accel_pos.y - TILT_OFFSET_Y
+				
+				# Agora montamos o vetor com os eixos corrigidos e os multiplicadores de força
+				var balanced_tilt = Vector2(
+					raw_tilt.x * 1.2,   # Esquerda/Direita continua normal
+					calibrated_y * 3.0  # Cima/Baixo calibrado com o ponto neutro e o boost de força
+				)
+				
+				# Daqui para baixo continua a sua lógica perfeita de velocidade e LERP
+				var calculated_speed = clamp(balanced_tilt.length() * SPEED, 0, SPEED * 5.0)
+				target_velocity = balanced_tilt.normalized() * calculated_speed * sense_multiplier
+				
 				var weight = 0.25 * sense_multiplier
 				velocity = velocity.lerp(target_velocity, clamp(weight, 0.01, 1.0))
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, SPEED * delta * 8)
-			
 	else:
-		# ─── 👆 LÓGICA DE TOQUE (TOUCH) ───
+		# LÓGICA DE TOQUE (TOUCH)
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			var mouse_pos = get_viewport().get_mouse_position()
 			var distance_vector = mouse_pos - global_position
