@@ -26,6 +26,8 @@ func populate_pop_up(new_version_data : Dictionary, old_version_data : String) -
 	else :
 		update_btn.disabled = true
 		erro_update_btn.visible = true
+		no_update_btn.visible = true
+		no_update_btn.text = "Update later"
 
 func _on_update_btn_pressed() -> void:
 	OS.shell_open(uri)

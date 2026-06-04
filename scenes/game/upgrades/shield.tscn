@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsr4o4cwx4qqo"]
+[gd_scene format=3 uid="uid://bsr4o4cwx4qqo"]
 
-[ext_resource type="Texture2D" uid="uid://cvxnsj15rgry5" path="res://icon.svg" id="1_ks17l"]
+[ext_resource type="Texture2D" uid="uid://3qfpqfnrh722" path="res://assets/sprites/power-ups/shield.png" id="1_ks17l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o25i5"]
 radius = 74.24284
 
-[node name="Shield" type="Area2D"]
+[node name="Shield" type="Area2D" unique_id=404824197]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=986925086]
 texture = ExtResource("1_ks17l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=254149523]
 shape = SubResource("CircleShape2D_o25i5")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=2073491445]
 rect = Rect2(-63, -62, 124, 124)

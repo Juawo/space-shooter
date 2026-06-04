@@ -109,9 +109,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 180
+theme_override_constants/margin_top = 140
 theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 180
+theme_override_constants/margin_bottom = 140
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
 layout_mode = 2
@@ -141,6 +141,13 @@ theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 34
 text = "Register"
 horizontal_alignment = 1
+
+[node name="register_again_label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(292, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Nickname" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -230,7 +237,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(90, 36)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 24
 disabled = true
