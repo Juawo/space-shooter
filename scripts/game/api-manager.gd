@@ -1,11 +1,11 @@
 extends Node
 
-signal highscores_received(data)
+signal highscores_received(data, status_code)
 signal play_registered(data:bool, code)
 signal nickname_updated(response_code)
-signal latest_version_received(data)
+signal latest_version_received(data, status_code)
 signal highscore_sync_completed
-signal high_score_sended()
+signal player_fetched(status_code)
 
 var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
 var headers_base = ["Content-Type: application/json"]
@@ -24,44 +24,49 @@ func _load_configs():
 		print("Load network configurations sucessfuly")
 	else :
 		print("Network configuration file not found. Using development configuration.")
-#
-#func on_loaded_data():
-	#if SaveManager.player_id == "" or SaveManager.player_id == null:
-		#var scene = register_scene.instantiate()
-		#var ui_layer = get_tree().current_scene.find_child("UI")
-		#if ui_layer:
-			#ui_layer.add_child(scene)
-		#else:
-			#get_tree().current_scene.add_child(scene)
 
 func sync_high_score() -> void :
 	var request = HTTPRequest.new()
 	add_child(request)
 	request.request_completed.connect(_on_sync_high_score_completed.bind(request))
 	# Player not registered or don't have any high score in the server
-	if SaveManager.player_id.is_empty() && SaveManager.score_id.is_empty() :
+	if SaveManager.player_id.is_empty():
+		await get_tree().process_frame
 		highscore_sync_completed.emit()
 		return
+	if SaveManager.score_id.is_empty():
+		if SaveManager.high_score > 0 :
+			register_high_score(SaveManager.high_score)
+		else :
+			await get_tree().process_frame
+			highscore_sync_completed.emit()
+		return
+	
 	var url = API_URL_BASE + "api/HighScore/%s/%s" % [SaveManager.player_id, SaveManager.score_id]
 	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
 	if err != OK:
 		printerr("GET Sync High Score - Erro ao iniciar a requisicao HTTP")
 		highscore_sync_completed.emit()
-
 @warning_ignore("unused_parameter")
 func _on_sync_high_score_completed(result, response_code, headers, body, request_node) :
 	print("Status code LV : " + str(response_code))
-	if response_code == 200:
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		if json.has("value") :
-			if SaveManager.high_score > json["value"] :
-				register_high_score(SaveManager.high_score)
-				request_node.queue_free()
-				return
-			if SaveManager.high_score < json["value"]:
-				SaveManager.high_score = json["value"]
-				SaveManager.save_data()
-
+	
+	if response_code != 200:
+		print("Falha na sincronização de HighScore (Offline). Seguindo com dados locais.")
+		highscore_sync_completed.emit()
+		request_node.queue_free()
+		return
+		
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	if json.has("value") :
+		if SaveManager.high_score > json["value"] :
+			register_high_score(SaveManager.high_score)
+			request_node.queue_free()
+			return
+		if SaveManager.high_score < json["value"]:
+			SaveManager.high_score = json["value"]
+			SaveManager.save_data()
+	
 	highscore_sync_completed.emit()
 	request_node.queue_free()
 
@@ -69,19 +74,23 @@ func get_latest_version():
 	var request = HTTPRequest.new()
 	add_child(request)
 	request.request_completed.connect(_on_get_latest_version_completed.bind(request))
+	
 	var url = API_URL_BASE + "api/GameVersions/"
 	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
+	
 	if err != OK:
 		printerr("GET Latest Version - Erro ao iniciar a requisicao HTTP")
+		latest_version_received.emit({},null)
+		request.queue_free()
 @warning_ignore("unused_parameter")
 func _on_get_latest_version_completed(result, response_code, headers, body, request_node) :
 	print("Status code LV : " + str(response_code))
 	if response_code == 200:
 		var json = JSON.parse_string(body.get_string_from_utf8())
-		latest_version_received.emit(json)
-		
+		latest_version_received.emit(json,response_code)
+	else:
+		latest_version_received.emit({}, response_code)
 	request_node.queue_free()
-	return
 
 func register_player(data : Dictionary):
 	var request = HTTPRequest.new()
@@ -94,6 +103,7 @@ func register_player(data : Dictionary):
 	var err = request.request(url, headers_base, HTTPClient.METHOD_POST, data_string)
 	if err != OK:
 		printerr("Erro ao iniciar a requisição HTTP")
+		play_registered.emit(false, null)
 @warning_ignore("unused_parameter")
 func _on_register_request_completed(result, response_code, headers, body, request_node):
 	if response_code < 200 or response_code >= 300:
@@ -145,22 +155,43 @@ func get_leaderboard():
 	add_child(request)
 	request.request_completed.connect(_on_all_score_sync.bind(request))
 	
-	print("ID : " + SaveManager.player_id)
-	
 	var url = API_URL_BASE+"api/HighScore/leaderboard/%s" % [SaveManager.player_id]
-	print(url)
 	
 	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
 	if err != OK:
 		printerr("GET HIGHSCORE - Erro ao iniciar a requisicao HTTP")
+		highscores_received.emit(null, null)
 @warning_ignore("unused_parameter")
 func _on_all_score_sync(result, response_code, headers, body, request_node):
-	print("Status code : " + str(response_code))
+	print("Status code  aaa: " + str(response_code))
 	if response_code == 200:
 		var json = JSON.parse_string(body.get_string_from_utf8())
-		highscores_received.emit(json)
-		print(json)
-		
+		highscores_received.emit(json, response_code)
+	else :
+		highscores_received.emit(null, response_code)
+	request_node.queue_free()
+
+func get_player():
+	var request = HTTPRequest.new()
+	add_child(request)
+	request.request_completed.connect(_on_get_player.bind(request))
+	
+	if SaveManager.player_id.is_empty() :
+		player_fetched.emit(null)
+		return
+	
+	var url = API_URL_BASE+"api/Player/%s" % [SaveManager.player_id]
+	
+	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
+	if err != OK:
+		printerr("GET HIGHSCORE - Erro ao iniciar a requisicao HTTP")
+		player_fetched.emit(null)
+@warning_ignore("unused_parameter")
+func _on_get_player(result, response_code, headers, body, request_node):
+	if response_code == 200:
+		player_fetched.emit(response_code)
+	else :
+		player_fetched.emit(response_code)
 	request_node.queue_free()
 
 func update_nickname(new_nickname : String) -> void:
