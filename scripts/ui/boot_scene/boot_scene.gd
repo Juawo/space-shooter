@@ -62,6 +62,7 @@ func check_player_registration():
 			SaveManager.save_data() 
 			var scene = register_scene.instantiate()
 			add_child(scene)
+			scene.show_register_again_label(true)
 			await scene.register_pop_up_closed
 			
 			sync_high_score()
