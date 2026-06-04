@@ -8,7 +8,7 @@ signal enemy_died
 @export_range(1, 4) var enemy_level := 1 # Nível de dificuldade (1 a 4)
 
 @export var life := 1
-@export var SPEED := 60
+@export var SPEED := 90
 @export var score_value := 10
 @export var can_shoot := false
 @export var base_color := Color.CHARTREUSE
@@ -89,7 +89,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 # --- Função de Drop Baseada em Nível ---
 func check_drop_chance():
-	var drop_probability = enemy_level * 25
+	var drop_probability = enemy_level * 9
 	var random_value = randi() % 100 
 	
 	if random_value < drop_probability:

@@ -22,6 +22,7 @@ func _load_configs():
 	if err == OK:
 		API_URL_BASE = config.get_value("network", "api_url", API_URL_BASE)
 		print("Load network configurations sucessfuly")
+		print(API_URL_BASE)
 	else :
 		print("Network configuration file not found. Using development configuration.")
 
