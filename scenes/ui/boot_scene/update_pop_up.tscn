@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://de5fgfr6xlyfb"]
+[gd_scene format=3 uid="uid://de5fgfr6xlyfb"]
 
 [ext_resource type="Script" uid="uid://dpdlhvrw6uln4" path="res://scripts/ui/boot_scene/update_pop_up.gd" id="1_5pfkk"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_iavla"]
@@ -15,7 +15,7 @@ content_margin_top = 1.0
 content_margin_bottom = 1.0
 bg_color = Color(1, 1, 1, 1)
 
-[node name="update_pop_up" type="Control"]
+[node name="update_pop_up" type="Control" unique_id=857914002]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5pfkk")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=11505869]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,11 +36,11 @@ theme_override_constants/margin_top = 280
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 280
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=141569502]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5pfkk")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=1605470758]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,10 +52,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=1194876215]
 layout_mode = 2
 
-[node name="title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1640352588]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_iavla")
@@ -63,13 +63,13 @@ theme_override_font_sizes/font_size = 30
 text = "UPDATE VERSION"
 horizontal_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=102516947]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 5
 theme_override_styles/separator = SubResource("StyleBoxFlat_60vcd")
 
-[node name="content" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="content" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1956972567]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 size_flags_vertical = 6
@@ -79,7 +79,7 @@ text = "Text about the difference between the local version and the versison com
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="erro_update_btn" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="erro_update_btn" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1485197462]
 visible = false
 modulate = Color(0.76862746, 0.26666668, 0.21568628, 1)
 custom_minimum_size = Vector2(260, 0)
@@ -91,13 +91,13 @@ text = "Error to Get downloadUrl"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="update_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="update_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1775975050]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iavla")
 theme_override_font_sizes/font_size = 20
 text = "Update"
 
-[node name="no_update_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="no_update_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1038238123]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_iavla")
 text = "Continue whitout update"

@@ -36,60 +36,72 @@ var playerLife := 3 :
 		life_change.emit(new_value)
 		if new_value == 0:
 			GameEvents.game_over.emit()
-
-
 func _physics_process(delta: float) -> void:
 	var target_velocity = Vector2.ZERO
 	var sense_multiplier = SaveManager.sensibility / 100.0
 	
 	if SaveManager.control_mode == 0:
-		# --- LÓGICA DE INCLINAÇÃO (TILT) 2D ---
+		# LÓGICA DE INCLINAÇÃO (TILT) PARIFICADA
 		accel_pos = Input.get_accelerometer()
+		# Criamos um vetor bruto com os dados do sensor
+		var raw_tilt = Vector2(accel_pos.x, -accel_pos.y)
 		
-		# No acelerômetro, X costuma ser horizontal e Y vertical (pode variar conforme a orientação do projeto)
-		var input_direction = Vector2(accel_pos.x, -accel_pos.y) 
+		# Fallback para Teclado (Setas / WASD no PC/Editor)
+		var keyboard_input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		
-		# Fallback para Teclado (Setas / WASD)
-		if input_direction == Vector2.ZERO:
-			input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * 5.0
-			
-		target_velocity = input_direction * SPEED * sense_multiplier
-		
-		if input_direction.length() > DEADZONE:
-			var weight = clamp(SMOOTH_SPEED * sense_multiplier, 0.01, 0.9)
-			velocity = velocity.lerp(target_velocity, weight)
+		if keyboard_input != Vector2.ZERO:
+			# No PC, vai usar a velocidade máxima parificada com o toque (Multiplicado por 6.0 ou 8.0)
+			velocity = keyboard_input * SPEED * 6.0
 		else:
-			velocity = velocity.move_toward(Vector2.ZERO, SPEED * delta)
-			
+			# No Celular: Se o movimento passar da zona morta física do sensor
+			if raw_tilt.length() > DEADZONE:
+				
+				# 🌟 O PULO DO GATO: O OFFSET DE INCLINAÇÃO
+				# Quando o celular está em pé na sua mão, o accel_pos.y costuma marcar entre 4.0 e 6.0.
+				# Nós subtraímos esse valor para fazer com que a sua postura confortável seja o "ZERO" da nave!
+				# Mude o '5.0' abaixo para calibrar o ponto neutro ideal para as suas mãos.
+				
+				const TILT_OFFSET_Y : float = 7.0
+				var calibrated_y : float = -accel_pos.y - TILT_OFFSET_Y
+				
+				# Agora montamos o vetor com os eixos corrigidos e os multiplicadores de força
+				var balanced_tilt = Vector2(
+					raw_tilt.x * 1.2,   # Esquerda/Direita continua normal
+					calibrated_y * 3.0  # Cima/Baixo calibrado com o ponto neutro e o boost de força
+				)
+				
+				# Daqui para baixo continua a sua lógica perfeita de velocidade e LERP
+				var calculated_speed = clamp(balanced_tilt.length() * SPEED, 0, SPEED * 5.0)
+				target_velocity = balanced_tilt.normalized() * calculated_speed * sense_multiplier
+				
+				var weight = 0.25 * sense_multiplier
+				velocity = velocity.lerp(target_velocity, clamp(weight, 0.01, 1.0))
+			else:
+				velocity = velocity.move_toward(Vector2.ZERO, SPEED * delta * 8)
 	else:
-		# --- LÓGICA DE TOQUE (TOUCH) LIVRE 2D ---
+		# LÓGICA DE TOQUE (TOUCH)
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			var mouse_pos = get_viewport().get_mouse_position()
-			# Calculamos o vetor de distância (X e Y) até o dedo/mouse
 			var distance_vector = mouse_pos - global_position
 			
-			# 1. Zona Morta: Se estiver muito perto do dedo (menos de 2 pixels), para.
 			if distance_vector.length() < 2.0:
 				velocity = velocity.move_toward(Vector2.ZERO, SPEED * delta * 20)
 			else:
-				# 2. Cálculo da Velocidade Alvo Baseada na Distância (Smooth Out)
-				var desired_speed = clamp(distance_vector.length() * 10.0, 0, SPEED * 6.0)
+				# Deixei o limite em 6.0 também para equiparar perfeitamente com a inclinação acima
+				var desired_speed = clamp(distance_vector.length() * 12.0, 0, SPEED * 6.0)
 				target_velocity = distance_vector.normalized() * desired_speed * sense_multiplier
 				
-				# 3. Interpolação de Velocidade 2D
-				var weight = 0.15 * sense_multiplier
+				var weight = 0.40 * sense_multiplier
 				velocity = velocity.lerp(target_velocity, clamp(weight, 0, 1))
 		else:
-			# Desaceleração rápida ao soltar o dedo
-			velocity = velocity.move_toward(Vector2.ZERO, SPEED * delta * 10)
+			velocity = velocity.move_toward(Vector2.ZERO, SPEED * delta * 12)
 			
+	# Aplica o movimento final
 	move_and_slide()
 	
-	# --- CLAMP (Limitar a nave dentro da tela em X e Y) ---
+	# ─── 📐 LIMITADOR DE TELA ───
 	position.x = clamp(position.x, player_margins.x, screen_size.x - player_margins.x)
 	position.y = clamp(position.y, player_margins.y, screen_size.y - player_margins.y)
-
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemies") or area.is_in_group("EnemiesProjectiles"):
 		var damage = area.damage_value if "damage_value" in area else 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcj3rjhiu6pbd"]
+[gd_scene format=3 uid="uid://bcj3rjhiu6pbd"]
 
 [ext_resource type="Script" uid="uid://bpl058yad5e01" path="res://scripts/ui/Settings/settings.gd" id="1_gxyng"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="2_83c71"]
@@ -40,7 +40,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Settings" type="Control"]
+[node name="Settings" type="Control" unique_id=1597925856]
 process_mode = 3
 texture_filter = 2
 layout_mode = 3
@@ -52,10 +52,10 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_gxyng")
 
-[node name="background_parallax" parent="." instance=ExtResource("5_c5h6l")]
+[node name="background_parallax" parent="." unique_id=131884898 instance=ExtResource("5_c5h6l")]
 position = Vector2(207, 0)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=636918181]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,7 +63,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Header" type="MarginContainer" parent="VBoxContainer"]
+[node name="Header" type="MarginContainer" parent="VBoxContainer" unique_id=1993927822]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 26
@@ -71,33 +71,33 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header" unique_id=919342725]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/Header/HBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/Header/HBoxContainer" unique_id=1669015737]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 18
 text = "BACK"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header/HBoxContainer" unique_id=1713459042]
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_constants/separation = 10
 
-[node name="Nickname" type="Label" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
+[node name="Nickname" type="Label" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=775654193]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 36
 text = "Nickname"
 
-[node name="ChangeButton" type="Button" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer"]
+[node name="ChangeButton" type="Button" parent="VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=1339998660]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 18
 text = "Change"
 
-[node name="ContentSettings" type="MarginContainer" parent="VBoxContainer"]
+[node name="ContentSettings" type="MarginContainer" parent="VBoxContainer" unique_id=226606212]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -105,16 +105,16 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentSettings"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentSettings" unique_id=289787736]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Panel" type="Panel" parent="VBoxContainer/ContentSettings/VBoxContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer/ContentSettings/VBoxContainer" unique_id=1365475301]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_j8eje")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel" unique_id=997851462]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,61 +126,61 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer" unique_id=640848881]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="SettingsLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="SettingsLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=918971312]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 40
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=182514872]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 5
 theme_override_styles/separator = SubResource("StyleBoxFlat_83c71")
 
-[node name="Sound" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Sound" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1625344066]
 layout_mode = 2
 
-[node name="SoundLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound"]
+[node name="SoundLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound" unique_id=1223650431]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 34
 text = "Sound"
 
-[node name="SoundContainer" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound"]
+[node name="SoundContainer" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound" unique_id=1933853493]
 layout_mode = 2
 
-[node name="SoundSlider" type="HSlider" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer"]
+[node name="SoundSlider" type="HSlider" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer" unique_id=1386951854]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 6.47
 value = 100.0
 
-[node name="SoundValue" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer"]
+[node name="SoundValue" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sound/SoundContainer" unique_id=1305079470]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "100%"
 
-[node name="Sensibility" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Sensibility" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1608611172]
 layout_mode = 2
 
-[node name="SensibilityLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility"]
+[node name="SensibilityLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility" unique_id=1429429467]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 34
 text = "Sensibility"
 
-[node name="SensibilityContainer" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility"]
+[node name="SensibilityContainer" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility" unique_id=385744416]
 layout_mode = 2
 
-[node name="SensibilitytSlider" type="HSlider" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility/SensibilityContainer"]
+[node name="SensibilitytSlider" type="HSlider" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility/SensibilityContainer" unique_id=248203213]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -189,21 +189,21 @@ max_value = 200.0
 value = 100.0
 tick_count = 1
 
-[node name="SensibilityValue" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility/SensibilityContainer"]
+[node name="SensibilityValue" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility/SensibilityContainer" unique_id=116187021]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "50%"
 
-[node name="Language" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Language" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1252651955]
 layout_mode = 2
 
-[node name="LanguageLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Language"]
+[node name="LanguageLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Language" unique_id=1618963072]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 34
 text = "Language"
 
-[node name="LanguageOption" type="OptionButton" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Language"]
+[node name="LanguageOption" type="OptionButton" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Language" unique_id=662241328]
 layout_mode = 2
 focus_mode = 0
 selected = 0
@@ -213,23 +213,23 @@ popup/item_0/id = 0
 popup/item_1/text = "PT"
 popup/item_1/id = 1
 
-[node name="Controls" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Controls" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=84452191]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="ControlsLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls"]
+[node name="ControlsLabel" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls" unique_id=1908214411]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 34
 text = "Controls"
 
-[node name="ControlsOptions" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls"]
+[node name="ControlsOptions" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls" unique_id=34401453]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="TiltButton" type="Button" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions"]
+[node name="TiltButton" type="Button" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions" unique_id=2145523126]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
@@ -239,7 +239,7 @@ toggle_mode = true
 button_group = ExtResource("4_w3asu")
 text = "Tilt"
 
-[node name="TouchButton" type="Button" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions"]
+[node name="TouchButton" type="Button" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions" unique_id=1489700739]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
@@ -249,59 +249,59 @@ toggle_mode = true
 button_group = ExtResource("4_w3asu")
 text = "Touch"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=1921422825]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 5
 theme_override_styles/separator = SubResource("StyleBoxFlat_83c71")
 
-[node name="Credits" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Credits" type="VBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer" unique_id=756375023]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits"]
+[node name="Label" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits" unique_id=1649103351]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 34
 text = "Credits"
 horizontal_alignment = 1
 
-[node name="Rafashow" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits"]
+[node name="Rafashow" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits" unique_id=485443840]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits/Rafashow"]
+[node name="Label" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits/Rafashow" unique_id=1853701137]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 28
 text = "Rafael"
 
-[node name="Label2" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits/Rafashow"]
+[node name="Label2" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits/Rafashow" unique_id=1777598147]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 28
 text = "2005"
 
-[node name="Juawo" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits"]
+[node name="Juawo" type="HBoxContainer" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits" unique_id=125501548]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits/Juawo"]
+[node name="Label" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits/Juawo" unique_id=1036021824]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 28
 text = "Juawo"
 
-[node name="Label2" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits/Juawo"]
+[node name="Label2" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Credits/Juawo" unique_id=1238084102]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("2_83c71")
 theme_override_font_sizes/font_size = 28
 text = "2006"
 
-[node name="version" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer"]
+[node name="version" type="Label" parent="VBoxContainer/ContentSettings/VBoxContainer" unique_id=818280172]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("2_83c71")

@@ -1,13 +1,15 @@
 extends Node2D
 
 # Aqui ficam os "componentes" do jogo e como sao orquestrados
-# TODO : Lembrar de conectar os sinais dos componentes!
+
+var control_popup_scene : PackedScene = preload("res://scenes/ui/Settings/select_control_pop_up.tscn")
 
 # "Componentes" do jogo
 @onready var main_menu : Control = $UI/MainMenu
 @onready var pause_menu: Control = $UI/PauseMenu
 @onready var game_over: Control = $UI/GameOver
 @onready var game_world: Node2D = $GameWorld
+@onready var ui: CanvasLayer = $UI
 
 # Enum com os estados possiveis do jogo
 enum GameStates { GAME, MAIN_MENU, PAUSED, GAME_OVER }
@@ -21,6 +23,13 @@ func _ready() -> void:
 	GameEvents.game_over.connect(_on_game_over)
 	GameEvents.game_requested.connect(_on_game_requested)
 	state = GameStates.MAIN_MENU
+	check_control_selection()
+	
+
+func check_control_selection() -> void :
+	if SaveManager.has_chosen_control == false:
+		var popup = control_popup_scene.instantiate()
+		ui.add_child(popup)
 
 # MENU STATE
 func _on_main_menu_requested():
