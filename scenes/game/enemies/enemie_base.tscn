@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4kbs6vopeoxo"]
+[gd_scene format=3 uid="uid://d4kbs6vopeoxo"]
 
 [ext_resource type="Script" uid="uid://craxvmt43f5ri" path="res://scripts/game/enemies/enemie_base.gd" id="1_d3nni"]
 [ext_resource type="Texture2D" uid="uid://cvxnsj15rgry5" path="res://icon.svg" id="2_jp0n8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3nni"]
-size = Vector2(15, 15)
+size = Vector2(43.571438, 32.857147)
 
 [sub_resource type="Curve" id="Curve_d3nni"]
 _data = [Vector2(0.08139536, 0.49438208), 0.0, 6.6260004, 0, 0, Vector2(0.9186047, 0.42696637), -2.283964, 0.0, 0, 0]
 point_count = 2
 
-[node name="EnemieBase" type="Area2D" groups=["Enemies"]]
+[node name="EnemieBase" type="Area2D" unique_id=1803557993 groups=["Enemies"]]
 process_mode = 1
 z_index = 2
 scale = Vector2(5, 5)
@@ -18,14 +18,14 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_d3nni")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1208508710]
 scale = Vector2(0.119140625, 0.119140625)
 texture = ExtResource("2_jp0n8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=288713831]
 shape = SubResource("RectangleShape2D_d3nni")
 
-[node name="ParticleDie" type="CPUParticles2D" parent="."]
+[node name="ParticleDie" type="CPUParticles2D" parent="." unique_id=1361243941]
 scale = Vector2(1.44, 1.44)
 emitting = false
 amount = 15
@@ -49,13 +49,13 @@ scale_amount_min = 2.5
 scale_amount_max = 12.0
 scale_amount_curve = SubResource("Curve_d3nni")
 
-[node name="ShootTimer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="." unique_id=117901673]
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=884795587]
 position = Vector2(3, 2)
 rect = Rect2(-10, -9, 14, 14)
 
-[node name="MoveTimer" type="Timer" parent="."]
+[node name="MoveTimer" type="Timer" parent="." unique_id=2003258639]
 wait_time = 1.5
 autostart = true
 
