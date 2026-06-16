@@ -10,6 +10,7 @@ size = Vector2(14.5, 30)
 process_mode = 1
 collision_layer = 8
 script = ExtResource("1_o5il8")
+BULLET_SPEED = 380
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1644799314]
 shape = SubResource("RectangleShape2D_hjbe7")

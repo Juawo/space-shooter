@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8royjgs30pos"]
+[gd_scene format=3 uid="uid://b8royjgs30pos"]
 
 [ext_resource type="Script" uid="uid://dctsl3nuxohe" path="res://scripts/game/player/player_bullet.gd" id="1_4vgx3"]
 [ext_resource type="Texture2D" uid="uid://dk0rsfyitidjf" path="res://assets/sprites/simple-bullet.png" id="2_n1or0"]
@@ -39,26 +39,27 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="PlayerBullet" type="Area2D" groups=["PlayerProjectiles"]]
+[node name="PlayerBullet" type="Area2D" unique_id=1844525873 groups=["PlayerProjectiles"]]
 process_mode = 1
 z_index = 1
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_4vgx3")
+bullet_speed = 350
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2031844793]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_pv8yu")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1302793715]
 rect = Rect2(-8, -13, 16, 26)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=872732552]
 visible = false
 scale = Vector2(5.1, 5.1)
 texture = ExtResource("2_n1or0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1066138512]
 position = Vector2(-2, 22)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_gspiv")

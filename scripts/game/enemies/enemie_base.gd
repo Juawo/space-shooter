@@ -8,7 +8,7 @@ signal enemy_died
 @export_range(1, 4) var enemy_level := 1 # Nível de dificuldade (1 a 4)
 
 @export var life := 1
-@export var SPEED := 90
+@export var SPEED := 140
 @export var score_value := 10
 @export var can_shoot := false
 @export var base_color := Color.CHARTREUSE
