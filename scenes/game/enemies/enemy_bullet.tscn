@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://4wjxjqn0xs46"]
+[gd_scene format=3 uid="uid://4wjxjqn0xs46"]
 
 [ext_resource type="Script" uid="uid://clwunrtofsgjt" path="res://scripts/game/enemies/enemy_bullet.gd" id="1_o5il8"]
 [ext_resource type="Texture2D" uid="uid://cvxnsj15rgry5" path="res://icon.svg" id="2_mj0cw"]
@@ -6,19 +6,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjbe7"]
 size = Vector2(14.5, 30)
 
-[node name="EnemyBullet" type="Area2D" groups=["EnemiesProjectiles"]]
+[node name="EnemyBullet" type="Area2D" unique_id=1698314354 groups=["EnemiesProjectiles"]]
 process_mode = 1
 collision_layer = 8
 script = ExtResource("1_o5il8")
+BULLET_SPEED = 380
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=168529935]
 shape = SubResource("RectangleShape2D_hjbe7")
 one_way_collision_margin = 2.0
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=363498137]
 rect = Rect2(-7, -15, 14, 30)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=587044542]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(6.2584877e-07, -4.7683716e-07)
 scale = Vector2(0.10937501, 0.234375)
