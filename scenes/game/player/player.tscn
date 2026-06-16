@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c8bvrgnu7smjw"]
+[gd_scene format=3 uid="uid://c8bvrgnu7smjw"]
 
 [ext_resource type="Script" uid="uid://ceqve5ivwdmt8" path="res://scripts/game/player/player.gd" id="1_1hecf"]
 [ext_resource type="Texture2D" uid="uid://j0curxd1ln88" path="res://assets/sprites/spaceship/idle/frame0000.png" id="2_6bxg8"]
@@ -131,19 +131,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5cse"]
 size = Vector2(38.33333, 45)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=821778144]
 process_mode = 1
 z_index = 10
 scale = Vector2(1.2, 1.2)
 collision_mask = 26
 script = ExtResource("1_1hecf")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1303884442]
 position = Vector2(-8.443991e-07, -8.749999)
 scale = Vector2(4.999999, 4.999999)
 shape = SubResource("RectangleShape2D_1hecf")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2130825360]
 process_mode = 3
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_t5vmf")
@@ -151,32 +151,34 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.33490074
 
-[node name="muzzle_flash_animation" type="AnimatedSprite2D" parent="."]
+[node name="muzzle_flash_animation" type="AnimatedSprite2D" parent="." unique_id=964021317]
 process_mode = 3
 visible = false
 position = Vector2(-0.49999872, -77.166664)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_82yl3")
 animation = &"muzzle_flash"
+frame = 16
+frame_progress = 1.0
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=1147110849]
 collision_mask = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=454579980]
 position = Vector2(0, -8.333333)
 shape = SubResource("RectangleShape2D_t5cse")
 debug_color = Color(0.9353768, 2.0311178e-05, 0.63873893, 0.41960785)
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=93774196]
 position = Vector2(-0.49999872, -56.166664)
 
-[node name="ShootTimer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="." unique_id=919519564]
 wait_time = 0.6
 autostart = true
 
-[node name="InvecibleTimer" type="Timer" parent="."]
+[node name="InvecibleTimer" type="Timer" parent="." unique_id=1370307090]
 
-[node name="Shield" parent="." instance=ExtResource("27_okwrv")]
+[node name="Shield" parent="." unique_id=342161447 instance=ExtResource("27_okwrv")]
 visible = false
 modulate = Color(0.48235294, 1, 1, 0.5803922)
 scale = Vector2(0.6, 0.6)

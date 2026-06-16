@@ -168,17 +168,46 @@ func apply_speed_boost(multiplier: float) -> void:
 		$ShootTimer.wait_time = original_shoot_wait_time
 		boost_timer = null
 
+# Variável de controle para o Tween do escudo (evita conflitos se pegar outro escudo enquanto pisca)
+var shield_tween: Tween = null
+
 func activate_shield() -> void:
+	# 1. Se o escudo não estava ativo, liga o visual e a propriedade
 	if shield_timer == null:
 		is_shield_active = true
 		shield_node.visible = true
+		shield_node.modulate.a = 1.0 # Garante que a opacidade comece em 100%
 	
+	# Se o escudo já estava piscando de um item anterior, para o piscar e reseta a opacidade
+	if shield_tween and shield_tween.is_valid():
+		shield_tween.kill()
+		shield_node.modulate.a = 1.0
+
+	# 2. Cria o timer total de 10 segundos
 	var current_shield_timer = get_tree().create_timer(10.0)
 	shield_timer = current_shield_timer
 	
+	# Espera os primeiros 7 segundos (10s no total - 3s de aviso)
+	await get_tree().create_timer(7.0).timeout
+	
+	# Verificação de segurança: Só começa a piscar se o jogador NÃO pegou outro escudo nesse meio tempo
+	if shield_timer == current_shield_timer:
+		BlinkShieldTween()
+
+	# Espera os 3 segundos finais para acabar o tempo total
 	await current_shield_timer.timeout
 	
+	# 3. Verificação de Segurança Final: Desliga tudo apenas se este timer for o último ativo
 	if shield_timer == current_shield_timer:
 		is_shield_active = false
 		shield_node.visible = false
 		shield_timer = null
+		if shield_tween and shield_tween.is_valid():
+			shield_tween.kill()
+
+# Função auxiliar para fazer o escudo piscar nos 3 segundos finais
+func BlinkShieldTween() -> void:
+	shield_tween = create_tween()
+	shield_tween.set_loops() # Fica repetindo em loop até ser parado pelo .kill()
+	shield_tween.tween_property(shield_node, "modulate:a", 0.2, 0.15) # Vai para 20% de opacidade em 0.15s
+	shield_tween.tween_property(shield_node, "modulate:a", 1.0, 0.15) # Volta para 100% de opacidade em 0.15s
