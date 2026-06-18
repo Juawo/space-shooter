@@ -1,13 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://diweol6fsnpgp"]
+[gd_scene format=3 uid="uid://diweol6fsnpgp"]
 
 [ext_resource type="PackedScene" uid="uid://d4kbs6vopeoxo" path="res://scenes/game/enemies/enemie_base.tscn" id="1_y7crc"]
 [ext_resource type="Script" uid="uid://fwnjpldvbh66" path="res://scripts/game/enemies/enemie3/enemie_3.gd" id="2_63maj"]
+[ext_resource type="Texture2D" uid="uid://yxwgnkdsuk22" path="res://assets/sprites/enemies/enemie_3/enemie_3.png" id="3_xpi3e"]
 
-[node name="Enemie3" instance=ExtResource("1_y7crc")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpi3e"]
+size = Vector2(75, 79)
+
+[node name="Enemie3" unique_id=27771049 instance=ExtResource("1_y7crc")]
+scale = Vector2(1, 1)
 script = ExtResource("2_63maj")
 life = 2
 SPEED = 100
 score_value = 30
 
-[node name="Sprite2D" parent="." index="0"]
-modulate = Color(0.8039216, 0.74509805, 0, 1)
+[node name="Sprite2D" parent="." index="0" unique_id=1208508710]
+scale = Vector2(1, 1)
+texture = ExtResource("3_xpi3e")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=288713831]
+position = Vector2(-0.5, 2.499998)
+shape = SubResource("RectangleShape2D_xpi3e")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4" unique_id=884795587]
+position = Vector2(16, 19)
+scale = Vector2(7.4954257, 7.4954257)
+rect = Rect2(-8, -8, 12, 11.468782)

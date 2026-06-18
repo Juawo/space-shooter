@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cvxnsj15rgry5" path="res://icon.svg" id="2_jp0n8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3nni"]
-size = Vector2(43.571438, 32.857147)
+size = Vector2(13.840912, 14.30928)
 
 [sub_resource type="Curve" id="Curve_d3nni"]
 _data = [Vector2(0.08139536, 0.49438208), 0.0, 6.6260004, 0, 0, Vector2(0.9186047, 0.42696637), -2.283964, 0.0, 0, 0]
