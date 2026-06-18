@@ -15,7 +15,7 @@ var control_mode : int = -1 # 0 para tilt e 1 para touch
 var sensibility : float = 100
 var has_chosen_control : bool = false
 #GameVersion
-const CURRENT_CODE_VERSION : String = "1.0.1"
+const CURRENT_CODE_VERSION : String = "1.0.2"
 var game_version : String = CURRENT_CODE_VERSION
 
 var file_path : String

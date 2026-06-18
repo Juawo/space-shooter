@@ -127,8 +127,11 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvcsg"]
+size = Vector2(54.193195, 52.609196)
+
 [node name="Enemie2" unique_id=705572824 instance=ExtResource("1_qo7cy")]
-scale = Vector2(1.4, 1.4)
+scale = Vector2(1.1, 1.1)
 script = ExtResource("2_kb3w2")
 bullet_scene = ExtResource("3_tvcsg")
 score_value = 20
@@ -138,24 +141,28 @@ base_color = Color(0.72156864, 0.3882353, 0.1764706, 1)
 [node name="Sprite2D" parent="." index="0" unique_id=1208508710]
 visible = false
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=288713831]
-position = Vector2(-0.3571417, -3.5714273)
-scale = Vector2(0.99999964, 0.99999964)
-
-[node name="ParticleDie" parent="." index="2" unique_id=1361243941]
-scale = Vector2(2, 2)
-
-[node name="GunPoint" type="Marker2D" parent="." index="5" unique_id=1980334756]
-position = Vector2(0, 35.4)
-
-[node name="sprite_animation" type="AnimatedSprite2D" parent="." index="7" unique_id=324877100]
+[node name="sprite_animation" type="AnimatedSprite2D" parent="." index="1" unique_id=324877100]
 sprite_frames = SubResource("SpriteFrames_os2qn")
 animation = &"prepare_bullet"
 frame = 9
 frame_progress = 1.0
 
-[node name="muzzle_flash_animation" type="AnimatedSprite2D" parent="." index="8" unique_id=1265013319]
+[node name="muzzle_flash_animation" type="AnimatedSprite2D" parent="." index="2" unique_id=1265013319]
 visible = false
 position = Vector2(3.6, 40)
 sprite_frames = SubResource("SpriteFrames_esvhe")
 animation = &"show_muzzle"
+
+[node name="CollisionShape2D" parent="." index="3" unique_id=288713831]
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_tvcsg")
+
+[node name="ParticleDie" parent="." index="4" unique_id=1361243941]
+scale = Vector2(2, 2)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6" unique_id=884795587]
+position = Vector2(-10.909091, -10.90909)
+rect = Rect2(-18.181818, -17.272728, 59.090904, 58)
+
+[node name="GunPoint" type="Marker2D" parent="." index="7" unique_id=1980334756]
+position = Vector2(0, 35.4)
