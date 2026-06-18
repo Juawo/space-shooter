@@ -79,25 +79,25 @@ func get_random_enemy() -> PackedScene:
 	
 	match current_wave:
 		1:
-			if roll < 80: return enemies[0] 
+			if roll < 90: return enemies[0] 
 			else: return enemies[1]         
 		2:
-			if roll < 45: return enemies[0] 
+			if roll < 80: return enemies[0] 
 			elif roll < 90: return enemies[1]
 			else: return enemies[2]         
 		3:
-			if roll < 45: return enemies[1] 
-			elif roll < 90: return enemies[2]
+			if roll < 15: return enemies[1] 
+			elif roll < 60: return enemies[2]
 			else: return enemies[0]         
 		4:
-			if roll < 30: return enemies[1] 
+			if roll < 20: return enemies[1]
 			elif roll < 60: return enemies[2]
 			elif roll < 90: return enemies[0]
 			else: return enemies[3]         
 		5:
 			if roll < 35: return enemies[1] 
 			elif roll < 70: return enemies[2]
-			elif roll < 90: return enemies[3]
+			elif roll < 80: return enemies[3]
 			else: return enemies[0]         
 		_:
 			if roll < 20: return enemies[0]
