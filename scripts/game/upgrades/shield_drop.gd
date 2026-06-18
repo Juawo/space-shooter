@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var fall_speed := 150.0 # Velocidade de descida do item
+@export var fall_speed := 250.0 # Velocidade de descida do item
 
 func _process(delta: float) -> void:
 	# Faz o item descer verticalmente pela tela
