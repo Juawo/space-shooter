@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfkxkrfeb0f14"]
+[gd_scene format=3 uid="uid://cfkxkrfeb0f14"]
 
 [ext_resource type="Script" uid="uid://bj5hefygkiq1y" path="res://scripts/ui/boot_scene/boot_scene.gd" id="1_4mqte"]
 [ext_resource type="PackedScene" uid="uid://crrtm6jpxvoqw" path="res://scenes/game/background/background_layered.tscn" id="2_d6jpf"]
@@ -42,7 +42,7 @@ _data = {
 &"rotate_icon": SubResource("Animation_d6jpf")
 }
 
-[node name="boot_scene" type="Control"]
+[node name="boot_scene" type="Control" unique_id=1051754425]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,17 +51,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4mqte")
 
-[node name="background_parallax" parent="." instance=ExtResource("2_d6jpf")]
+[node name="background_parallax" parent="." unique_id=1922223629 instance=ExtResource("2_d6jpf")]
 modulate = Color(0.49747366, 0.49747366, 0.49747366, 1)
 position = Vector2(201, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_eqtfd")
-}
-autoplay = "rotate_icon"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1592830172]
+libraries/ = SubResource("AnimationLibrary_eqtfd")
+autoplay = &"rotate_icon"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=702848514]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,11 +71,11 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 100
 
-[node name="Control" type="Control" parent="MarginContainer"]
+[node name="Control" type="Control" parent="MarginContainer" unique_id=412343539]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control" unique_id=1435313526]
 layout_mode = 0
 offset_right = 352.0
 offset_bottom = 717.0
@@ -85,11 +83,11 @@ pivot_offset = Vector2(176, 358)
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="text_wrapper" type="Control" parent="MarginContainer/Control/VBoxContainer"]
+[node name="text_wrapper" type="Control" parent="MarginContainer/Control/VBoxContainer" unique_id=1850690648]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Label" type="RichTextLabel" parent="MarginContainer/Control/VBoxContainer/text_wrapper"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/Control/VBoxContainer/text_wrapper" unique_id=368935263]
 layout_mode = 0
 offset_top = -48.0
 offset_right = 352.0
@@ -102,11 +100,11 @@ text = "[center]Loading[wave amp=40.0 freq=6.0 color=#FFFFFF][pulse color=#FFFFF
 fit_content = true
 horizontal_alignment = 1
 
-[node name="icon_wrapper" type="Control" parent="MarginContainer/Control/VBoxContainer"]
+[node name="icon_wrapper" type="Control" parent="MarginContainer/Control/VBoxContainer" unique_id=23277600]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control/VBoxContainer/icon_wrapper"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control/VBoxContainer/icon_wrapper" unique_id=106487225]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -122,11 +120,11 @@ size_flags_vertical = 4
 texture = ExtResource("4_eqtfd")
 stretch_mode = 6
 
-[node name="info_wrapper" type="Control" parent="MarginContainer/Control/VBoxContainer"]
+[node name="info_wrapper" type="Control" parent="MarginContainer/Control/VBoxContainer" unique_id=575717667]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="info" type="RichTextLabel" parent="MarginContainer/Control/VBoxContainer/info_wrapper"]
+[node name="info" type="RichTextLabel" parent="MarginContainer/Control/VBoxContainer/info_wrapper" unique_id=1408753621]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
