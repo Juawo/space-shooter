@@ -3,35 +3,126 @@
 [ext_resource type="PackedScene" uid="uid://d4kbs6vopeoxo" path="res://scenes/game/enemies/enemie_base.tscn" id="1_lcv4k"]
 [ext_resource type="Script" uid="uid://cj1od3eficmgl" path="res://scripts/game/enemies/enemie4/enemie_4.gd" id="2_6v76c"]
 [ext_resource type="PackedScene" uid="uid://becggl8acagft" path="res://scenes/game/enemies/enemie4/enemy_rotated_bullet.tscn" id="3_6v76c"]
+[ext_resource type="Texture2D" uid="uid://dkjft54y7ninq" path="res://assets/sprites/enemies/enemie_4/enemie_4_dispare_frames/enemie_4_dispare0008.png" id="4_avcyu"]
+[ext_resource type="Texture2D" uid="uid://dl6f4ye3tjuc1" path="res://assets/sprites/enemies/enemie_4/enemie_4_dispare_frames/enemie_4_dispare0000.png" id="5_i1amk"]
+[ext_resource type="Texture2D" uid="uid://ds47s7bxg7n5r" path="res://assets/sprites/enemies/enemie_4/enemie_4_dispare_frames/enemie_4_dispare0001.png" id="6_6sj3a"]
+[ext_resource type="Texture2D" uid="uid://c0l1lwr3k7c6d" path="res://assets/sprites/enemies/enemie_4/enemie_4_dispare_frames/enemie_4_dispare0002.png" id="7_2wu1a"]
+[ext_resource type="Texture2D" uid="uid://2l7ud14x54r2" path="res://assets/sprites/enemies/enemie_4/enemie_4_dispare_frames/enemie_4_dispare0003.png" id="8_1e8rv"]
+[ext_resource type="Texture2D" uid="uid://b3i3u0i7leld6" path="res://assets/sprites/enemies/enemie_4/enemie_4_dispare_frames/enemie_4_dispare0004.png" id="9_iguv8"]
+[ext_resource type="Texture2D" uid="uid://b5no8cnmemqfh" path="res://assets/sprites/enemies/enemie_4/enemie_4_dispare_frames/enemie_4_dispare0005.png" id="10_xvcbj"]
+[ext_resource type="Texture2D" uid="uid://dbngjv41cdvp8" path="res://assets/sprites/enemies/enemie_4/enemie_4_dispare_frames/enemie_4_dispare0006.png" id="11_baixm"]
+[ext_resource type="Texture2D" uid="uid://cfv3kn53l8je5" path="res://assets/sprites/enemies/enemie_4/enemie_4_dispare_frames/enemie_4_dispare0007.png" id="12_mvpla"]
+[ext_resource type="Texture2D" uid="uid://bx741x65tccie" path="res://assets/sprites/enemies/enemie_4/enemie_4_muzzle_flash/enemie_4_muzzle_flash0000.png" id="13_2wu1a"]
+[ext_resource type="Texture2D" uid="uid://b7youlr5whtkj" path="res://assets/sprites/enemies/enemie_4/enemie_4_muzzle_flash/enemie_4_muzzle_flash0001.png" id="14_1e8rv"]
+[ext_resource type="Texture2D" uid="uid://bsvdy6tbgdbhl" path="res://assets/sprites/enemies/enemie_4/enemie_4_muzzle_flash/enemie_4_muzzle_flash0002.png" id="15_iguv8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6v76c"]
-size = Vector2(13.840912, 14.30928)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sf8hv"]
+custom_solver_bias = 0.673
+radius = 60.200016
+height = 124.40003
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_04dxk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_i1amk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6sj3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2wu1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1e8rv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iguv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_xvcbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_baixm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mvpla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_avcyu")
+}],
+"loop": 0,
+"name": &"prepare_bullet",
+"speed": 12.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5i7ya"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_2wu1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_1e8rv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_iguv8")
+}],
+"loop": 0,
+"name": &"show_muzzle",
+"speed": 9.0
+}]
 
 [node name="Enemie4" unique_id=475994672 instance=ExtResource("1_lcv4k")]
+scale = Vector2(1, 1)
 script = ExtResource("2_6v76c")
 bullet_scene = ExtResource("3_6v76c")
 life = 3
+SPEED = 100
 score_value = 40
 can_shoot = true
 base_color = Color(0.8627451, 0.09803922, 0.2509804, 1)
 
 [node name="Sprite2D" parent="." index="0" unique_id=1208508710]
-modulate = Color(0.8627451, 0.09803922, 0.2509804, 1)
+scale = Vector2(1, 1)
+texture = ExtResource("4_avcyu")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=288713831]
-position = Vector2(1.1920929e-07, -0.20000017)
+position = Vector2(-1.2, 3.000001)
 scale = Vector2(0.99999976, 0.99999976)
-shape = SubResource("RectangleShape2D_6v76c")
+shape = SubResource("CapsuleShape2D_sf8hv")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4" unique_id=884795587]
+position = Vector2(-38, -28)
+rect = Rect2(-10, -9, 93, 93)
 
 [node name="GunPoints" type="Node2D" parent="." index="5" unique_id=137797699]
 
 [node name="MiddleGunPoint" type="Marker2D" parent="GunPoints" index="0" unique_id=209244078]
-position = Vector2(0, 7.4458838)
+position = Vector2(0, 62)
 
 [node name="LeftGunPoint" type="Marker2D" parent="GunPoints" index="1" unique_id=432340774]
-position = Vector2(0, 7.4458838)
+position = Vector2(-53, 55)
 rotation = 0.7853982
 
 [node name="RightGunPoint" type="Marker2D" parent="GunPoints" index="2" unique_id=894655238]
-position = Vector2(0, 7.4458838)
+position = Vector2(58.000004, 52.000004)
 rotation = -0.7853982
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="7" unique_id=1649686922]
+visible = false
+sprite_frames = SubResource("SpriteFrames_04dxk")
+animation = &"prepare_bullet"
+frame = 8
+frame_progress = 1.0
+
+[node name="muzzle_flash" type="AnimatedSprite2D" parent="." index="8" unique_id=1893226148]
+visible = false
+position = Vector2(0, 56)
+sprite_frames = SubResource("SpriteFrames_5i7ya")
+animation = &"show_muzzle"
