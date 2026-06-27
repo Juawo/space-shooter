@@ -73,7 +73,6 @@ func trigger_wave_spawn():
 		if spawn_count > 1:
 			await get_tree().create_timer(micro_delay).timeout
 
-# ─── 📊 DISTRIBUIÇÃO EXATA PEDIDA (WAVE POR WAVE) ───
 func get_random_enemy() -> PackedScene:
 	var roll = randi() % 100
 	

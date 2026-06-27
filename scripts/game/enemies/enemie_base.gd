@@ -39,7 +39,8 @@ func dieTween() -> Tween:
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_BACK)
-	tween.tween_property(self, "scale", Vector2.ONE, 0.4)
+	var target_scale = scale - Vector2(0.4,0.4)
+	tween.tween_property(self, "scale", target_scale, 0.4)
 	return tween
 
 func die():

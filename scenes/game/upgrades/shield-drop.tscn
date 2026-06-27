@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bv1ut74uwhu51"]
 
 [ext_resource type="Script" uid="uid://biw6gm7o2ux3e" path="res://scripts/game/upgrades/shield_drop.gd" id="1_v2jcf"]
-[ext_resource type="Texture2D" uid="uid://ckuph3nlh1gla" path="res://assets/sprites/power-ups/3164wtry.png" id="2_v2jcf"]
+[ext_resource type="Texture2D" uid="uid://by0fr4uxg6a04" path="res://assets/sprites/power-ups/shield_drop.png" id="2_v2jcf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1aedd"]
 radius = 20.024984
@@ -11,7 +11,7 @@ collision_layer = 16
 script = ExtResource("1_v2jcf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1587696766]
-position = Vector2(0, -5)
+position = Vector2(-1, 0)
 scale = Vector2(0.73888886, 0.73288167)
 texture = ExtResource("2_v2jcf")
 
