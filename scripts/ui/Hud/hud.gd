@@ -21,10 +21,12 @@ func hide_hud():
 	GameEvents.hud_closed.emit()
 
 func update_hud(score : int) -> void:
+	#SoundManager.play_scroll(true)
 	score_value.text = str(score)
 
 func _on_button_pressed() -> void:
 	print("Pause")
+	SoundManager.play_click()
 	GameEvents.pause_requested.emit()
 
 func reset_life():

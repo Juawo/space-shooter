@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://deo2xlnjykoj2"]
+[gd_scene format=3 uid="uid://deo2xlnjykoj2"]
 
 [ext_resource type="Script" uid="uid://0tpc5vgmu38i" path="res://scripts/game/gameWorld/game_world.gd" id="1_im6e1"]
 [ext_resource type="PackedScene" uid="uid://c8bvrgnu7smjw" path="res://scenes/game/player/player.tscn" id="2_lcs20"]
@@ -6,19 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://l1a381jt4yc8" path="res://scenes/ui/Hud/hud.tscn" id="5_7j6fr"]
 [ext_resource type="PackedScene" uid="uid://crrtm6jpxvoqw" path="res://scenes/game/background/background_layered.tscn" id="6_x5ux2"]
 
-[node name="GameWorld" type="Node2D"]
+[node name="GameWorld" type="Node2D" unique_id=1466402716]
 script = ExtResource("1_im6e1")
 metadata/_edit_vertical_guides_ = [0.0]
 
-[node name="background_parallax" parent="." instance=ExtResource("6_x5ux2")]
+[node name="background_parallax" parent="." unique_id=1528297341 instance=ExtResource("6_x5ux2")]
 position = Vector2(206, -1)
 
-[node name="Player" parent="." instance=ExtResource("2_lcs20")]
+[node name="Player" parent="." unique_id=396130970 instance=ExtResource("2_lcs20")]
 position = Vector2(196, 840)
 
-[node name="EnemiesSpawner" parent="." instance=ExtResource("4_uepgv")]
+[node name="EnemiesSpawner" parent="." unique_id=1373439168 instance=ExtResource("4_uepgv")]
 
-[node name="Hud" parent="." instance=ExtResource("5_7j6fr")]
+[node name="Hud" parent="." unique_id=712293533 instance=ExtResource("5_7j6fr")]
 visible = false
 anchors_preset = 0
 anchor_top = 0.0

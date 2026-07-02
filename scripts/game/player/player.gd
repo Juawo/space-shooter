@@ -34,7 +34,7 @@ var playerLife := 3 :
 	set (new_value) :
 		playerLife = new_value
 		life_change.emit(new_value)
-		if new_value == 0:
+		if new_value <= 0:
 			GameEvents.game_over.emit()
 func _physics_process(delta: float) -> void:
 	var target_velocity = Vector2.ZERO

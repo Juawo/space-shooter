@@ -13,6 +13,7 @@ func _ready() -> void:
 	ApiManager.player_fetched.connect(_on_player_fetched)
 	await ApiManager.latest_version_received
 	compare_versions()
+	SoundManager.set_music_opaque(true)
 
 func compare_versions() -> void :
 	info.text = "[center][wave amp=40.0 freq=6.0 color=#FFFFFF][pulse color=#FFFFFF angle=0.0 height=1.05 freq=3.0]comparing versions...[/pulse][/wave][/center]"
@@ -79,3 +80,4 @@ func sync_high_score() -> void :
 
 func go_to_main_menu() -> void :
 	get_tree().change_scene_to_file("res://scenes/game/main.tscn")
+	SoundManager.set_music_opaque(false)

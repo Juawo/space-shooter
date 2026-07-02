@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://l1a381jt4yc8"]
+[gd_scene format=3 uid="uid://l1a381jt4yc8"]
 
 [ext_resource type="Script" uid="uid://ddvu56av5q6em" path="res://scripts/ui/Hud/hud.gd" id="1_7ow3k"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_8rpsh"]
@@ -41,7 +41,7 @@ _data = {
 &"show_hud": SubResource("Animation_uputy")
 }
 
-[node name="Hud" type="Control"]
+[node name="Hud" type="Control" unique_id=1332824652]
 process_mode = 3
 z_index = 20
 custom_minimum_size = Vector2(412, 40)
@@ -55,7 +55,7 @@ grow_horizontal = 2
 size_flags_vertical = 0
 script = ExtResource("1_7ow3k")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1264573471]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,22 +69,22 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=11055658]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1167922924]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 6
 text = "PAUSE"
 
-[node name="ScoreLife" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ScoreLife" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=968100104]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/ScoreLife"]
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/ScoreLife" unique_id=57399156]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8rpsh")
 theme_override_font_sizes/font_size = 24
@@ -92,7 +92,7 @@ text = "Score"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScoreValue" type="Label" parent="MarginContainer/VBoxContainer/ScoreLife"]
+[node name="ScoreValue" type="Label" parent="MarginContainer/VBoxContainer/ScoreLife" unique_id=1445478708]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8rpsh")
 theme_override_font_sizes/font_size = 24
@@ -100,27 +100,25 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LifeHud" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScoreLife"]
+[node name="LifeHud" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScoreLife" unique_id=2144946313]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ScoreLife/LifeHud"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ScoreLife/LifeHud" unique_id=248553062]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("3_uputy")
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/ScoreLife/LifeHud"]
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/ScoreLife/LifeHud" unique_id=1611001635]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("3_uputy")
 
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBoxContainer/ScoreLife/LifeHud"]
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBoxContainer/ScoreLife/LifeHud" unique_id=662028306]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("3_uputy")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vvc7a")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1849536019]
+libraries/ = SubResource("AnimationLibrary_vvc7a")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

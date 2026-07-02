@@ -53,6 +53,7 @@ func _set_state(newValue : GameStates):
 	match newValue  :
 		GameStates.MAIN_MENU :
 			print("Game state changed to Main Menu")
+			SoundManager.switch_music_to_interface()
 			if pause_menu.is_showing:
 				pause_menu.hide_pause_menu()
 			if game_over.is_showing:
@@ -66,6 +67,8 @@ func _set_state(newValue : GameStates):
 			
 		GameStates.GAME :
 			get_tree().paused = false
+			SoundManager.switch_music_to_game()
+			SoundManager.set_music_opaque(false)
 			if main_menu.showing:
 				main_menu.hideMainMenu()
 			if pause_menu.is_showing:
@@ -76,11 +79,13 @@ func _set_state(newValue : GameStates):
 			
 		GameStates.PAUSED :
 			get_tree().paused = true
+			SoundManager.set_music_opaque(true)
 			pause_menu.show_pause_menu()
 			print("Game state changed to Paused")
 			
 		GameStates.GAME_OVER :
 			print("Game state changed to Game Over")
 			#game_world.reset_game()
+			SoundManager.set_music_opaque(true)
 			get_tree().paused = true
 			game_over.show_game_over()

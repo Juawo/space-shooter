@@ -30,8 +30,10 @@ func populate_pop_up(new_version_data : Dictionary, old_version_data : String) -
 		no_update_btn.text = "Update later"
 
 func _on_update_btn_pressed() -> void:
+	SoundManager.play_click()
 	OS.shell_open(uri)
 
 func _on_no_update_btn_pressed() -> void:
+	SoundManager.play_click()
 	pop_up_closed.emit()
 	queue_free()

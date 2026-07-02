@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3hvl54is461g"]
+[gd_scene format=3 uid="uid://c3hvl54is461g"]
 
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_56s4t"]
 [ext_resource type="Script" uid="uid://bsx2i8a6wuf2h" path="res://scripts/ui/Leaderboard/leaderboard.gd" id="1_eprmh"]
 [ext_resource type="PackedScene" uid="uid://crrtm6jpxvoqw" path="res://scenes/game/background/background_layered.tscn" id="2_hbriy"]
 
-[node name="Leaderboard" type="Control"]
+[node name="Leaderboard" type="Control" unique_id=38726134]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -14,11 +14,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eprmh")
 
-[node name="background_parallax" parent="." instance=ExtResource("2_hbriy")]
+[node name="background_parallax" parent="." unique_id=513634546 instance=ExtResource("2_hbriy")]
 process_mode = 3
 position = Vector2(206, 0)
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1074186492]
 modulate = Color(1, 1, 1, 0.5254902)
 layout_mode = 1
 anchors_preset = 15
@@ -27,7 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=560160639]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,31 +40,31 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1522759712]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=801534308]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1598409815]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "VOLTA"
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2107884778]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_56s4t")
 theme_override_font_sizes/font_size = 40
 text = "Leaderboard"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer" unique_id=1318700554]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel" unique_id=1549622580]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,18 +76,18 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer" unique_id=1132021911]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer" unique_id=410458027]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="erro_return" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Panel/MarginContainer"]
+[node name="erro_return" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Panel/MarginContainer" unique_id=1550623861]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("1_56s4t")

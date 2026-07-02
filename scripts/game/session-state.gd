@@ -22,6 +22,8 @@ func _ready() -> void:
 
 func _on_gameplay_end():
 	if SaveManager.high_score < high_score :
+		print("ENTROU")
 		SaveManager.high_score = high_score
 		SaveManager.save_data()
 		ApiManager.register_high_score(high_score)
+		SoundManager.play_new_highscore()
