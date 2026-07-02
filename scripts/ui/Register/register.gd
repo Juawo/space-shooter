@@ -34,6 +34,7 @@ func _ready() -> void:
 	ApiManager.play_registered.connect(update_interface_by_response_code_return)
 
 func _on_button_pressed() -> void:
+	SoundManager.play_click()
 	register_btn.disabled = true
 	if !validate_country(country_input.text) or !validate_nickname(nickname_input.text):
 		return
@@ -100,9 +101,15 @@ func show_register_again_label(display: bool) -> void :
 func update_register_btn(is_activated : bool) -> void :
 	register_btn.disabled = !is_activated 
 
+var old_value
 func _on_h_slider_value_changed(value: float) -> void:
 	age_value.text = str(int(value))
-
+	old_value = value
+	if value >= old_value :
+		SoundManager.play_scroll(true)
+	else :
+		SoundManager.play_scroll(false)
+		
 func _on_nickname_input_text_changed(new_text: String) -> void:
 	update_counter(new_text)
 	is_nickname_valid = validate_nickname(new_text)
