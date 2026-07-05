@@ -18,16 +18,18 @@ const IMPACT_PLATE_HEAVY_001 = preload("uid://mqcl8xqg0gmr")
 const IMPACT_PLATE_HEAVY_002 = preload("uid://djh4d1c0duqwd")
 const IMPACT_PLASMA = preload("uid://brd6o0wpb22g")
 
-const DISPARE_1 = preload("uid://n0pifq8gemk8")
+const DISPARE_1 = preload("uid://byv1ufloq1ih8")
 const DISPARE_2 = preload("uid://24c3los45y4c")
 const DISPARE_3 = preload("uid://bipnd4eks3500")
 const DISPARE_PLASMA = preload("uid://cdhukq3yj11yb")
 
-const EXPLOSION_1 = preload("uid://dfvbd5tjubhch")
+const EXPLOSION_1 = preload("uid://du4vrc8nehoy0")
 const EXPLOSION_2 = preload("uid://c1j0dic36ft6f")
 const EXPLOSION_3 = preload("uid://c0k13ktpdlwy6")
+const EXPLOSION_4 = preload("uid://bgbbec6ceokk3")
+const EXPLOSION_B = preload("uid://caxyuk17u1jyo")
 
-const LIFE_ALARM = preload("uid://vhusj7fpq3um")
+const LIFE_ALARM = preload("uid://hpbgmbm8clv6")
 
 const PICK_UP_POWERUP = preload("uid://u0pshwcjwhsc")
 const PICK_UP_SHIELD = preload("uid://bggaccr38nx0v")
@@ -37,6 +39,12 @@ const POWER_UP_FINISHING = preload("uid://cec0lyqosui3l")
 var music_player : AudioStreamPlayer
 var music_bus_idx : int
 var lowpass_effect_idx := 0
+
+var scroll_up_player : AudioStreamPlayer = null
+var scroll_down_player : AudioStreamPlayer = null
+
+var rng = RandomNumberGenerator.new()
+const EXPLOSION_A = preload("uid://c6e7jqi2by1h6")
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -128,33 +136,45 @@ func update_music_volume(volume : float) -> void :
 		AudioServer.set_bus_mute(bus_index, volume == 0.0)
 
 func play_click() -> void :
-	var rng = RandomNumberGenerator.new()
-	var num = rng.randf_range(1,2)
+	var num = rng.randi_range(1,2)
 	if num == 1 :
 		_play_sfx(CLICK_002)
 	else :
 		_play_sfx(CLICK_003)
 
-func play_scroll(to_up : bool) -> void :
-	if to_up :
-		_play_sfx(SCROLL_UP)
-	else :
-		_play_sfx(SCROLL_DOWN)
+func play_scroll(to_up : bool) -> void:
+	if to_up:
+		# Se o player não existe ou parou de tocar, criamos um novo
+		if scroll_up_player == null or not scroll_up_player.playing:
+			scroll_up_player = AudioStreamPlayer.new()
+			scroll_up_player.stream = SCROLL_UP
+			scroll_up_player.bus = "SFX"
+			add_child(scroll_up_player)
+			scroll_up_player.play()
+			# Limpa da memória quando terminar
+			scroll_up_player.finished.connect(func(): scroll_up_player.queue_free())
+	else:
+		if scroll_down_player == null or not scroll_down_player.playing:
+			scroll_down_player = AudioStreamPlayer.new()
+			scroll_down_player.stream = SCROLL_DOWN
+			scroll_down_player.bus = "SFX"
+			add_child(scroll_down_player)
+			scroll_down_player.play()
+			scroll_down_player.finished.connect(func(): scroll_down_player.queue_free())
 
 func play_impact() -> void :
-	var rng = RandomNumberGenerator.new()
-	var num = rng.randf_range(1,2)
+	var num = rng.randi_range(1,2)
 	if num == 1 :
 		_play_sfx(IMPACT_PLATE_HEAVY_001)
 	else :
 		_play_sfx(IMPACT_PLATE_HEAVY_002)
 
-func play_dispare() -> void :
-	var rng = RandomNumberGenerator.new()
-	var num = rng.randf_range(1,3)
+func play_dispare_player() -> void :
+	_play_sfx(DISPARE_1)
+
+func play_dispare_enemies() -> void:
+	var num = rng.randi_range(1,2)
 	if num == 1 :
-		_play_sfx(DISPARE_1)
-	elif num == 2 :
 		_play_sfx(DISPARE_2)
 	else :
 		_play_sfx(DISPARE_3)
@@ -165,15 +185,28 @@ func play_dispare_plasma() -> void :
 func play_impact_plasma() -> void :
 	_play_sfx(IMPACT_PLASMA)
 
-func play_explosion() -> void :
-	var rng = RandomNumberGenerator.new()
-	var num = rng.randf_range(1,3)
-	if num == 1 :
-		_play_sfx(EXPLOSION_1)
-	elif num == 2 :
-		_play_sfx(EXPLOSION_2)
-	else :
-		_play_sfx(EXPLOSION_3)
+func play_explosion() -> void:
+	var num = rng.randi_range(1, 3)
+	var stream
+	match num :
+		1 : stream = EXPLOSION_A
+		2 : stream = EXPLOSION_B
+		3 : stream = EXPLOSION_3
+		4 : stream = EXPLOSION_4
+		_ : stream = EXPLOSION_4
+		
+			
+	var sfx_player = AudioStreamPlayer.new()
+	sfx_player.stream = stream
+	sfx_player.bus = "SFX"
+
+	# O PULO DO GATO: Aumenta o tom de forma sutil (entre 1.1 e 1.3)
+	# Isso deixa a explosão mais "estalada" e perceptível em alto-falantes de celular
+	sfx_player.pitch_scale = rng.randf_range(1.1, 1.3)
+
+	add_child(sfx_player)
+	sfx_player.play()
+	sfx_player.finished.connect(func(): sfx_player.queue_free())
 
 func play_life_alarm() -> void :
 	_play_sfx(LIFE_ALARM)
