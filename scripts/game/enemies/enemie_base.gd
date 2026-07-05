@@ -31,6 +31,8 @@ func _process(delta: float) -> void:
 	position.y += SPEED * delta
 
 func takeDamage(damage_value: int) -> void:
+	if life > 1 :
+		SoundManager.play_impact()
 	life -= damage_value
 	if(life <= 0):
 		die()
@@ -65,7 +67,7 @@ func die():
 	
 	# Dispara particula de explodir
 	particle_die.emitting = true
-	
+	SoundManager.play_explosion()
 	# Espera as particulas encerrarem para liberar da memoria
 	await particle_die.finished 
 	enemy_died.emit()

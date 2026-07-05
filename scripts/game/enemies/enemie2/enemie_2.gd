@@ -6,8 +6,6 @@ extends "res://scripts/game/enemies/enemie_base.gd"
 @onready var muzzle_flash_animation: AnimatedSprite2D = $muzzle_flash_animation
 var is_charged := false
 
-# TODO : Corrigir carregamento e disparo
-
 func _ready() -> void:
 	super._ready()
 	sprite_animation.play("fill")
@@ -27,6 +25,7 @@ func shoot():
 func _on_sprite_animation_finished() -> void :
 	if sprite_animation.animation == "prepare_bullet" :
 		instantiate_projectile()
+		SoundManager.play_dispare_plasma()
 		muzzle_flash_animation.visible = true
 		muzzle_flash_animation.play("show_muzzle")
 		sprite_animation.play("fill")
@@ -71,7 +70,7 @@ func die():
 	
 	# Dispara particula de explodir
 	particle_die.emitting = true
-	
+	SoundManager.play_explosion()
 	# Espera as particulas encerrarem para liberar da memoria
 	await particle_die.finished 
 	enemy_died.emit()

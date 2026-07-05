@@ -21,6 +21,7 @@ func shoot():
 			bullet.rotation = gun_point.rotation
 			get_tree().current_scene.add_child(bullet)
 		await muzzle_flash.animation_finished
+		SoundManager.play_dispare_enemies()
 		muzzle_flash.visible = true
 		animated_sprite_2d.visible = false
 		sprite_2d.visible = true
@@ -28,7 +29,7 @@ func shoot():
 func break_cannons():
 	components_broken = true
 	can_shoot = false
-	
+	SoundManager.play_explosion()
 	if is_instance_valid(shoot_timer):
 		shoot_timer.stop()
 	
