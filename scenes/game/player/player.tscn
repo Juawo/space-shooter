@@ -33,7 +33,7 @@ size = Vector2(7.666669, 9.166668)
 [sub_resource type="SpriteFrames" id="SpriteFrames_t5vmf"]
 animations = [{
 "frames": [],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -59,7 +59,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("8_jvpd5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 20.0
 }]
@@ -67,7 +67,7 @@ animations = [{
 [sub_resource type="SpriteFrames" id="SpriteFrames_82yl3"]
 animations = [{
 "frames": [],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -123,7 +123,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("26_30wld")
 }],
-"loop": false,
+"loop": 0,
 "name": &"muzzle_flash",
 "speed": 20.0
 }]

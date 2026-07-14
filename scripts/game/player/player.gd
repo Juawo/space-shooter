@@ -34,8 +34,12 @@ var playerLife := 3 :
 	set (new_value) :
 		playerLife = new_value
 		life_change.emit(new_value)
-		if new_value == 0:
+		if playerLife == 1 :
+			SoundManager.play_life_alarm()
+		if new_value <= 0:
 			GameEvents.game_over.emit()
+			SoundManager.play_explosion()
+
 func _physics_process(delta: float) -> void:
 	var target_velocity = Vector2.ZERO
 	var sense_multiplier = SaveManager.sensibility / 100.0
@@ -102,9 +106,12 @@ func _physics_process(delta: float) -> void:
 	# ─── 📐 LIMITADOR DE TELA ───
 	position.x = clamp(position.x, player_margins.x, screen_size.x - player_margins.x)
 	position.y = clamp(position.y, player_margins.y, screen_size.y - player_margins.y)
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemies") or area.is_in_group("EnemiesProjectiles"):
 		var damage = area.damage_value if "damage_value" in area else 1
+		if area.has_method("explode"):
+			area.explode()
 		takeDamage(damage)
 		if area.is_in_group("EnemiesProjectiles"):
 			area.queue_free()
@@ -127,7 +134,7 @@ func takeDamage (amount : int):
 		
 	if is_invecible:
 		return
-		
+	SoundManager.play_impact()
 	playerLife = clamp(playerLife - amount, 0, 3)
 	is_invecible = true
 	invecible_timer.start(1.0)
@@ -146,31 +153,55 @@ func shoot() -> void:
 		
 		if "bullet_speed" in bullet:
 			bullet.bullet_speed *= shoot_speed_modifier
-			
+		SoundManager.play_dispare_player()
 		get_tree().current_scene.add_child(bullet)
 		await muzzle_flash_animation.animation_finished
 		muzzle_flash_animation.visible = false
 
 func _on_invecible_timer_timeout() -> void:
 	is_invecible = false
-
+	
+var current_cadence_timer : SceneTreeTimer
+var current_boost_id := 0
 func apply_speed_boost(multiplier: float) -> void:
+	# 1. Gera um ID único para esta ativação/reproclamação do item
+	current_boost_id += 1
+	var local_boost_id = current_boost_id
+	
+	# 2. Se for o primeiro power-up, guarda o tempo original e aplica o multiplicador
 	if boost_timer == null:
 		original_shoot_wait_time = $ShootTimer.wait_time
 		$ShootTimer.wait_time = original_shoot_wait_time / multiplier
 	
-	var current_timer = get_tree().create_timer(10.0)
-	boost_timer = current_timer
+	# 3. Cria (ou reseta) o timer global para 10 segundos
+	current_cadence_timer = get_tree().create_timer(10.0)
+	boost_timer = current_cadence_timer
 	
-	await current_timer.timeout
+	# 4. Aguarda o tempo de começar a tocar o aviso sonoro (10s - 2.33s de áudio = 7.67s)
+	await get_tree().create_timer(7.67).timeout
 	
-	if boost_timer == current_timer:
+	# VERIFICAÇÃO DE SEGURANÇA 1: Se o ID mudou, significa que o player pegou outro power-up!
+	# Interrompe este fluxo antigo para não tocar o som antes da hora.
+	if local_boost_id != current_boost_id:
+		return
+		
+	# Se passou no teste, toca o áudio de que o boost atual está expirando
+	SoundManager.play_powerup_finishing()
+	
+	# 5. Aguarda o timer de 10 segundos terminar por completo
+	await current_cadence_timer.timeout
+	
+	# VERIFICAÇÃO DE SEGURANÇA 2: Garante que outro item não estendeu o tempo no último segundo
+	if local_boost_id != current_boost_id:
+		return
+		
+	# 6. Restaura os atributos originais do disparo do player com segurança
+	if boost_timer == current_cadence_timer:
 		$ShootTimer.wait_time = original_shoot_wait_time
 		boost_timer = null
 
 # Variável de controle para o Tween do escudo (evita conflitos se pegar outro escudo enquanto pisca)
 var shield_tween: Tween = null
-
 func activate_shield() -> void:
 	# 1. Se o escudo não estava ativo, liga o visual e a propriedade
 	if shield_timer == null:
@@ -187,11 +218,11 @@ func activate_shield() -> void:
 	var current_shield_timer = get_tree().create_timer(10.0)
 	shield_timer = current_shield_timer
 	
-	# Espera os primeiros 7 segundos (10s no total - 3s de aviso)
-	await get_tree().create_timer(7.0).timeout
-	
+	# Espera os primeiros 8 segundos (10s no total - 2s de aviso)
+	await get_tree().create_timer(8.0).timeout
 	# Verificação de segurança: Só começa a piscar se o jogador NÃO pegou outro escudo nesse meio tempo
 	if shield_timer == current_shield_timer:
+		SoundManager.play_powerup_finishing()
 		BlinkShieldTween()
 
 	# Espera os 3 segundos finais para acabar o tempo total

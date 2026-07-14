@@ -19,12 +19,17 @@ run/main_scene="uid://cfkxkrfeb0f14"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cwg5n8sm871xe"
+
 [autoload]
 
 ApiManager="*res://scripts/game/api-manager.gd"
 SessionState="*res://scripts/game/session-state.gd"
 SaveManager="*res://scripts/game/save-manager.gd"
 GameEvents="*res://scripts/game/game-events.gd"
+SoundManager="*uid://edeag8ayqu3k"
 
 [display]
 

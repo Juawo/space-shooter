@@ -9,13 +9,14 @@ var player_nickname : String = ""
 var score_id : String = ""
 
 #Configuracoes
-var volume : float = 100.0
+var music_volume : float = 100.0
+var sfx_volume : float = 100.0
 var language : int = 0
 var control_mode : int = -1 # 0 para tilt e 1 para touch
 var sensibility : float = 100
 var has_chosen_control : bool = false
 #GameVersion
-const CURRENT_CODE_VERSION : String = "1.0.3"
+const CURRENT_CODE_VERSION : String = "1.0.4"
 var game_version : String = CURRENT_CODE_VERSION
 
 var file_path : String
@@ -38,7 +39,8 @@ func save_data () -> void:
 		"player_nickname": player_nickname,
 		"score_id": score_id,
 		"settings" : {
-			"volume" : volume,
+			"music_volume" : music_volume,
+			"sfx_volume" : sfx_volume,
 			"language" : language,
 			"control_mode" : control_mode,
 			"sensibility" : sensibility,
@@ -88,7 +90,8 @@ func load_data () -> void:
 		# Carregando configuracoes
 		if json_data.has("settings"):
 			var s = json_data["settings"]
-			volume = s.get("volume", 100.0)
+			music_volume = s.get("music_volume", 100.0)
+			sfx_volume = s.get("sfx_volume", 100.0)
 			language = s.get("language", 0)
 			control_mode = s.get("control_mode", -1)
 			sensibility = s.get("sensibility", 100)

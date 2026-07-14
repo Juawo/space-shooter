@@ -21,7 +21,7 @@ func populate_leaderboard(data, status_code):
 		erro_return.text = "[center][wave amp=40.0 freq=6.0 color=#FFFFFF][pulse color=#FFFFFF angle=0.0 height=1.05 freq=3.0]Error in data coming from the server.[/pulse][/wave][/center]"
 		return
 	erro_return.visible = false
-	
+	SoundManager.play_scroll(true)
 	for i in range(len(data)):
 		var new_scene = row_scene.instantiate()
 		v_box_container.add_child(new_scene)
@@ -30,4 +30,5 @@ func populate_leaderboard(data, status_code):
 			new_scene.get_node("Panel").self_modulate = Color(1, 1, 1, 0.05)
 
 func _on_back_button_pressed() -> void:
+	SoundManager.play_click()
 	get_tree().change_scene_to_packed(main_scene)

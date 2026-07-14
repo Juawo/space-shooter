@@ -11,6 +11,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") or body.name == "Player":
 		if body.has_method("apply_speed_boost"):
 			# Passamos o multiplicador 3.0 para triplicar a cadência [cite: 1]
+			SoundManager.play_pickup_cadence()
 			body.apply_speed_boost(2) 
 			queue_free()
 

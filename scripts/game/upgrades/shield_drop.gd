@@ -11,6 +11,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") or body.name == "Player":
 		if body.has_method("activate_shield"):
 			body.activate_shield()
+			SoundManager.play_pickup_shield()
 			queue_free() # Remove o item coletado da tela
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
