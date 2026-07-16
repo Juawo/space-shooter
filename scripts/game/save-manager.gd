@@ -11,13 +11,10 @@ var score_id : String = ""
 #Configuracoes
 var music_volume : float = 100.0
 var sfx_volume : float = 100.0
-var language : int = 0
 var control_mode : int = -1 # 0 para tilt e 1 para touch
 var sensibility : float = 100
 var has_chosen_control : bool = false
 #GameVersion
-const CURRENT_CODE_VERSION : String = "1.0.4"
-var game_version : String = CURRENT_CODE_VERSION
 
 var file_path : String
 
@@ -41,12 +38,10 @@ func save_data () -> void:
 		"settings" : {
 			"music_volume" : music_volume,
 			"sfx_volume" : sfx_volume,
-			"language" : language,
 			"control_mode" : control_mode,
 			"sensibility" : sensibility,
 			"has_chosen_control" : has_chosen_control
-		},
-		"game_version" : game_version
+		}
 	}
 	
 	save_file.store_line(JSON.stringify(data))
@@ -56,7 +51,6 @@ func load_data () -> void:
 	if not FileAccess.file_exists(file_path):
 		print ("O arquivo de dados nao existe.")
 		# Se não existe, usamos a versão atual do código
-		game_version = CURRENT_CODE_VERSION
 		loaded_data.emit()
 		save_data()
 		return # Adicione o return aqui para evitar ler um arquivo inexistente abaixo
@@ -74,25 +68,12 @@ func load_data () -> void:
 		player_id = json_data.get("player_id", "")
 		player_nickname = json_data.get("player_nickname", "Bob")
 		score_id = json_data.get("score_id", "")
-		
-		# o que está guardado no arquivo
-		var saved_version = json_data.get("game_version", "1.0.0")
-		# sincronização de versão
-		if saved_version != CURRENT_CODE_VERSION:
-			print("Upgrade detectado! Arquivo antigo: ", saved_version, " | Código Atual: ", CURRENT_CODE_VERSION)
-			# Forçamos a variável local a usar a versão atualizada do código
-			game_version = CURRENT_CODE_VERSION
-			# Chamamos o save para atualizar o arquivo .json em disco imediatamente!
-			save_data()
-		else:
-			game_version = saved_version
 
 		# Carregando configuracoes
 		if json_data.has("settings"):
 			var s = json_data["settings"]
 			music_volume = s.get("music_volume", 100.0)
 			sfx_volume = s.get("sfx_volume", 100.0)
-			language = s.get("language", 0)
 			control_mode = s.get("control_mode", -1)
 			sensibility = s.get("sensibility", 100)
 			has_chosen_control = s.get("has_chosen_control", false)

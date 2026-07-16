@@ -3,7 +3,6 @@ extends Node
 signal highscores_received(data, status_code)
 signal play_registered(data:bool, code)
 signal nickname_updated(response_code)
-signal latest_version_received(data, status_code)
 signal highscore_sync_completed
 signal player_fetched(status_code)
 
@@ -14,7 +13,6 @@ var register_scene := preload("res://scenes/ui/Register/register.tscn")
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load_configs()
-	get_latest_version()
 
 func _load_configs():
 	var config = ConfigFile.new()
@@ -69,28 +67,6 @@ func _on_sync_high_score_completed(result, response_code, headers, body, request
 			SaveManager.save_data()
 	
 	highscore_sync_completed.emit()
-	request_node.queue_free()
-
-func get_latest_version():
-	var request = HTTPRequest.new()
-	add_child(request)
-	request.request_completed.connect(_on_get_latest_version_completed.bind(request))
-	
-	var url = API_URL_BASE + "api/GameVersions/"
-	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
-	
-	if err != OK:
-		printerr("GET Latest Version - Erro ao iniciar a requisicao HTTP")
-		latest_version_received.emit({},null)
-		request.queue_free()
-@warning_ignore("unused_parameter")
-func _on_get_latest_version_completed(result, response_code, headers, body, request_node) :
-	print("Status code LV : " + str(response_code))
-	if response_code == 200:
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		latest_version_received.emit(json,response_code)
-	else:
-		latest_version_received.emit({}, response_code)
 	request_node.queue_free()
 
 func register_player(data : Dictionary):
