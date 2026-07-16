@@ -109,9 +109,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 140
+theme_override_constants/margin_top = 160
 theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 140
+theme_override_constants/margin_bottom = 160
 
 [node name="Panel" type="Panel" parent="MarginContainer" unique_id=630659555]
 layout_mode = 2
@@ -195,49 +195,41 @@ theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 24
 text = "Country"
 
-[node name="CountryInput" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Country" unique_id=1128538319]
+[node name="CountryInput" type="OptionButton" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Country" unique_id=400007020]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 18
-placeholder_text = "ex: Brasil"
-emoji_menu_enabled = false
-clear_button_enabled = true
+text_overrun_behavior = 1
 
-[node name="CountryFeedback" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Country" unique_id=1264693832]
-custom_minimum_size = Vector2(252, 1)
+[node name="Terms" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=206456669]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-autowrap_mode = 1
 
-[node name="Age" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=765620946]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="AgeLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Age" unique_id=315267700]
+[node name="CountryLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Terms" unique_id=1690241950]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 24
-text = "Age"
-horizontal_alignment = 1
+text = "Privacy Policy"
 
-[node name="AgeInput" type="HSlider" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Age" unique_id=923349513]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Terms" unique_id=1164486126]
 layout_mode = 2
-min_value = 6.0
-value = 6.0
-tick_count = 1
+size_flags_vertical = 4
 
-[node name="AgeValue" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Age" unique_id=227184874]
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Terms/HBoxContainer" unique_id=375339530]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-theme_override_font_sizes/font_size = 24
-text = "6"
-horizontal_alignment = 1
+
+[node name="CountryLabel2" type="RichTextLabel" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Terms/HBoxContainer" unique_id=1980260502]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("1_va7qf")
+bbcode_enabled = true
+text = "By checking this box, you agree to our  [color=#4967d5][url=https://juawo.github.io/privacy-policy-outer-space-game/]privacy policies[/url][/color]."
+fit_content = true
 
 [node name="register_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1986222208]
 custom_minimum_size = Vector2(90, 36)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 24
 disabled = true
@@ -291,7 +283,7 @@ wait_time = 2.0
 one_shot = true
 
 [connection signal="text_changed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname/nickname_type/nickname_input" to="." method="_on_nickname_input_text_changed"]
-[connection signal="text_changed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Country/CountryInput" to="." method="_on_country_input_text_changed"]
-[connection signal="value_changed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Age/AgeInput" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Terms/HBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="meta_clicked" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Terms/HBoxContainer/CountryLabel2" to="." method="_on_country_label_2_meta_clicked"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/register_btn" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
