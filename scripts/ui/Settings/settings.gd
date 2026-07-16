@@ -4,7 +4,6 @@ enum Controls { TILT, TOUCH }
 var music_volume : float = 100.0
 var sfx_volume : float = 100.0
 var sensibility : float = 100.0
-var language : int
 var controlMode : Controls = Controls.TILT
 
 var main_scene : PackedScene = preload("res://scenes/game/main.tscn")
@@ -19,7 +18,6 @@ var update_nickname_scene : PackedScene = preload("res://scenes/ui/Settings/nick
 @onready var sensibilityt_slider: HSlider = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility/SensibilityContainer/SensibilitytSlider
 @onready var sensibility_value: Label = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Sensibility/SensibilityContainer/SensibilityValue
 
-@onready var language_option: OptionButton = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Language/LanguageOption
 @onready var tilt_button: Button = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions/TiltButton
 @onready var touch_button: Button = $VBoxContainer/ContentSettings/VBoxContainer/Panel/MarginContainer/VBoxContainer/Controls/ControlsOptions/TouchButton
 @onready var nickname: Label = $VBoxContainer/Header/HBoxContainer/HBoxContainer/Nickname
@@ -38,23 +36,14 @@ func _ready() -> void:
 	sensibility = SaveManager.sensibility
 	sensibilityt_slider.value = sensibility
 
-	language = SaveManager.language
-	language_option.select(language)
-
 	controlMode = SaveManager.control_mode as Controls
 	tilt_button.button_pressed = (controlMode == Controls.TILT)
 	touch_button.button_pressed = (controlMode == Controls.TOUCH)
-	version.text = "version " + SaveManager.game_version
-	
-func _on_language_option_item_selected(index: int) -> void:
-	SoundManager.play_click()
-	language = index
 
 func _on_button_pressed() -> void:
 	SoundManager.play_click()
 	SaveManager.music_volume = music_volume
 	SaveManager.sfx_volume = sfx_volume
-	SaveManager.language = language
 	SaveManager.control_mode = controlMode
 	SaveManager.sensibility = sensibility
 	SaveManager.save_data()
