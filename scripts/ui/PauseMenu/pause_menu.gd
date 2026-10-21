@@ -8,6 +8,7 @@ func show_pause_menu():
 	SoundManager.play_scroll(true)
 	is_showing = true
 	visible = is_showing
+	# TODO : add a "new" when the current high-score is bigger than the highscore saved
 	high_score_value.text = str(SessionState.high_score)
 	current_score_value.text = str(SessionState.current_score)
 

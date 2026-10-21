@@ -22,6 +22,7 @@ func reset_game():
 	hud.reset_life()
 
 func clean_world():
+	# TODO : this is performatic ?
 	var entities_to_clear = get_tree().get_nodes_in_group("Enemies") \
 	+ get_tree().get_nodes_in_group("EnemiesProjectiles") +  \
 	get_tree().get_nodes_in_group("PlayerProjectiles")
@@ -30,7 +31,8 @@ func clean_world():
 		entity.queue_free()
 
 func reset_player():
+	# TODO : add animation, player coming from bottom of the screen and go to inital position
 	if player:
-		# Posição instantânea para não bugar o reinício
 		player.global_position = Vector2(204.0, 840.0) 
-		player.velocity = Vector2.ZERO # Zere a velocidade para ele não "drifar"
+		player.velocity = Vector2.ZERO 
+		player.remove_powerups()

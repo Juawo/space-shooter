@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://d4kbs6vopeoxo" path="res://scenes/game/enemies/enemie_base.tscn" id="1_qo7cy"]
 [ext_resource type="Script" uid="uid://38t4fmf17sm5" path="res://scripts/game/enemies/enemie2/enemie_2.gd" id="2_kb3w2"]
 [ext_resource type="PackedScene" uid="uid://cnsd0d5d07i4y" path="res://scenes/game/enemies/enemie2/enemy_2_bullet.tscn" id="3_tvcsg"]
+[ext_resource type="PackedScene" uid="uid://cs68p11snrc0o" path="res://scenes/game/upgrades/cadence.tscn" id="4_7jthu"]
 [ext_resource type="Texture2D" uid="uid://bcvja1g1tjym7" path="res://assets/sprites/enemies/enemie_2/enemie2_fill/enemie_2_fill_animation0000.png" id="4_tvcsg"]
+[ext_resource type="PackedScene" uid="uid://bv1ut74uwhu51" path="res://scenes/game/upgrades/shield-drop.tscn" id="5_4fw2j"]
 [ext_resource type="Texture2D" uid="uid://du1qipt202rkv" path="res://assets/sprites/enemies/enemie_2/enemie2_fill/enemie_2_fill_animation0001.png" id="5_ptvpo"]
 [ext_resource type="Texture2D" uid="uid://mkd23cjwgjyd" path="res://assets/sprites/enemies/enemie_2/enemie2_fill/enemie_2_fill_animation0002.png" id="6_7jthu"]
 [ext_resource type="Texture2D" uid="uid://dug41axugmrft" path="res://assets/sprites/enemies/enemie_2/enemie2_fill/enemie_2_fill_animation0003.png" id="7_4fw2j"]
@@ -30,7 +32,7 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_os2qn"]
 animations = [{
 "frames": [],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -65,7 +67,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_a717e")
 }],
-"loop": false,
+"loop": 0,
 "name": &"fill",
 "speed": 9.0
 }, {
@@ -100,7 +102,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("23_vkvs1")
 }],
-"loop": false,
+"loop": 0,
 "name": &"prepare_bullet",
 "speed": 9.0
 }]
@@ -108,7 +110,7 @@ animations = [{
 [sub_resource type="SpriteFrames" id="SpriteFrames_esvhe"]
 animations = [{
 "frames": [],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -122,7 +124,7 @@ animations = [{
 "duration": 0.8,
 "texture": ExtResource("26_d7dlp")
 }],
-"loop": false,
+"loop": 0,
 "name": &"show_muzzle",
 "speed": 10.0
 }]
@@ -130,13 +132,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvcsg"]
 size = Vector2(54.193195, 52.609196)
 
-[node name="Enemie2" unique_id=705572824 instance=ExtResource("1_qo7cy")]
+[node name="Enemie2" unique_id=705572824 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_qo7cy")]
 scale = Vector2(1.1, 1.1)
 script = ExtResource("2_kb3w2")
 bullet_scene = ExtResource("3_tvcsg")
+power_up_scene = ExtResource("4_7jthu")
+shield_power_up_scene = ExtResource("5_4fw2j")
+enemy_level = 1
+life = 1
+SPEED = 140
 score_value = 20
 can_shoot = true
 base_color = Color(0.72156864, 0.3882353, 0.1764706, 1)
+animated_sprite = NodePath("sprite_animation")
 
 [node name="Sprite2D" parent="." index="0" unique_id=1208508710]
 visible = false

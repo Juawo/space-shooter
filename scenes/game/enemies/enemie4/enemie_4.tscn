@@ -78,15 +78,17 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="Enemie4" unique_id=475994672 instance=ExtResource("1_lcv4k")]
+[node name="Enemie4" unique_id=475994672 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_lcv4k")]
 scale = Vector2(1, 1)
 script = ExtResource("2_6v76c")
 bullet_scene = ExtResource("3_6v76c")
+enemy_level = 1
 life = 3
 SPEED = 100
 score_value = 40
 can_shoot = true
 base_color = Color(0.8627451, 0.09803922, 0.2509804, 1)
+animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="Sprite2D" parent="." index="0" unique_id=1208508710]
 scale = Vector2(1, 1)

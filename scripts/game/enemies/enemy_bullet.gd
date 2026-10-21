@@ -4,7 +4,6 @@ extends Area2D
 @export var damage_value := 1
 
 func _process(delta: float) -> void:
-	# Fica descendo
 	position.y += BULLET_SPEED * delta
 
 func explode() -> void :

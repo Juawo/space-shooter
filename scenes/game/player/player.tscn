@@ -172,17 +172,34 @@ debug_color = Color(0.9353768, 2.0311178e-05, 0.63873893, 0.41960785)
 [node name="Marker2D" type="Marker2D" parent="." unique_id=93774196]
 position = Vector2(-0.49999872, -56.166664)
 
-[node name="ShootTimer" type="Timer" parent="." unique_id=919519564]
-wait_time = 0.6
-autostart = true
-
-[node name="InvecibleTimer" type="Timer" parent="." unique_id=1370307090]
-
 [node name="Shield" parent="." unique_id=342161447 instance=ExtResource("27_okwrv")]
 visible = false
 modulate = Color(0.48235294, 1, 1, 0.5803922)
 scale = Vector2(0.6, 0.6)
 
+[node name="InvecibleTimer" type="Timer" parent="." unique_id=1370307090]
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=919519564]
+wait_time = 0.6
+autostart = true
+
+[node name="CadenceTimer" type="Timer" parent="." unique_id=297935690]
+one_shot = true
+
+[node name="CadenceWarningTimer" type="Timer" parent="." unique_id=815284667]
+one_shot = true
+
+[node name="ShieldTimer" type="Timer" parent="." unique_id=2033885940]
+one_shot = true
+
+[node name="ShieldWarningTimer" type="Timer" parent="." unique_id=808905737]
+one_shot = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_area_2d_area_entered"]
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="InvecibleTimer" to="." method="_on_invecible_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="CadenceTimer" to="." method="_on_cadence_timer_timeout"]
+[connection signal="timeout" from="CadenceWarningTimer" to="." method="_on_cadence_warning_timer_timeout"]
+[connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]
+[connection signal="timeout" from="ShieldWarningTimer" to="." method="_on_shield_warning_timer_timeout"]

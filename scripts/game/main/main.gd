@@ -85,7 +85,6 @@ func _set_state(newValue : GameStates):
 			
 		GameStates.GAME_OVER :
 			print("Game state changed to Game Over")
-			#game_world.reset_game()
 			SoundManager.set_music_opaque(true)
 			get_tree().paused = true
 			game_over.show_game_over()
