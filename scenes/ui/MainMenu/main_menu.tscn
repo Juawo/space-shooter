@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cumwujwhqn00f"]
+[gd_scene format=3 uid="uid://cumwujwhqn00f"]
 
 [ext_resource type="Script" uid="uid://brwl6ygpwkkyh" path="res://scripts/ui/MainMenu/main_menu.gd" id="1_epepa"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_ift2n"]
@@ -84,7 +84,7 @@ _data = {
 &"idle": SubResource("Animation_mfgk4")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1411683720]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,7 +94,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_epepa")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1657245143]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,15 +106,15 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=850788581]
 layout_mode = 2
 
-[node name="HeaderWrapper" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="HeaderWrapper" type="Control" parent="MarginContainer/VBoxContainer" unique_id=792354388]
 custom_minimum_size = Vector2(392, 54)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HeaderWrapper"]
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HeaderWrapper" unique_id=1954835562]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -127,18 +127,18 @@ size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="LeaderBoardButton" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header" instance=ExtResource("1_ql3r1")]
+[node name="LeaderBoardButton" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header" unique_id=131150619 instance=ExtResource("1_ql3r1")]
 custom_minimum_size = Vector2(68, 54)
 layout_mode = 2
 size_flags_horizontal = 2
 pathScene = "res://scenes/ui/Leaderboard/leaderboard.tscn"
 
-[node name="HighScoreLabel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header"]
+[node name="HighScoreLabel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header" unique_id=907817516]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header/HighScoreLabel"]
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header/HighScoreLabel" unique_id=2112928787]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_ift2n")
@@ -146,7 +146,7 @@ theme_override_font_sizes/font_size = 24
 text = "HighScore"
 horizontal_alignment = 1
 
-[node name="ScoreValueLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header/HighScoreLabel"]
+[node name="ScoreValueLabel" type="Label" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header/HighScoreLabel" unique_id=2018231240]
 layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_ift2n")
@@ -154,18 +154,18 @@ theme_override_font_sizes/font_size = 24
 text = "2839"
 horizontal_alignment = 1
 
-[node name="ConfigButtons" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header" instance=ExtResource("3_ql3r1")]
+[node name="ConfigButtons" parent="MarginContainer/VBoxContainer/HeaderWrapper/Header" unique_id=61609366 instance=ExtResource("3_ql3r1")]
 custom_minimum_size = Vector2(68, 54)
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="TitleWrapper" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="TitleWrapper" type="Control" parent="MarginContainer/VBoxContainer" unique_id=476994504]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 mouse_filter = 1
 
-[node name="title" type="Label" parent="MarginContainer/VBoxContainer/TitleWrapper"]
+[node name="title" type="Label" parent="MarginContainer/VBoxContainer/TitleWrapper" unique_id=304397431]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -185,13 +185,13 @@ text = "COOLER
 TITLE 3D"
 horizontal_alignment = 1
 
-[node name="InstructionWrapper" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="InstructionWrapper" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1738946733]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.32
 mouse_filter = 1
 
-[node name="instruction" type="Label" parent="MarginContainer/VBoxContainer/InstructionWrapper"]
+[node name="instruction" type="Label" parent="MarginContainer/VBoxContainer/InstructionWrapper" unique_id=1146826698]
 top_level = true
 layout_mode = 0
 offset_left = 5.0
@@ -205,7 +205,7 @@ theme_override_font_sizes/font_size = 26
 text = "Tap to play"
 horizontal_alignment = 1
 
-[node name="BackgroundTapArea" type="Button" parent="."]
+[node name="BackgroundTapArea" type="Button" parent="." unique_id=417474922]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -217,10 +217,8 @@ grow_vertical = 2
 disabled = true
 metadata/_edit_use_anchors_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_b771k")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=422927443]
+libraries/ = SubResource("AnimationLibrary_b771k")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="BackgroundTapArea" to="." method="_on_background_tap_area_pressed"]
