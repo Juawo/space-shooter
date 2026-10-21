@@ -1,16 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6ldni36gxx0u"]
+[gd_scene format=3 uid="uid://b6ldni36gxx0u"]
 
 [ext_resource type="Script" uid="uid://bpwpvdyifrkrn" path="res://scripts/game/enemies/enemies-spawner/enemies_spawner.gd" id="1_cibea"]
 
-[node name="EnemiesSpawner" type="Node2D"]
+[node name="EnemiesSpawner" type="Node2D" unique_id=424079284]
 process_mode = 1
 script = ExtResource("1_cibea")
 
-[node name="DificultTimer" type="Timer" parent="."]
+[node name="DificultTimer" type="Timer" parent="." unique_id=38340360]
 wait_time = 30.0
 autostart = true
 
-[node name="SpawnTimer" type="Timer" parent="."]
+[node name="SpawnTimer" type="Timer" parent="." unique_id=558315479]
 wait_time = 2.0
 autostart = true
 

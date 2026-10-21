@@ -17,6 +17,14 @@ scale = Vector2(5, 5)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_d3nni")
+power_up_scene = null
+shield_power_up_scene = null
+enemy_level = null
+life = null
+SPEED = null
+score_value = null
+can_shoot = null
+base_color = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1208508710]
 scale = Vector2(0.119140625, 0.119140625)

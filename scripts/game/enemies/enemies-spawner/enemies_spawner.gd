@@ -1,5 +1,7 @@
 extends Node2D
 
+# TODO : Find a method to balance this!
+
 # Referências das cenas dos inimigos
 var enemies: Array[PackedScene] = [
 	preload("res://scenes/game/enemies/enemie1/enemie_1.tscn"), # index 0
@@ -15,33 +17,27 @@ var enemies: Array[PackedScene] = [
 var current_wave : int = 1
 const MAX_WAVE_DIFFICULTY : int = 10 
 
-# Variável para lembrar onde nasceu o último inimigo e evitar colisões no spawn
 var last_spawn_x : float = 0.0
-const MIN_SPAWN_DISTANCE : float = 65.0 # Distância horizontal mínima entre inimigos seguidos
-
+const MIN_SPAWN_DISTANCE : float = 65.0 # Distância horizontal
 func _ready() -> void:
 	randomize()
 	reset_spawner()
 
-# Modificado para aceitar uma variação de altura (offset_y) opcional
 func spawn_enemy(offset_y: float = 0.0):
 	var enemy_scene = get_random_enemy()
 	var enemy = enemy_scene.instantiate()
 	
 	var random_x = randf_range(50, screen_width - 50)
 	
-	# Se o novo X for muito perto do anterior, joga ele para o outro lado da tela
 	if abs(random_x - last_spawn_x) < MIN_SPAWN_DISTANCE:
 		random_x = fmod(random_x + (screen_width / 2.0), screen_width - 100) + 50
 	
 	last_spawn_x = random_x
 	
-	# Aplicamos o offset_y para que inimigos do mesmo bando venham escalonados na vertical
 	enemy.global_position = Vector2(random_x, -20 - offset_y)
 	
 	get_tree().current_scene.add_child(enemy)
 
-# ─── 🌟 GERADOR DE BANDOS COM ARRANJO VERTICAL ───
 func trigger_wave_spawn():
 	var spawn_count = 1
 	var roll = randi() % 100
@@ -64,8 +60,6 @@ func trigger_wave_spawn():
 	for i in range(spawn_count):
 		var micro_delay = 0.25 if spawn_timer.wait_time < 0.8 else 0.15
 		
-		# Multiplicamos o índice 'i' por 40 para empurrar os próximos inimigos 
-		# do mesmo bando mais para cima (fora da tela), criando uma fila
 		var vertical_offset = i * 40.0 
 		
 		spawn_enemy(vertical_offset)
@@ -103,8 +97,6 @@ func get_random_enemy() -> PackedScene:
 			elif roll < 45: return enemies[1]
 			elif roll < 75: return enemies[2]
 			else: return enemies[3]
-
-# ─── ⏱️ TIMERS E PROGRESSÃO BALANCEADA ───
 
 func _on_spawn_timer_timeout() -> void:
 	trigger_wave_spawn()
