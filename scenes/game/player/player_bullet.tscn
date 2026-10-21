@@ -14,7 +14,7 @@ size = Vector2(16, 31)
 [sub_resource type="SpriteFrames" id="SpriteFrames_gspiv"]
 animations = [{
 "frames": [],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -34,7 +34,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_exjpq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 20.0
 }]
