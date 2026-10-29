@@ -181,8 +181,8 @@ size_flags_stretch_ratio = 0.8
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_ift2n")
 theme_override_font_sizes/font_size = 60
-text = "COOLER
-TITLE 3D"
+text = "OUTER
+SPACE"
 horizontal_alignment = 1
 
 [node name="InstructionWrapper" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1738946733]
