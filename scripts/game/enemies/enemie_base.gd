@@ -53,7 +53,7 @@ func die():
 		return
 	is_dead = true
 	
-	SessionState.update_current_score(score_value)
+	GameEvents.enemy_died.emit(score_value)
 	
 	check_drop_chance()
 	
@@ -93,6 +93,7 @@ func _on_shoot_timer_timeout() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	GameEvents.enemy_escaped.emit()
 	queue_free()
 
 func check_drop_chance():
