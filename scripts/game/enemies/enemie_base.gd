@@ -19,6 +19,10 @@ var shield_power_up_scene := preload("res://scenes/game/upgrades/shield-drop.tsc
 
 var is_dead : bool = false
 
+
+func _enter_tree() -> void:
+	GameEvents.enemy_spawned .emit()
+
 func _ready() -> void:
 	if can_shoot:
 		shoot_timer.start(randf_range(1.5,3.0))
@@ -90,7 +94,6 @@ func shoot():
 
 func _on_shoot_timer_timeout() -> void:
 	shoot()
-
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	GameEvents.enemy_escaped.emit()
