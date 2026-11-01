@@ -1,6 +1,8 @@
 extends Node
 
-signal value_changed(value:int)
+signal value_changed(score_value : int)
+signal distance_changed(distance_value : int)
+signal combo_changed(combo_value : int)
 signal high_score_changed(value:int)
 signal new_high_score_saved(value:int)
 
@@ -22,7 +24,7 @@ var current_combo_strike :float = 1.0
 var current_score :int = 0 :
 	set (new_value) :
 		current_score = new_value
-		value_changed.emit(new_value)
+		value_changed.emit(current_score)
 		if new_value > high_score:
 			high_score = new_value
 
@@ -43,7 +45,7 @@ func _ready() -> void:
 	
 	combo_timer = Timer.new()
 	combo_timer.timeout.connect(_on_combo_timer_timeout)
-	combo_timer.wait_time = 1.5
+	combo_timer.wait_time = 2.5
 	combo_timer.autostart = true
 	add_child(combo_timer)
 	
@@ -52,10 +54,13 @@ func _ready() -> void:
 	alive_timer.wait_time = 1
 	alive_timer.autostart = true
 	add_child(alive_timer)
+	
+	toggle_run_timers(true)
 
 func _update_live_score() -> void:
 	var distance_points = time_alive_seconds * 10
 	current_score = int((distance_points + dead_enemies_points) * current_combo_strike)
+	value_changed.emit(current_score)
 
 func toggle_run_timers(is_paused: bool) -> void:
 	alive_timer.paused = is_paused
@@ -69,6 +74,7 @@ func reset_session_state() -> void :
 	time_alive_seconds = 0
 	current_combo_strike = 0.0
 	maximum_combo_strike = 0.0
+	toggle_run_timers(false)
 
 func _on_gameplay_end():
 	if SaveManager.high_score < high_score :
@@ -79,33 +85,38 @@ func _on_gameplay_end():
 		SoundManager.play_new_highscore()
 
 func _on_combo_timer_timeout() -> void :
-	current_combo_strike = max(1.0, current_combo_strike - 0.5)
-	_update_live_score()
+	current_combo_strike = max(1.0, current_combo_strike - 0.3)
+	combo_changed.emit(current_combo_strike)
 
 func _on_alive_timer_timeout() -> void:
 	time_alive_seconds += 1
-	_update_live_score()
+	var earned_points = int(10 * current_combo_strike)
+	current_score += earned_points
+	distance_changed.emit(time_alive_seconds * 10)
 
 func _on_enemy_escaped() -> void :
 	current_combo_strike = 1.0
-	_update_live_score()
+	combo_changed.emit(current_combo_strike)
 
 func _on_enemy_died(score_value: int) -> void:
 	dead_enemies += 1
 	dead_enemies_points += score_value
+	
+	var points_earned = int(score_value * current_combo_strike)
+	current_score += points_earned
+	
 	_update_combo_strike()
-	_update_live_score()
+	combo_changed.emit(current_combo_strike)
 
 func _update_combo_strike() -> void:
-	current_combo_strike += 0.1
+	current_combo_strike = min(5.0, current_combo_strike + 0.1)
 	if current_combo_strike > maximum_combo_strike : maximum_combo_strike = current_combo_strike
 	
 func _on_enemy_spawned() -> void:
 	spawned_enemy += 1
 
 func get_current_score() -> int :
-	var distance_points = time_alive_seconds * 10
-	return (distance_points + dead_enemies_points) * maximum_combo_strike
+	return current_score
 
 func _get_rank_from_thresholds(value: float, thresholds: Array) -> int :
 	for t in thresholds :
@@ -119,7 +130,6 @@ func _calculate_kill_efficiency() -> float:
 
 func calculate_score_return() -> Dictionary:
 	var distance_points = time_alive_seconds * 10
-	var total_score = (distance_points + dead_enemies_points) * maximum_combo_strike
 	var kill_efficiency = _calculate_kill_efficiency()
 	
 	var eff_rank_int = _get_rank_from_thresholds(kill_efficiency, EFFIENCY_THRESHOLDS)
@@ -130,9 +140,9 @@ func calculate_score_return() -> Dictionary:
 	var final_rank_string = RANK_NAMES[final_avarage_int]
 	
 	return {
-		"total_score": round(total_score),
+		"total_score": current_score, # Use the accumulated score
 		"total_rank": final_rank_string,
-		"kill_efficiency_value": kill_efficiency,
+		"kill_efficiency_value": "%.1f" % kill_efficiency,
 		"kill_efficiency_rank": RANK_NAMES[eff_rank_int],
 		"distance_points_value": distance_points,
 		"distance_rank": RANK_NAMES[dist_rank_int],
