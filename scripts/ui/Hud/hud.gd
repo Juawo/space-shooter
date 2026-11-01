@@ -1,5 +1,7 @@
 extends Control
 
+@onready var combo_value: Label = $MarginContainer/VBoxContainer/ScoreLife/ComboValue
+@onready var distance_value: Label = $MarginContainer/VBoxContainer/ScoreLife/DistanceValue
 @onready var score_value: Label = $MarginContainer/VBoxContainer/ScoreLife/ScoreValue
 @onready var life_hud: HBoxContainer = $MarginContainer/VBoxContainer/ScoreLife/LifeHud
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -7,6 +9,8 @@ var is_showing : bool = false
 
 func _ready() -> void:
 	SessionState.value_changed.connect(update_hud)
+	SessionState.combo_changed.connect(_on_combo_changed)
+	SessionState.distance_changed.connect(_on_distance_changed)
 
 func show_hud():
 	is_showing = true
@@ -21,16 +25,19 @@ func hide_hud():
 	GameEvents.hud_closed.emit()
 
 func update_hud(score : int) -> void:
-	#SoundManager.play_scroll(true)
 	score_value.text = str(score)
 
+func _on_combo_changed(value : float) -> void:
+	combo_value.text = "%.1fx" % value
+
+func _on_distance_changed(value : float) -> void:
+	distance_value.text = str(value) + "m"
+
 func _on_button_pressed() -> void:
-	print("Pause")
 	SoundManager.play_click()
 	GameEvents.pause_requested.emit()
 
 func reset_life():
-	print("Reseting lifes to visible!")
 	var lifes = life_hud.get_children()
 	for life in lifes :
 		life.modulate.a = 1.0

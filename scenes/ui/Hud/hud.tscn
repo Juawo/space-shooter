@@ -84,19 +84,19 @@ size_flags_horizontal = 10
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/ScoreLife" unique_id=57399156]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_8rpsh")
-theme_override_font_sizes/font_size = 24
-text = "Score"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ScoreValue" type="Label" parent="MarginContainer/VBoxContainer/ScoreLife" unique_id=1445478708]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8rpsh")
 theme_override_font_sizes/font_size = 24
 text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DistanceValue" type="Label" parent="MarginContainer/VBoxContainer/ScoreLife" unique_id=57399156]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8rpsh")
+theme_override_font_sizes/font_size = 24
+text = "0M"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -117,6 +117,14 @@ texture = ExtResource("3_uputy")
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("3_uputy")
+
+[node name="ComboValue" type="Label" parent="MarginContainer/VBoxContainer/ScoreLife" unique_id=1106188680]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8rpsh")
+theme_override_font_sizes/font_size = 24
+text = "1.0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1849536019]
 libraries/ = SubResource("AnimationLibrary_vvc7a")
