@@ -71,16 +71,20 @@ func _set_state(newValue : GameStates):
 			SoundManager.set_music_opaque(false)
 			if main_menu.showing:
 				main_menu.hideMainMenu()
-			if pause_menu.is_showing:
-				pause_menu.hide_pause_menu()
 			if not game_world.hud.is_showing:
 				game_world.show_hud()
+			if pause_menu.is_showing:
+				pause_menu.hide_pause_menu()
+				SessionState.toggle_run_timers(false)
+			else :
+				SessionState.reset_session_state()
 			print("Game state changed to Game")
 			
 		GameStates.PAUSED :
 			get_tree().paused = true
 			SoundManager.set_music_opaque(true)
 			pause_menu.show_pause_menu()
+			SessionState.toggle_run_timers(true)
 			print("Game state changed to Paused")
 			
 		GameStates.GAME_OVER :
@@ -88,3 +92,4 @@ func _set_state(newValue : GameStates):
 			SoundManager.set_music_opaque(true)
 			get_tree().paused = true
 			game_over.show_game_over()
+			print(SessionState.calculate_score_return())
