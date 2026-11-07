@@ -83,6 +83,7 @@ func _on_gameplay_end():
 		ApiManager.register_high_score(high_score)
 		new_high_score_saved.emit(SaveManager.high_score)
 		SoundManager.play_new_highscore()
+	toggle_run_timers(true)
 
 func _on_combo_timer_timeout() -> void :
 	current_combo_strike = max(1.0, current_combo_strike - 0.3)
@@ -142,7 +143,7 @@ func calculate_score_return() -> Dictionary:
 	return {
 		"total_score": current_score, # Use the accumulated score
 		"total_rank": final_rank_string,
-		"kill_efficiency_value": "%.1f" % kill_efficiency,
+		"kill_efficiency_value": snapped(kill_efficiency, 0.1),
 		"kill_efficiency_rank": RANK_NAMES[eff_rank_int],
 		"distance_points_value": distance_points,
 		"distance_rank": RANK_NAMES[dist_rank_int],

@@ -92,4 +92,4 @@ func _set_state(newValue : GameStates):
 			SoundManager.set_music_opaque(true)
 			get_tree().paused = true
 			game_over.show_game_over()
-			print(SessionState.calculate_score_return())
+			
