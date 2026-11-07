@@ -5,12 +5,16 @@ extends Control
 @onready var score_value: Label = $MarginContainer/VBoxContainer/ScoreLife/ScoreValue
 @onready var life_hud: HBoxContainer = $MarginContainer/VBoxContainer/ScoreLife/LifeHud
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var button: Button = $MarginContainer/VBoxContainer/Button
+
 var is_showing : bool = false
 
 func _ready() -> void:
 	SessionState.value_changed.connect(update_hud)
 	SessionState.combo_changed.connect(_on_combo_changed)
 	SessionState.distance_changed.connect(_on_distance_changed)
+	GameEvents.game_over.connect(_on_game_over)
+	GameEvents.game_requested.connect(_on_game_requested)
 
 func show_hud():
 	is_showing = true
@@ -36,6 +40,16 @@ func _on_distance_changed(value : float) -> void:
 func _on_button_pressed() -> void:
 	SoundManager.play_click()
 	GameEvents.pause_requested.emit()
+
+
+func toggle_pause_btn() -> void:
+	button.disabled = !button.disabled
+
+func _on_game_over() -> void:
+	toggle_pause_btn()
+
+func _on_game_requested() -> void:
+	toggle_pause_btn()
 
 func reset_life():
 	var lifes = life_hud.get_children()
