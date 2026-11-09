@@ -10,7 +10,7 @@ enum Ranks { F = 0, D = 1, C = 2, B = 3, A = 4, S = 5}
 const RANK_NAMES = ["F", "D", "C", "B", "A", "S"]
 
 const EFFIENCY_THRESHOLDS = [[80.0, Ranks.S], [60.0, Ranks.A], [40.0, Ranks.B], [20.0, Ranks.C], [1.0, Ranks.D]]
-const DISTANCE_THRESHOLDS = [[300, Ranks.S], [240, Ranks.A], [180, Ranks.B], [120, Ranks.C], [60, Ranks.D]] 
+const DISTANCE_THRESHOLDS = [[240, Ranks.S], [180, Ranks.A], [120, Ranks.B], [60, Ranks.C], [30, Ranks.D]] 
 const COMBO_THRESHOLDS = [[5.0, Ranks.S], [4.0, Ranks.A], [3.0, Ranks.B], [2.0, Ranks.C], [1.0, Ranks.D]]
 
 # Run data to generate the score and rank
@@ -145,7 +145,7 @@ func calculate_score_return() -> Dictionary:
 		"total_rank": final_rank_string,
 		"kill_efficiency_value": snapped(kill_efficiency, 0.1),
 		"kill_efficiency_rank": RANK_NAMES[eff_rank_int],
-		"distance_points_value": distance_points,
+		"distance_points_value": distance_points / 10.0,
 		"distance_rank": RANK_NAMES[dist_rank_int],
 		"max_combo_strike_value": maximum_combo_strike,
 		"max_combo_rank": RANK_NAMES[combo_rank_int]
