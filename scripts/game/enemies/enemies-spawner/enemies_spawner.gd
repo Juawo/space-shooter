@@ -21,7 +21,7 @@ const ENEMY_SPAWN_WEIGHTS = {
 # TABELA DE QUANTIDADE DE SPAWNS (A soma também deve ser 100)
 # Formato -> Wave: [Chance de 1 Inimigo, 2 Inimigos, 3 Inimigos, 4 Inimigos]
 const SPAWN_COUNT_WEIGHTS = {
-	1: [0, 0,  0,  100], # Waves 1 a 3
+	1: [50, 50,  0,  0], # Waves 1 a 3
 	4: [30, 40, 30,  0], # Waves 4 a 6
 	7: [10, 30, 30, 30]  # Waves 7 em diante
 }
