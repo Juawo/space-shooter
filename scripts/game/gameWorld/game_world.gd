@@ -18,7 +18,7 @@ func reset_game():
 	reset_player()
 	player.playerLife = 3
 	SessionState.current_score = 0
-	enemies_spawner.reset_spawner()
+	enemies_spawner.reset_spawner()	
 	hud.reset_life()
 
 func clean_world():

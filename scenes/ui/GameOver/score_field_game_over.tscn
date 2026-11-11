@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cm82cjtckmme5"]
+
+[ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_lroiy"]
+[ext_resource type="Script" uid="uid://blcnc1qhfdd8k" path="res://scripts/ui/GameOver/score_field_game_over.gd" id="1_q7xhu"]
+
+[node name="ScoreFieldGameOver" type="HBoxContainer" unique_id=250974935]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.044000003
+offset_bottom = -0.3480034
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_q7xhu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=946471378]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="TitleField" type="Label" parent="VBoxContainer" unique_id=1829235061]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lroiy")
+theme_override_font_sizes/font_size = 18
+text = "title field"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=156565761]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ValueField" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=2050824696]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_lroiy")
+theme_override_font_sizes/font_size = 14
+text = "XXXX"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=628854432]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.95
+theme_override_constants/margin_top = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MarginContainer" unique_id=477328567]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+show_percentage = false
+
+[node name="RankField" type="Label" parent="." unique_id=1054728798]
+custom_maximum_size = Vector2(-1, 29)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_lroiy")
+theme_override_font_sizes/font_size = 28
+text = "A"
