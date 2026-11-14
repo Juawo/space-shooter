@@ -82,7 +82,7 @@ _data = {
 }
 
 [node name="Register" type="Control" unique_id=867801829]
-z_index = 30
+z_index = 5
 custom_minimum_size = Vector2(305, 419)
 layout_mode = 3
 anchors_preset = 15
@@ -109,9 +109,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 140
+theme_override_constants/margin_top = 180
 theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 140
+theme_override_constants/margin_bottom = 180
 
 [node name="Panel" type="Panel" parent="MarginContainer" unique_id=630659555]
 layout_mode = 2
@@ -137,6 +137,7 @@ theme_override_constants/separation = 18
 
 [node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=822628821]
 layout_mode = 2
+size_flags_vertical = 2
 theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 34
 text = "Register"
@@ -151,6 +152,7 @@ autowrap_mode = 2
 
 [node name="Nickname" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1725033786]
 layout_mode = 2
+size_flags_vertical = 6
 
 [node name="NicknameLabe" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname" unique_id=837671205]
 layout_mode = 2
@@ -185,53 +187,6 @@ custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_va7qf")
 autowrap_mode = 1
-
-[node name="Country" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1357542346]
-layout_mode = 2
-
-[node name="CountryLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Country" unique_id=849265978]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-theme_override_font_sizes/font_size = 24
-text = "Country"
-
-[node name="CountryInput" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Country" unique_id=1128538319]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-theme_override_font_sizes/font_size = 18
-placeholder_text = "ex: Brasil"
-emoji_menu_enabled = false
-clear_button_enabled = true
-
-[node name="CountryFeedback" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Country" unique_id=1264693832]
-custom_minimum_size = Vector2(252, 1)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-autowrap_mode = 1
-
-[node name="Age" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=765620946]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="AgeLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Age" unique_id=315267700]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-theme_override_font_sizes/font_size = 24
-text = "Age"
-horizontal_alignment = 1
-
-[node name="AgeInput" type="HSlider" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Age" unique_id=923349513]
-layout_mode = 2
-min_value = 6.0
-value = 6.0
-tick_count = 1
-
-[node name="AgeValue" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Age" unique_id=227184874]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-theme_override_font_sizes/font_size = 24
-text = "6"
-horizontal_alignment = 1
 
 [node name="register_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1986222208]
 custom_minimum_size = Vector2(90, 36)
@@ -291,7 +246,5 @@ wait_time = 2.0
 one_shot = true
 
 [connection signal="text_changed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname/nickname_type/nickname_input" to="." method="_on_nickname_input_text_changed"]
-[connection signal="text_changed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Country/CountryInput" to="." method="_on_country_input_text_changed"]
-[connection signal="value_changed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Age/AgeInput" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/register_btn" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
