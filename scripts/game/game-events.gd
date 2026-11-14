@@ -13,5 +13,8 @@ signal enemy_spawned
 signal enemy_died(score_value : int)
 signal enemy_escaped
 
+# Player Account
+signal player_first_register
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS

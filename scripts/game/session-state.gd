@@ -36,6 +36,9 @@ var high_score :int = 0 :
 var alive_timer :Timer
 var combo_timer :Timer
 
+const REGISTER = preload("uid://cm6gnd06eot0p")
+
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	GameEvents.game_over.connect(_on_gameplay_end)
@@ -77,6 +80,8 @@ func reset_session_state() -> void :
 	toggle_run_timers(false)
 
 func _on_gameplay_end():
+	if SaveManager.playerName == "" or SaveManager.playerName == null :
+			GameEvents.player_first_register.emit()
 	if SaveManager.high_score < high_score :
 		SaveManager.high_score = high_score
 		SaveManager.save_data()
