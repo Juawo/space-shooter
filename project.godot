@@ -30,6 +30,7 @@ SessionState="*res://scripts/game/session-state.gd"
 SaveManager="*res://scripts/game/save-manager.gd"
 GameEvents="*res://scripts/game/game-events.gd"
 SoundManager="*uid://edeag8ayqu3k"
+LootLockerSDK="*uid://ctsafdro0f571"
 
 [display]
 
@@ -41,11 +42,14 @@ window/handheld/orientation=1
 window/vsync/vsync_mode=3
 window/main_scene="uid://deo2xlnjykoj2"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/LootLockerSDK/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
 "res://assets/": "purple",
-"res://configs/": "gray",
 "res://scenes/": "green",
 "res://scripts/": "yellow"
 }
