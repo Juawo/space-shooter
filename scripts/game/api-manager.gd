@@ -1,12 +1,16 @@
 extends Node
 
-signal nickname_updated(response_code)
+signal nickname_updated(status_code)
+signal submited_score(status_code)
+signal got_leaderboard(status_code, items)
+signal got_player_rank(status_code, rank, score)
 
-var register_scene := preload("res://scenes/ui/Register/register.tscn")
+var leaderboardKey = "outerspaceleaderboard"
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+## Player functions
 func register_session_player(playerIdentifier: String) -> bool :
 	var guestLoginResponse = await LL_Authentication.GuestSession.new(playerIdentifier).send()
 	if(!guestLoginResponse.success) :
@@ -22,3 +26,19 @@ func update_nickname(new_nickname : String) -> void:
 	if(response.success) :
 		SaveManager.update_nickname(response.name)
 	nickname_updated.emit(response.status_code)
+
+## Score/Leaderboard functions
+
+func submit_score(new_score: int) -> void:
+	var response = await LL_Leaderboards.SubmitScore.new(leaderboardKey, new_score, SaveManager.playerIdentifier).send()
+	submited_score.emit(response.status_code)
+	if SaveManager.memberId == "" or SaveManager.memberId == null :
+		SaveManager.update_memberId(response.member_id)
+
+func get_leaderboard(count: int) -> void:
+	var response = await LL_Leaderboards.GetScoreList.new(leaderboardKey, count).send()
+	got_leaderboard.emit(response.status_code, response.items)
+
+func get_player_rank() -> void:
+	var response = await LL_Leaderboards.GetMemberRank.new(leaderboardKey, SaveManager.memberId).send()
+	got_player_rank.emit(response.status_code, response.rank, response.score)

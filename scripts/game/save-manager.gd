@@ -6,7 +6,7 @@ signal loaded_data
 var high_score : int = 0
 var playerIdentifier : String = "" 
 var playerName : String = ""
-var score_id : String = ""
+var memberId : String = ""
 
 #Configuracoes
 var music_volume : float = 100.0
@@ -34,7 +34,7 @@ func save_data () -> void:
 		"high_score": high_score,
 		"playerIdentifier": playerIdentifier,
 		"playerName": playerName,
-		"score_id": score_id,
+		"memberId": memberId,
 		"settings" : {
 			"music_volume" : music_volume,
 			"sfx_volume" : sfx_volume,
@@ -66,7 +66,7 @@ func load_data () -> void:
 		high_score = json_data.get("high_score", 0)
 		playerIdentifier = json_data.get("playerIdentifier", "")
 		playerName = json_data.get("playerName", "")
-		score_id = json_data.get("score_id", "")
+		memberId = json_data.get("memberId", "")
 		# Carregando configuracoes
 		if json_data.has("settings"):
 			var s = json_data["settings"]
@@ -79,6 +79,10 @@ func load_data () -> void:
 			
 	SessionState.high_score = high_score
 	loaded_data.emit()
+
+func update_memberId(member_id : String) -> void:
+	memberId = member_id
+	save_data()
 
 func update_player_identifier(player_identifier: String) -> void:
 	playerIdentifier = player_identifier
