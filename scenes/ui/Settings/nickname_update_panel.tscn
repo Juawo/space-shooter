@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://briyvdwe58raq"]
+[gd_scene format=3 uid="uid://briyvdwe58raq"]
 
 [ext_resource type="Script" uid="uid://g6ex6jgnruo8" path="res://scripts/ui/Settings/nickname_update_panel.gd" id="1_f1fjo"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_j7w53"]
@@ -27,7 +27,7 @@ content_margin_top = 1.0
 content_margin_bottom = 1.0
 bg_color = Color(1, 1, 1, 1)
 
-[node name="nickname_update_panel" type="Control"]
+[node name="nickname_update_panel" type="Control" unique_id=2009115951]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +37,7 @@ grow_vertical = 2
 script = ExtResource("1_f1fjo")
 metadata/_edit_horizontal_guides_ = [300.0]
 
-[node name="background" type="ColorRect" parent="."]
+[node name="background" type="ColorRect" parent="." unique_id=17618485]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,7 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.3529412, 0.3529412, 0.3529412, 0.53333336)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1005706995]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,12 +59,12 @@ theme_override_constants/margin_top = 260
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 260
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1698773550]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1fjo")
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=1451590903]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,15 +76,15 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=432880218]
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=555261481]
 layout_mode = 2
 size_flags_vertical = 2
 
-[node name="title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="title" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2107572077]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -93,11 +93,11 @@ theme_override_font_sizes/font_size = 34
 text = "Update Nickname"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1393079218]
 layout_mode = 2
 theme_override_constants/margin_top = 3
 
-[node name="close_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="close_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=44526721]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -106,29 +106,29 @@ theme_override_fonts/font = ExtResource("1_j7w53")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ovw66")
 text = "x"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=936891459]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="Nickname" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Nickname" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=387708667]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="NicknameLabe" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname"]
+[node name="NicknameLabe" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname" unique_id=2113104700]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_j7w53")
 theme_override_font_sizes/font_size = 24
 text = "Nickname"
 horizontal_alignment = 1
 
-[node name="nickname_type" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname"]
+[node name="nickname_type" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname" unique_id=270972438]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="nickname_input" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/nickname_type"]
+[node name="nickname_input" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/nickname_type" unique_id=1233325069]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1_j7w53")
@@ -138,7 +138,7 @@ max_length = 12
 clear_button_enabled = true
 caret_blink = true
 
-[node name="char_count" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/nickname_type"]
+[node name="char_count" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/nickname_type" unique_id=272812274]
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -146,7 +146,7 @@ size_flags_stretch_ratio = 0.1
 theme_override_fonts/font = ExtResource("1_j7w53")
 text = "0/12"
 
-[node name="detail_return" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname"]
+[node name="detail_return" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname" unique_id=1996229498]
 custom_minimum_size = Vector2(252, 37)
 layout_mode = 2
 size_flags_vertical = 2
@@ -154,7 +154,7 @@ theme_override_fonts/font = ExtResource("1_j7w53")
 theme_override_font_sizes/font_size = 16
 autowrap_mode = 1
 
-[node name="register_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="register_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1542484551]
 custom_minimum_size = Vector2(90, 36)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -165,18 +165,18 @@ disabled = true
 text = "Register
 "
 
-[node name="Detail" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Detail" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=681092922]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/separation = 20
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Detail"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Detail" unique_id=1954418199]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 theme_override_constants/separation = 5
 theme_override_styles/separator = SubResource("StyleBoxFlat_hiyjh")
 
-[node name="Detail" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Detail"]
+[node name="Detail" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Detail" unique_id=377277067]
 custom_minimum_size = Vector2(265, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_j7w53")
@@ -185,7 +185,7 @@ text = "You can change the nickname after!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Feedback" type="Label" parent="MarginContainer/Panel/MarginContainer"]
+[node name="Feedback" type="Label" parent="MarginContainer/Panel/MarginContainer" unique_id=990765569]
 visible = false
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2

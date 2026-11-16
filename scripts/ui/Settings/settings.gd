@@ -25,7 +25,7 @@ var update_nickname_scene : PackedScene = preload("res://scenes/ui/Settings/nick
 @onready var nickname: Label = $VBoxContainer/Header/HBoxContainer/HBoxContainer/Nickname
 
 func _ready() -> void:
-	nickname.text = SaveManager.player_nickname
+	nickname.text = SaveManager.playerName
 	
 	music_volume = SaveManager.music_volume
 	sfx_volume = SaveManager.sfx_volume
