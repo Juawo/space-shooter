@@ -35,7 +35,7 @@ func submit_score(new_score: int) -> void:
 	if SaveManager.memberId == "" or SaveManager.memberId == null :
 		SaveManager.update_memberId(response.member_id)
 
-func get_leaderboard(count: int) -> void:
+func get_leaderboard(count: int = 30) -> void:
 	var response = await LL_Leaderboards.GetScoreList.new(leaderboardKey, count).send()
 	got_leaderboard.emit(response.status_code, response.items)
 

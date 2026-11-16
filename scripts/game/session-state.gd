@@ -83,9 +83,8 @@ func _on_gameplay_end():
 	if SaveManager.playerName == "" or SaveManager.playerName == null :
 			GameEvents.player_first_register.emit()
 	if SaveManager.high_score < high_score :
-		SaveManager.high_score = high_score
-		SaveManager.save_data()
-		ApiManager.register_high_score(high_score)
+		SaveManager.update_high_score(high_score)
+		ApiManager.submit_score(high_score)
 		new_high_score_saved.emit(SaveManager.high_score)
 		SoundManager.play_new_highscore()
 	toggle_run_timers(true)

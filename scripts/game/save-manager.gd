@@ -80,6 +80,10 @@ func load_data () -> void:
 	SessionState.high_score = high_score
 	loaded_data.emit()
 
+func update_high_score(new_high_score : int) -> void:
+	high_score = new_high_score
+	save_data()
+
 func update_memberId(member_id : String) -> void:
 	memberId = member_id
 	save_data()
