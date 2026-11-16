@@ -1,0 +1,53 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://cwg5n8sm871xe"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -6.0
+ratio = 3.0
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_g28q7"]
+resource_name = "Limiter"
+ceiling_db = -0.5
+
+[sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_j3pel"]
+resource_name = "StereoEnhance"
+time_pullout_ms = 5.0
+surround = 0.14
+
+[sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_j3pel"]
+resource_name = "EQ10"
+band_db/31_hz = -14.0
+band_db/62_hz = -14.0
+band_db/125_hz = -14.0
+band_db/1000_hz = 3.0
+band_db/2000_hz = 3.0
+band_db/4000_hz = 3.0
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
+resource_name = "Limiter"
+ceiling_db = -1.0
+
+[resource]
+bus/0/volume_db = 0.04726219
+bus/0/effect/0/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectLimiter_g28q7")
+bus/0/effect/1/enabled = true
+bus/1/name = &"Music"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectStereoEnhance_j3pel")
+bus/1/effect/0/enabled = true
+bus/2/name = &"SFX"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = -7.805747
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectEQ10_j3pel")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectLimiter_j3pel")
+bus/2/effect/1/enabled = true

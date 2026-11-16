@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm6gnd06eot0p"]
+[gd_scene format=3 uid="uid://cm6gnd06eot0p"]
 
 [ext_resource type="Script" uid="uid://b13628nlefy2h" path="res://scripts/ui/Register/register.gd" id="1_5snb6"]
 [ext_resource type="FontFile" uid="uid://d30hgfkq7jl3v" path="res://assets/ui/fonts/Jersey_25/Jersey25-Regular.ttf" id="1_va7qf"]
@@ -81,8 +81,8 @@ _data = {
 &"close_register": SubResource("Animation_5snb6")
 }
 
-[node name="Register" type="Control"]
-z_index = 30
+[node name="Register" type="Control" unique_id=867801829]
+z_index = 5
 custom_minimum_size = Vector2(305, 419)
 layout_mode = 3
 anchors_preset = 15
@@ -93,7 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5snb6")
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="." unique_id=267895048]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,7 +101,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=783334529]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,16 +109,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 200
+theme_override_constants/margin_top = 180
 theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 200
+theme_override_constants/margin_bottom = 180
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=630659555]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5snb6")
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=2127367401]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,94 +131,95 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=597464796]
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=822628821]
 layout_mode = 2
+size_flags_vertical = 2
 theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 34
 text = "Register"
 horizontal_alignment = 1
 
-[node name="Nickname" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="register_again_label" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=764782479]
+custom_minimum_size = Vector2(292, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="NicknameLabe" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname"]
+[node name="Nickname" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1725033786]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="NicknameLabe" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname" unique_id=837671205]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 24
 text = "Nickname"
 
-[node name="NicknameInput" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname"]
+[node name="nickname_type" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname" unique_id=537848019]
 layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="nickname_input" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname/nickname_type" unique_id=1799896406]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 18
 placeholder_text = "ex: mantas"
-max_length = 20
+max_length = 12
+clear_button_enabled = true
+caret_blink = true
 
-[node name="Country" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="char_count" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname/nickname_type" unique_id=151901272]
+custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.1
+theme_override_fonts/font = ExtResource("1_va7qf")
+text = "0/12"
 
-[node name="CountryLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Country"]
+[node name="nicknameFeedback" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname" unique_id=1355613470]
+custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_va7qf")
-theme_override_font_sizes/font_size = 24
-text = "Country"
+autowrap_mode = 1
 
-[node name="CountryInput" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Country"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-theme_override_font_sizes/font_size = 18
-placeholder_text = "ex: Brasil"
-
-[node name="Age" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="AgeLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Age"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-theme_override_font_sizes/font_size = 24
-text = "Age"
-horizontal_alignment = 1
-
-[node name="AgeInput" type="HSlider" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Age"]
-layout_mode = 2
-min_value = 6.0
-value = 6.0
-tick_count = 1
-
-[node name="AgeValue" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Age"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_va7qf")
-theme_override_font_sizes/font_size = 24
-text = "6"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="register_btn" type="Button" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1986222208]
 custom_minimum_size = Vector2(90, 36)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_va7qf")
 theme_override_font_sizes/font_size = 24
-text = "Regiser
+disabled = true
+text = "Register
 "
 
-[node name="Detail" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="detail_return" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1999247122]
+custom_minimum_size = Vector2(252, 37)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("1_va7qf")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Detail" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=214147681]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/separation = 20
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Detail"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Detail" unique_id=1920998904]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 theme_override_constants/separation = 5
 theme_override_styles/separator = SubResource("StyleBoxFlat_llqps")
 
-[node name="Detail" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Detail"]
+[node name="Detail" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/Detail" unique_id=2000534891]
 custom_minimum_size = Vector2(265, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_va7qf")
@@ -227,7 +228,7 @@ text = "You can change the nickname in the settings after!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Feedback" type="Label" parent="MarginContainer/Panel/MarginContainer"]
+[node name="Feedback" type="Label" parent="MarginContainer/Panel/MarginContainer" unique_id=1753233082]
 visible = false
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
@@ -237,15 +238,13 @@ text = "Registered player"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_en3hr")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1625952391]
+libraries/ = SubResource("AnimationLibrary_en3hr")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1150860750]
 wait_time = 2.0
 one_shot = true
 
-[connection signal="value_changed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Age/AgeInput" to="." method="_on_h_slider_value_changed"]
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="text_changed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/Nickname/nickname_type/nickname_input" to="." method="_on_nickname_input_text_changed"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/VBoxContainer/register_btn" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

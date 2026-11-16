@@ -1,8 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://becggl8acagft"]
+[gd_scene format=3 uid="uid://becggl8acagft"]
 
 [ext_resource type="PackedScene" uid="uid://4wjxjqn0xs46" path="res://scenes/game/enemies/enemy_bullet.tscn" id="1_dcer7"]
 [ext_resource type="Script" uid="uid://b871lobkqndbd" path="res://scripts/game/enemies/enemie4/enemy_rotated_bullet.gd" id="2_m1kih"]
+[ext_resource type="Texture2D" uid="uid://b6p7ponjtyx23" path="res://assets/sprites/enemies/enemie_4/enemie_4_bullet/enemie_4_bullet0000.png" id="3_nsl7v"]
+[ext_resource type="Texture2D" uid="uid://be00vvpnuqbcw" path="res://assets/sprites/enemies/enemie_4/enemie_4_bullet/enemie_4_bullet0001.png" id="4_nu8u3"]
+[ext_resource type="Texture2D" uid="uid://x3e5v7lp5ky" path="res://assets/sprites/enemies/enemie_4/enemie_4_bullet/enemie_4_bullet0002.png" id="5_wit0t"]
+[ext_resource type="Texture2D" uid="uid://cf4txuw4mxuab" path="res://assets/sprites/enemies/enemie_4/enemie_4_bullet/enemie_4_bullet0003.png" id="6_hepvd"]
 
-[node name="EnemyRotatedBullet" instance=ExtResource("1_dcer7")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dclt"]
+size = Vector2(10, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_04dxk"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nsl7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nu8u3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wit0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hepvd")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 18.0
+}]
+
+[node name="EnemyRotatedBullet" unique_id=1272467984 instance=ExtResource("1_dcer7")]
 script = ExtResource("2_m1kih")
 BULLET_SPEED = 150
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1644799314]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_8dclt")
+
+[node name="Sprite2D" parent="." index="2" unique_id=174845168]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=713610185]
+sprite_frames = SubResource("SpriteFrames_04dxk")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.9053335

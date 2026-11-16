@@ -1,13 +1,17 @@
 extends Node2D
 
 # Aqui ficam os "componentes" do jogo e como sao orquestrados
-# TODO : Lembrar de conectar os sinais dos componentes!
+
+var control_popup_scene : PackedScene = preload("res://scenes/ui/Settings/select_control_pop_up.tscn")
 
 # "Componentes" do jogo
 @onready var main_menu : Control = $UI/MainMenu
 @onready var pause_menu: Control = $UI/PauseMenu
 @onready var game_over: Control = $UI/GameOver
 @onready var game_world: Node2D = $GameWorld
+@onready var ui: CanvasLayer = $UI
+
+const REGISTER = preload("uid://cm6gnd06eot0p")
 
 # Enum com os estados possiveis do jogo
 enum GameStates { GAME, MAIN_MENU, PAUSED, GAME_OVER }
@@ -20,7 +24,15 @@ func _ready() -> void:
 	GameEvents.main_menu_requested.connect(_on_main_menu_requested)
 	GameEvents.game_over.connect(_on_game_over)
 	GameEvents.game_requested.connect(_on_game_requested)
+	GameEvents.player_first_register.connect(_on_player_first_register)
 	state = GameStates.MAIN_MENU
+	check_control_selection()
+	
+
+func check_control_selection() -> void :
+	if SaveManager.has_chosen_control == false:
+		var popup = control_popup_scene.instantiate()
+		ui.add_child(popup)
 
 # MENU STATE
 func _on_main_menu_requested():
@@ -38,12 +50,17 @@ func _on_game_over():
 # GAME STATE
 func _on_game_requested():
 	state = GameStates.GAME
-	
+
+func _on_player_first_register() -> void:
+	var register_scene = REGISTER.instantiate()
+	ui.add_child(register_scene)
+
 func _set_state(newValue : GameStates):
 	state = newValue
 	match newValue  :
 		GameStates.MAIN_MENU :
 			print("Game state changed to Main Menu")
+			SoundManager.switch_music_to_interface()
 			if pause_menu.is_showing:
 				pause_menu.hide_pause_menu()
 			if game_over.is_showing:
@@ -57,21 +74,29 @@ func _set_state(newValue : GameStates):
 			
 		GameStates.GAME :
 			get_tree().paused = false
+			SoundManager.switch_music_to_game()
+			SoundManager.set_music_opaque(false)
 			if main_menu.showing:
 				main_menu.hideMainMenu()
-			if pause_menu.is_showing:
-				pause_menu.hide_pause_menu()
 			if not game_world.hud.is_showing:
 				game_world.show_hud()
+			if pause_menu.is_showing:
+				pause_menu.hide_pause_menu()
+				SessionState.toggle_run_timers(false)
+			else :
+				SessionState.reset_session_state()
 			print("Game state changed to Game")
 			
 		GameStates.PAUSED :
 			get_tree().paused = true
+			SoundManager.set_music_opaque(true)
 			pause_menu.show_pause_menu()
+			SessionState.toggle_run_timers(true)
 			print("Game state changed to Paused")
 			
 		GameStates.GAME_OVER :
 			print("Game state changed to Game Over")
-			#game_world.reset_game()
+			SoundManager.set_music_opaque(true)
 			get_tree().paused = true
 			game_over.show_game_over()
+			

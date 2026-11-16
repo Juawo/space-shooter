@@ -2,17 +2,20 @@ extends Node
 
 signal loaded_data
 
+# Player
 var high_score : int = 0
-var player_id : String = "" 
-var player_nickname : String = ""
-var score_id : String = ""
+var playerIdentifier : String = "" 
+var playerName : String = ""
+var memberId : String = ""
 
 #Configuracoes
-var volume : float = 100.0
+var music_volume : float = 100.0
+var sfx_volume : float = 100.0
 var language : int = 0
-var control_mode : int = 0 # 0 para tilt e 1 para touch
+var control_mode : int = -1 # 0 para tilt e 1 para touch
+var sensibility : float = 100
+var has_chosen_control : bool = false
 
-# No topo do script SaveManager
 var file_path : String
 
 func _ready() -> void:
@@ -29,27 +32,31 @@ func save_data () -> void:
 	
 	var data = {
 		"high_score": high_score,
-		"player_id": player_id,
-		"player_nickname": player_nickname,
-		"score_id": score_id,
+		"playerIdentifier": playerIdentifier,
+		"playerName": playerName,
+		"memberId": memberId,
 		"settings" : {
-			"volume" : volume,
+			"music_volume" : music_volume,
+			"sfx_volume" : sfx_volume,
 			"language" : language,
-			"control_mode" : control_mode
+			"control_mode" : control_mode,
+			"sensibility" : sensibility,
+			"has_chosen_control" : has_chosen_control
 		}
 	}
 	
 	save_file.store_line(JSON.stringify(data))
 	save_file.close()
-	
+
 func load_data () -> void:
 	if not FileAccess.file_exists(file_path):
 		print ("O arquivo de dados nao existe.")
 		loaded_data.emit()
 		save_data()
+		return 
 	var load_file = FileAccess.open(file_path, FileAccess.READ)
 	if not load_file:
-		print ("Nao foi possivel abrir o arquivo para escrita.")
+		print ("Nao foi possivel abrir o arquivo para leitura.")
 		return
 		
 	var json_data = JSON.parse_string(load_file.get_as_text())
@@ -57,16 +64,34 @@ func load_data () -> void:
 	
 	if json_data:
 		high_score = json_data.get("high_score", 0)
-		player_id = json_data.get("player_id", "")
-		player_nickname = json_data.get("player_nickname", "Bob")
-		score_id = json_data.get("score_id", "")
+		playerIdentifier = json_data.get("playerIdentifier", "")
+		playerName = json_data.get("playerName", "")
+		memberId = json_data.get("memberId", "")
 		# Carregando configuracoes
 		if json_data.has("settings"):
 			var s = json_data["settings"]
-			volume = s.get("volume", 100.0)
+			music_volume = s.get("music_volume", 100.0)
+			sfx_volume = s.get("sfx_volume", 100.0)
 			language = s.get("language", 0)
-			control_mode = s.get("control_mode", 0)
+			control_mode = s.get("control_mode", -1)
+			sensibility = s.get("sensibility", 100)
+			has_chosen_control = s.get("has_chosen_control", false)
 			
-		# Sincroniza com o SessionState
-		SessionState.high_score = high_score
+	SessionState.high_score = high_score
 	loaded_data.emit()
+
+func update_high_score(new_high_score : int) -> void:
+	high_score = new_high_score
+	save_data()
+
+func update_memberId(member_id : String) -> void:
+	memberId = member_id
+	save_data()
+
+func update_player_identifier(player_identifier: String) -> void:
+	playerIdentifier = player_identifier
+	save_data()
+
+func update_nickname(new_nickname : String) -> void :
+	playerName = new_nickname
+	save_data()

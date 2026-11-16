@@ -1,47 +1,205 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8bvrgnu7smjw"]
+[gd_scene format=3 uid="uid://c8bvrgnu7smjw"]
 
 [ext_resource type="Script" uid="uid://ceqve5ivwdmt8" path="res://scripts/game/player/player.gd" id="1_1hecf"]
-[ext_resource type="Texture2D" uid="uid://bl1qcpmv6n4ks" path="res://assets/sprites/idle.png" id="1_apxxd"]
+[ext_resource type="Texture2D" uid="uid://j0curxd1ln88" path="res://assets/sprites/spaceship/idle/frame0000.png" id="2_6bxg8"]
+[ext_resource type="Texture2D" uid="uid://hwmud27mkk87" path="res://assets/sprites/spaceship/idle/frame0001.png" id="3_ywish"]
+[ext_resource type="Texture2D" uid="uid://8la8qs655clf" path="res://assets/sprites/spaceship/idle/frame0002.png" id="4_bcwky"]
+[ext_resource type="Texture2D" uid="uid://ctrhxitu0c12j" path="res://assets/sprites/spaceship/idle/frame0003.png" id="5_i0dnl"]
+[ext_resource type="Texture2D" uid="uid://d2m0que3t8tlu" path="res://assets/sprites/spaceship/idle/frame0004.png" id="6_sxkrj"]
+[ext_resource type="Texture2D" uid="uid://di57wco0qf32k" path="res://assets/sprites/spaceship/idle/frame0005.png" id="7_ixkur"]
+[ext_resource type="Texture2D" uid="uid://cd0qb5gurncnn" path="res://assets/sprites/spaceship/idle/frame0006.png" id="8_jvpd5"]
+[ext_resource type="Texture2D" uid="uid://citn3osxaun3s" path="res://assets/sprites/spaceship/muzzle_flash/frame0000.png" id="10_6m5kx"]
+[ext_resource type="Texture2D" uid="uid://cndfohpc6ucpo" path="res://assets/sprites/spaceship/muzzle_flash/frame0001.png" id="11_okwrv"]
+[ext_resource type="Texture2D" uid="uid://tvo8w7r80p6d" path="res://assets/sprites/spaceship/muzzle_flash/frame0002.png" id="12_3tfu2"]
+[ext_resource type="Texture2D" uid="uid://bupfe6421shlg" path="res://assets/sprites/spaceship/muzzle_flash/frame0003.png" id="13_pusnx"]
+[ext_resource type="Texture2D" uid="uid://e5r0okg71c1p" path="res://assets/sprites/spaceship/muzzle_flash/frame0004.png" id="14_yhc5r"]
+[ext_resource type="Texture2D" uid="uid://djg5a2r2v230r" path="res://assets/sprites/spaceship/muzzle_flash/frame0005.png" id="15_4dwn7"]
+[ext_resource type="Texture2D" uid="uid://7tx710mjpg2p" path="res://assets/sprites/spaceship/muzzle_flash/frame0006.png" id="16_urwsv"]
+[ext_resource type="Texture2D" uid="uid://b7wdnqnsvolo6" path="res://assets/sprites/spaceship/muzzle_flash/frame0007.png" id="17_ce18t"]
+[ext_resource type="Texture2D" uid="uid://dob7y6btxdt1p" path="res://assets/sprites/spaceship/muzzle_flash/frame0008.png" id="18_0k0g3"]
+[ext_resource type="Texture2D" uid="uid://baxqdq3oc1r2" path="res://assets/sprites/spaceship/muzzle_flash/frame0009.png" id="19_d73su"]
+[ext_resource type="Texture2D" uid="uid://u0bjv88w7sn5" path="res://assets/sprites/spaceship/muzzle_flash/frame0010.png" id="20_cof3t"]
+[ext_resource type="Texture2D" uid="uid://bphbreb5gps0c" path="res://assets/sprites/spaceship/muzzle_flash/frame0011.png" id="21_jeuq0"]
+[ext_resource type="Texture2D" uid="uid://ceemgaivxu66d" path="res://assets/sprites/spaceship/muzzle_flash/frame0012.png" id="22_tw66e"]
+[ext_resource type="Texture2D" uid="uid://bih8nolwnd636" path="res://assets/sprites/spaceship/muzzle_flash/frame0013.png" id="23_u8nby"]
+[ext_resource type="Texture2D" uid="uid://c55dba8w8pwxt" path="res://assets/sprites/spaceship/muzzle_flash/frame0014.png" id="24_qr4c7"]
+[ext_resource type="Texture2D" uid="uid://cl7i6yxvogsv0" path="res://assets/sprites/spaceship/muzzle_flash/frame0015.png" id="25_bt2u1"]
+[ext_resource type="Texture2D" uid="uid://bm8dvm4phwsel" path="res://assets/sprites/spaceship/muzzle_flash/frame0016.png" id="26_30wld"]
+[ext_resource type="PackedScene" uid="uid://bsr4o4cwx4qqo" path="res://scenes/game/upgrades/shield.tscn" id="27_okwrv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hecf"]
-size = Vector2(12.800002, 14.200003)
+size = Vector2(7.666669, 9.166668)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t5vmf"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.81,
+"texture": ExtResource("2_6bxg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ywish")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bcwky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i0dnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sxkrj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ixkur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jvpd5")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_82yl3"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_6m5kx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_okwrv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3tfu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_pusnx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yhc5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4dwn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_urwsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ce18t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_0k0g3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_d73su")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_cof3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_jeuq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_tw66e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_u8nby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_qr4c7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_bt2u1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_30wld")
+}],
+"loop": 0,
+"name": &"muzzle_flash",
+"speed": 20.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5cse"]
-size = Vector2(64.5, 71.5)
+size = Vector2(38.33333, 45)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=821778144]
 process_mode = 1
 z_index = 10
-collision_mask = 10
+scale = Vector2(1.2, 1.2)
+collision_mask = 26
 script = ExtResource("1_1hecf")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0.99999905, 2.500001)
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1303884442]
+position = Vector2(-8.443991e-07, -8.749999)
 scale = Vector2(4.999999, 4.999999)
 shape = SubResource("RectangleShape2D_1hecf")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(-5.9604645e-08, 0)
-scale = Vector2(5, 5)
-texture = ExtResource("1_apxxd")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2130825360]
+process_mode = 3
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_t5vmf")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.33490074
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="muzzle_flash_animation" type="AnimatedSprite2D" parent="." unique_id=964021317]
+process_mode = 3
+visible = false
+position = Vector2(-0.49999872, -77.166664)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_82yl3")
+animation = &"muzzle_flash"
+frame = 16
+frame_progress = 1.0
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1147110849]
 collision_mask = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0.75, 3.25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=454579980]
+position = Vector2(0, -8.333333)
 shape = SubResource("RectangleShape2D_t5cse")
 debug_color = Color(0.9353768, 2.0311178e-05, 0.63873893, 0.41960785)
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(1, -37)
+[node name="Marker2D" type="Marker2D" parent="." unique_id=93774196]
+position = Vector2(-0.49999872, -56.166664)
 
-[node name="ShootTimer" type="Timer" parent="."]
-wait_time = 0.5
+[node name="Shield" parent="." unique_id=342161447 instance=ExtResource("27_okwrv")]
+visible = false
+modulate = Color(0.48235294, 1, 1, 0.5803922)
+scale = Vector2(0.6, 0.6)
+
+[node name="InvecibleTimer" type="Timer" parent="." unique_id=1370307090]
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=919519564]
+wait_time = 0.6
 autostart = true
 
-[node name="InvecibleTimer" type="Timer" parent="."]
+[node name="CadenceTimer" type="Timer" parent="." unique_id=297935690]
+one_shot = true
+
+[node name="CadenceWarningTimer" type="Timer" parent="." unique_id=815284667]
+one_shot = true
+
+[node name="ShieldTimer" type="Timer" parent="." unique_id=2033885940]
+one_shot = true
+
+[node name="ShieldWarningTimer" type="Timer" parent="." unique_id=808905737]
+one_shot = true
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_area_2d_area_entered"]
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="InvecibleTimer" to="." method="_on_invecible_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="CadenceTimer" to="." method="_on_cadence_timer_timeout"]
+[connection signal="timeout" from="CadenceWarningTimer" to="." method="_on_cadence_warning_timer_timeout"]
+[connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]
+[connection signal="timeout" from="ShieldWarningTimer" to="." method="_on_shield_warning_timer_timeout"]

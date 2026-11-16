@@ -1,102 +1,44 @@
 extends Node
 
-signal highscores_received(data)
-signal play_registered(data:bool)
+signal nickname_updated(status_code)
+signal submited_score(status_code)
+signal got_leaderboard(status_code, items)
+signal got_player_rank(status_code, rank, score)
 
-var API_URL_BASE := "https://madalyn-thoroughgoing-continuedly.ngrok-free.dev/"
-var headers_base = ["Content-Type: application/json"]
-var register_scene := preload("res://scenes/ui/Register/register.tscn")
+var leaderboardKey = "outerspaceleaderboard"
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	SaveManager.loaded_data.connect(on_loaded_data)
 
-func on_loaded_data():
-	if SaveManager.player_id == "" or SaveManager.player_id == null:
-		var scene = register_scene.instantiate()
-		var ui_layer = get_tree().current_scene.find_child("UI")
-		if ui_layer:
-			ui_layer.add_child(scene)
-		else:
-			get_tree().current_scene.add_child(scene)
+## Player functions
+func register_session_player(playerIdentifier: String) -> bool :
+	var guestLoginResponse = await LL_Authentication.GuestSession.new(playerIdentifier).send()
+	if(!guestLoginResponse.success) :
+		printerr("Guest login failed with reason: " + guestLoginResponse.error_data.to_string())
+		return false
+	if playerIdentifier == null or playerIdentifier.is_empty() :
+		SaveManager.update_player_identifier(guestLoginResponse.player_identifier)
+	print("Guest user was successfully signed in to LootLocker")
+	return true
 
-func register_player(data : Dictionary):
-	var request = HTTPRequest.new()
-	add_child(request)
-	request.request_completed.connect(_on_register_request_completed)
-	
-	var url = API_URL_BASE+"api/Player"
-	var data_string = JSON.stringify(data)
-	
-	var err = request.request(url, headers_base, HTTPClient.METHOD_POST, data_string)
-	if err != OK:
-		printerr("Erro ao iniciar a requisição HTTP")
+func update_nickname(new_nickname : String) -> void:
+	var response = await LL_Players.SetPlayerName.new(new_nickname).send()
+	if(response.success) :
+		SaveManager.update_nickname(response.name)
+	nickname_updated.emit(response.status_code)
 
-func _on_register_request_completed(result, response_code, headers, body):
-	if response_code < 200 or response_code >= 300:
-		printerr("Erro na requisicao! Codigo: %d" % response_code)
-		play_registered.emit(false)
-		return
+## Score/Leaderboard functions
 
-	var json = JSON.parse_string(body.get_string_from_utf8())
-	if json:
-		# Salvando o ID retornado pela  API (PlayerDto)
-		SaveManager.player_id = json.playerId
-		SaveManager.player_nickname = json.nickname
-		SaveManager.save_data()
-		play_registered.emit(true)
-		print("Jogador registrado e ID salvo: ", SaveManager.player_id)
+func submit_score(new_score: int) -> void:
+	var response = await LL_Leaderboards.SubmitScore.new(leaderboardKey, new_score, SaveManager.playerIdentifier).send()
+	submited_score.emit(response.status_code)
+	if SaveManager.memberId == "" or SaveManager.memberId == null :
+		SaveManager.update_memberId(response.member_id)
 
-func register_high_score(score : int) :
-	# Criando req HTTP
-	var request = HTTPRequest.new()
-	add_child(request)
-	request.request_completed.connect(_on_score_create_update_completed.bind(request))
-	
-	var url = API_URL_BASE+"api/HighScore/%s" % [SaveManager.player_id]
-	var data_string = JSON.stringify({"Value": score})
+func get_leaderboard(count: int = 30) -> void:
+	var response = await LL_Leaderboards.GetScoreList.new(leaderboardKey, count).send()
+	got_leaderboard.emit(response.status_code, response.items)
 
-	var method = HTTPClient.METHOD_POST
-	if SaveManager.score_id != "":
-		method = HTTPClient.METHOD_PUT
-		url += "/%s" % [SaveManager.score_id]
-	
-	request.request(url, headers_base, method, data_string)
-
-func _on_score_create_update_completed(result, response_code, headers, body, request_node):
-	# POST retorna 201, PUT retorna 204
-	if response_code == 201: 
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		if json and json.has("highScoreId"): 
-			SaveManager.score_id = json.highScoreId
-			SaveManager.save_data()
-			print("Novo HighScore criado!")
-			
-	elif response_code == 204:
-		print("HighScore atualizado com sucesso (PUT)!")
-	request_node.queue_free()
-
-func get_leaderboard():
-	var request = HTTPRequest.new()
-	add_child(request)
-	request.request_completed.connect(_on_all_score_sync.bind(request))
-	
-	print("ID : " + SaveManager.player_id)
-	
-	var url = API_URL_BASE+"api/HighScore/leaderboard/%s" % [SaveManager.player_id]
-	print(url)
-	
-	var err = request.request(url, headers_base, HTTPClient.METHOD_GET)
-	if err != OK:
-		printerr("GET HIGHSCORE - Erro ao iniciar a requisicao HTTP")
-
-func _on_all_score_sync(result, response_code, headers, body, request_node):
-	print("Status code : " + str(response_code))
-	if response_code == 200:
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		highscores_received.emit(json)
-		print(json)
-		
-	request_node.queue_free()
-	
-	
+func get_player_rank() -> void:
+	var response = await LL_Leaderboards.GetMemberRank.new(leaderboardKey, SaveManager.memberId).send()
+	got_player_rank.emit(response.status_code, response.rank, response.score)
