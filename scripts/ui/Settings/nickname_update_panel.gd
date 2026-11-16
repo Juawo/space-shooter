@@ -2,8 +2,6 @@ extends Control
 
 signal nickname_changed(new_nickanme : String)
 
-# TODO : Adicionar animacao de surgimento e saida
-
 @onready var nickname_input: LineEdit = $MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/nickname_type/nickname_input
 @onready var char_count: Label = $MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/nickname_type/char_count
 @onready var detail_return: Label = $MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/Nickname/detail_return
@@ -21,16 +19,13 @@ func _ready() -> void:
 	ApiManager.nickname_updated.connect(update_by_response_code_return)
 	ApiManager.nickname_updated.connect(update_save_manager_nickname)
 	#background.gui_input.connect(_on_background_clicked)
-	
-# Quando digitar esse e chamado para alterar o contador
+
 func update_counter(new_text : String) -> void :
 	char_count.text = "%d/12" % len(new_text)
 
 func update_register_btn(is_activated : bool) -> void :
 	register_btn.disabled = !is_activated 
-	
-# Verifica em todo tempo, se for false ai atualiza o btn pra nao ativo
-# TODO : Se tivesse como dar retorno se fosse igual ao atual
+
 func validate_nickname(new_text : String) -> bool :
 	if len(new_text) <= 2 or new_text.count(" ") >= 1 :
 		return false
@@ -39,7 +34,7 @@ func validate_nickname(new_text : String) -> bool :
 
 func update_by_response_code_return(response_code) -> void :
 	match response_code:
-		204 : 
+		200 : 
 			detail_return.text = "Player nickname changed!"
 			nickname_changed.emit(new_nickname)
 			detail_return.add_theme_color_override("font_color", "#00c805")
@@ -75,7 +70,7 @@ func update_detail_validation_return(is_valid : bool) -> void :
 		detail_return.add_theme_color_override("font_color", "#d4293d")
 
 func update_save_manager_nickname(response_code) -> void :
-	if response_code == 204 :
+	if response_code == 200 :
 		SaveManager.update_nickname(new_nickname)
 
 func _on_register_btn_pressed() -> void:

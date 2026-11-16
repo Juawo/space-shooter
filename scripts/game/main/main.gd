@@ -11,6 +11,8 @@ var control_popup_scene : PackedScene = preload("res://scenes/ui/Settings/select
 @onready var game_world: Node2D = $GameWorld
 @onready var ui: CanvasLayer = $UI
 
+const REGISTER = preload("uid://cm6gnd06eot0p")
+
 # Enum com os estados possiveis do jogo
 enum GameStates { GAME, MAIN_MENU, PAUSED, GAME_OVER }
 # Estado do jogo atual, por padrao/inicial em Menu
@@ -22,6 +24,7 @@ func _ready() -> void:
 	GameEvents.main_menu_requested.connect(_on_main_menu_requested)
 	GameEvents.game_over.connect(_on_game_over)
 	GameEvents.game_requested.connect(_on_game_requested)
+	GameEvents.player_first_register.connect(_on_player_first_register)
 	state = GameStates.MAIN_MENU
 	check_control_selection()
 	
@@ -47,7 +50,11 @@ func _on_game_over():
 # GAME STATE
 func _on_game_requested():
 	state = GameStates.GAME
-	
+
+func _on_player_first_register() -> void:
+	var register_scene = REGISTER.instantiate()
+	ui.add_child(register_scene)
+
 func _set_state(newValue : GameStates):
 	state = newValue
 	match newValue  :

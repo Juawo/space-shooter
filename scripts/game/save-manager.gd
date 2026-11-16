@@ -4,9 +4,9 @@ signal loaded_data
 
 # Player
 var high_score : int = 0
-var player_id : String = "" 
-var player_nickname : String = ""
-var score_id : String = ""
+var playerIdentifier : String = "" 
+var playerName : String = ""
+var memberId : String = ""
 
 #Configuracoes
 var music_volume : float = 100.0
@@ -15,9 +15,6 @@ var language : int = 0
 var control_mode : int = -1 # 0 para tilt e 1 para touch
 var sensibility : float = 100
 var has_chosen_control : bool = false
-#GameVersion
-const CURRENT_CODE_VERSION : String = "1.0.4"
-var game_version : String = CURRENT_CODE_VERSION
 
 var file_path : String
 
@@ -35,9 +32,9 @@ func save_data () -> void:
 	
 	var data = {
 		"high_score": high_score,
-		"player_id": player_id,
-		"player_nickname": player_nickname,
-		"score_id": score_id,
+		"playerIdentifier": playerIdentifier,
+		"playerName": playerName,
+		"memberId": memberId,
 		"settings" : {
 			"music_volume" : music_volume,
 			"sfx_volume" : sfx_volume,
@@ -45,8 +42,7 @@ func save_data () -> void:
 			"control_mode" : control_mode,
 			"sensibility" : sensibility,
 			"has_chosen_control" : has_chosen_control
-		},
-		"game_version" : game_version
+		}
 	}
 	
 	save_file.store_line(JSON.stringify(data))
@@ -55,12 +51,9 @@ func save_data () -> void:
 func load_data () -> void:
 	if not FileAccess.file_exists(file_path):
 		print ("O arquivo de dados nao existe.")
-		# Se não existe, usamos a versão atual do código
-		game_version = CURRENT_CODE_VERSION
 		loaded_data.emit()
 		save_data()
-		return # Adicione o return aqui para evitar ler um arquivo inexistente abaixo
-		
+		return 
 	var load_file = FileAccess.open(file_path, FileAccess.READ)
 	if not load_file:
 		print ("Nao foi possivel abrir o arquivo para leitura.")
@@ -71,22 +64,9 @@ func load_data () -> void:
 	
 	if json_data:
 		high_score = json_data.get("high_score", 0)
-		player_id = json_data.get("player_id", "")
-		player_nickname = json_data.get("player_nickname", "Bob")
-		score_id = json_data.get("score_id", "")
-		
-		# o que está guardado no arquivo
-		var saved_version = json_data.get("game_version", "1.0.0")
-		# sincronização de versão
-		if saved_version != CURRENT_CODE_VERSION:
-			print("Upgrade detectado! Arquivo antigo: ", saved_version, " | Código Atual: ", CURRENT_CODE_VERSION)
-			# Forçamos a variável local a usar a versão atualizada do código
-			game_version = CURRENT_CODE_VERSION
-			# Chamamos o save para atualizar o arquivo .json em disco imediatamente!
-			save_data()
-		else:
-			game_version = saved_version
-
+		playerIdentifier = json_data.get("playerIdentifier", "")
+		playerName = json_data.get("playerName", "")
+		memberId = json_data.get("memberId", "")
 		# Carregando configuracoes
 		if json_data.has("settings"):
 			var s = json_data["settings"]
@@ -100,6 +80,18 @@ func load_data () -> void:
 	SessionState.high_score = high_score
 	loaded_data.emit()
 
+func update_high_score(new_high_score : int) -> void:
+	high_score = new_high_score
+	save_data()
+
+func update_memberId(member_id : String) -> void:
+	memberId = member_id
+	save_data()
+
+func update_player_identifier(player_identifier: String) -> void:
+	playerIdentifier = player_identifier
+	save_data()
+
 func update_nickname(new_nickname : String) -> void :
-	player_nickname = new_nickname
+	playerName = new_nickname
 	save_data()
